@@ -1,9 +1,12 @@
 (ns qlik.cicd.main)
 
 (defn -main
-  "Main entry point for the CLI. Currently returns nil."  
+  "Main entry point for the CLI."
   [& args]
-  (println "Error: Not implemented yet")
-  (System/exit 1))
+  (if (empty? args)
+    (do
+      (println "Error: Invalid or missing command. Valid commands are: config, init, pull, push, deploy, purge.")
+      (System/exit 1)) ; Babashka supports this for exit codes
+    (println "Error: Not implemented yet")))
 
 
