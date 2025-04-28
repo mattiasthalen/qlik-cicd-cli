@@ -11,6 +11,7 @@
             "extensions": [
                 "oderwat.indent-rainbow",
                 "bierner.markdown-mermaid",
+                "betterthantomorrow.calva",
                 "betterthantomorrow.calva-mcp-server"
             ]
         }
