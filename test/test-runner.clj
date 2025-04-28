@@ -5,10 +5,10 @@
 
 (cp/add-classpath "src:test")                        
 
-(require 'qlik.cicd.cli-test)                  
+(require 'qlik.cicd.main-test)                  
 
 (def test-results
-  (t/run-tests 'qlik.cicd.cli-test))           
+  (t/run-tests 'qlik.cicd.main-test))           
 
 (let [{:keys [fail error]} test-results]
   (when (pos? (+ fail error))

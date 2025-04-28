@@ -4,4 +4,4 @@
                                {:git/tag "v0.5.1" :git/sha "dfb30dd"}}
                   :main-opts ["-m" "cognitect.test-runner"]
                   :exec-fn cognitect.test-runner.api/test}}
- :main qlik.cicd.cli}
+ :main qlik.cicd.main}
