@@ -1,3 +1,11 @@
-.qlik-cicd/
-.clj-kondo/
-target/
+# Remove noice from docker image repo
+/.calva/
+/.lsp/
+/.portal/
+/.clj-kondo/
+.cpcache/
+
+/output/
+/etc-ignored/
+
+.env
