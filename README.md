@@ -6,19 +6,20 @@
 flowchart TD
     input@{shape: event, label: "function --args"}
     ensure_env_map@{shape: prepare, label: "qlik.cicd.core/ensure-env-map"}
-    parse_args@{shape: process, label: "Parse args"}
-    init@{shape: prepare, label:"qlik.cicd.core/init"}
-    pull@{shape: prepare, label:"qlik.cicd.core/pull"}
-    push@{shape: prepare, label:"qlik.cicd.core/push"}
-    deploy@{shape: prepare, label:"qlik.cicd.core/deploy"}
-    purge@{shape: prepare, label:"qlik.cicd.core/purge"}
+    call_function@{shape: process, label: "Call function with args"}
+    init@{shape: prepare, label: "qlik.cicd.core/init"}
+    pull@{shape: prepare, label: "qlik.cicd.core/pull"}
+    push@{shape: prepare, label: "qlik.cicd.core/push"}
+    deploy@{shape: prepare, label: "qlik.cicd.core/deploy"}
+    purge@{shape: prepare, label: "qlik.cicd.core/purge"}
 
-    input --> ensure_env_map --> parse_args
-    parse_args --> init
-    parse_args --> pull
-    parse_args --> push
-    parse_args --> deploy
-    parse_args --> purge
+    input --> ensure_env_map
+    ensure_env_map --> call_function
+    call_function --> init
+    call_function --> pull
+    call_function --> push
+    call_function --> deploy
+    call_function --> purge
 ```
 
 ### qlik.cicd.core/init
