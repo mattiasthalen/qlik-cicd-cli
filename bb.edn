@@ -1,2 +1,2 @@
 {:paths ["src" "test"]
- :main qlik.cicd.main}
+ :main qlik.cicd.core}
