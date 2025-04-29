@@ -38,7 +38,7 @@ flowchart TD
             get_space_id__input --> get_space_id__api
         end
 
-        is_space_id_null@{shape: decision, label: "nil?"}
+        is_space_id_not_null@{shape: decision, label: "not-nil?"}
         app_exists__return__false__space@{shape: odd, label: "False"}
 
         subgraph get_app_id["qlik.cicd.api/get-app-id"]
@@ -48,18 +48,18 @@ flowchart TD
             get_app_id__input --> get_app_id__api
         end
 
-        is_app_id_null@{shape: decision, label: "nil?"}
+        is_app_id_not_null@{shape: decision, label: "not-nil?"}
 
         app_exists__return__true@{shape: odd, label: "True"}
         app_exists__return__false__app@{shape: odd, label: "False"}
 
         app_exists__input --> get_space_id
-        get_space_id --> is_space_id_null
-        is_space_id_null -->|Yes| app_exists__return__false__space
-        is_space_id_null -->|No| get_app_id
-        get_app_id --> is_app_id_null
-        is_app_id_null -->|Yes| app_exists__return__false__app
-        is_app_id_null -->|No| app_exists__return__true
+        get_space_id --> is_space_id_not_null
+        is_space_id_not_null -->|False| app_exists__return__false__space
+        is_space_id_not_null -->|True| get_app_id
+        get_app_id --> is_app_id_not_null
+        is_app_id_not_null -->|False| app_exists__return__false__app
+        is_app_id_not_null -->|True| app_exists__return__true
 
     end
     get_current_branch@{shape: prepare, label: "qlik.cicd.utilities/get-current-branch"}
@@ -78,7 +78,7 @@ flowchart TD
 
             use_space__get_space_id__input --> use_space__get_space_id__api
         end
-        use_space__is_space_id_null@{shape: decision, label: "nil?"}
+        use_space__is_space_id_null@{shape: decision, label: "not-nil?"}
         use_space__return__get@{shape: odd, label: "space-id"}
 
         subgraph create_space["qlik.cicd.api/create-space"]
