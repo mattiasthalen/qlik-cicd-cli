@@ -1,91 +1,126 @@
 # Qlik CI/CD CLI
 
-## Command Flows
+## Functions
+### qlik.cicd.core/main
 ```mermaid
 flowchart TD
+    input@{shape: event, label: "function --args"}
+    ensure_env_map@{shape: prepare, label: "qlik.cicd.core/ensure-env-map"}
+    parse_args@{shape: process, label: "Parse args"}
+    init@{shape: prepare, label:"qlik.cicd.core/init"}
+    pull@{shape: prepare, label:"qlik.cicd.core/pull"}
+    push@{shape: prepare, label:"qlik.cicd.core/push"}
+    deploy@{shape: prepare, label:"qlik.cicd.core/deploy"}
+    purge@{shape: prepare, label:"qlik.cicd.core/purge"}
 
-    subgraph main[qlik.cicd.core/main]
-        main__input@{shape: event, label: "function --args"}
-        main__ensure_env_map@{shape: prepare, label: "qlik.cicd.core/ensure-env-map"}
-        main__parse_args@{shape: process, label: "Parse args"}
+    input --> ensure_env_map --> parse_args
+    parse_args --> init
+    parse_args --> pull
+    parse_args --> push
+    parse_args --> deploy
+    parse_args --> purge
+```
 
-        main__input --> main__ensure_env_map --> main__parse_args
-    end
-    
-    subgraph init[qlik.cicd.core/init]
+### qlik.cicd.core/init
+```mermaid
+flowchart TD
+    input@{shape: event, label: "env\napp-name\napp-usage\ntarget-space"}
+
+    subgraph app_exists["qlik.cicd.utilities/app-exists?"]
         direction TB
-        init__input@{shape: event, label: "env\napp-name\napp-usage\ntarget-space"}
 
-        subgraph app_exists["qlik.cicd.utilities/app-exists?"]
-            direction TB
+        app_exists__input@{shape: event, label: "env\napp-name\nspace-name"}
+        
+        subgraph get_space_id["qlik.cicd.api/get-space-id"]
+            get_space_id__input@{shape: event, label: "env\nspace-name"}
+            get_space_id__api@{shape: terminal, label: "API"}
 
-            app_exists__input@{shape: event, label: "env\napp-name\nspace-name"}
-            
-            subgraph get_space_id["qlik.cicd.api/get-space-id"]
-                get_space_id__input@{shape: event, label: "env\nspace-name"}
-                endpoint__space@{shape: terminal, label: "API"}
-
-                get_space_id__input --> endpoint__space
-            end
-
-            is_space_id_null@{shape: decision, label: "nil?"}
-            app_exists__return__false__space@{shape: odd, label: "False"}
-
-            subgraph get_app_id["qlik.cicd.api/get-app-id"]
-                get_app_id__input@{shape: event, label: "env\napp-name\nspace-id"}
-                endpoint__app@{shape: terminal, label: "API"}
-
-                get_app_id__input --> endpoint__app
-            end
-
-            is_app_id_null@{shape: decision, label: "nil?"}
-
-            app_exists__return__true@{shape: odd, label: "True"}
-            app_exists__return__false__app@{shape: odd, label: "False"}
-
-            app_exists__input --> get_space_id
-            get_space_id --> is_space_id_null
-            is_space_id_null -->|Yes| app_exists__return__false__space
-            is_space_id_null -->|No| get_app_id
-            get_app_id --> is_app_id_null
-            is_app_id_null -->|Yes| app_exists__return__false__app
-            is_app_id_null -->|No| app_exists__return__true
-
+            get_space_id__input --> get_space_id__api
         end
 
-        init__app_exists__feature@{shape: prepare, label: "qlik.cicd.utilities/app-exists?\n(feature)"}
-        init__use_space__feature@{shape: prepare, label: "Use  feature space"}
-        init__create_app@{shape: prepare, label: "Create app in feature space"}
-        init__return__success@{shape: odd, label: "Return app ID"}        
-        init__return__failure__target@{shape: terminal, label: "Raise error"}
-        init__return__failure__feature@{shape: terminal, label: "Raise error"}
+        is_space_id_null@{shape: decision, label: "nil?"}
+        app_exists__return__false__space@{shape: odd, label: "False"}
 
-        init__input --> app_exists
-        app_exists -->|False| init__app_exists__feature
-        app_exists -->|True| init__return__failure__target
-        init__app_exists__feature -->|False| init__use_space__feature
-        init__app_exists__feature -->|True| init__return__failure__feature
-        init__use_space__feature --> init__create_app
-        init__create_app --> init__return__success
+        subgraph get_app_id["qlik.cicd.api/get-app-id"]
+            get_app_id__input@{shape: event, label: "env\napp-name\nspace-id"}
+            get_app_id__api@{shape: terminal, label: "API"}
+
+            get_app_id__input --> get_app_id__api
+        end
+
+        is_app_id_null@{shape: decision, label: "nil?"}
+
+        app_exists__return__true@{shape: odd, label: "True"}
+        app_exists__return__false__app@{shape: odd, label: "False"}
+
+        app_exists__input --> get_space_id
+        get_space_id --> is_space_id_null
+        is_space_id_null -->|Yes| app_exists__return__false__space
+        is_space_id_null -->|No| get_app_id
+        get_app_id --> is_app_id_null
+        is_app_id_null -->|Yes| app_exists__return__false__app
+        is_app_id_null -->|No| app_exists__return__true
 
     end
-
-    subgraph pull[qlik.cicd.core/pull]
+    get_current_branch@{shape: prepare, label: "qlik.cicd.utilities/get-current-branch"}
+    
+    subgraph app_exists__feature["qlik.cicd.utilities/app-exists?"]
+        app_exists__feature__input@{shape: event, label: "env\napp-name\nspace-name = current-branch"}
     end
 
-    subgraph push[qlik.cicd.core/push]
+    subgraph use_space["qlik.cicd.utilities/use-space"]
+        direction TB
+
+        use_space__input@{shape: event, label: "env\nspace-name = current-branch"}
+        subgraph use_space__get_space_id["qlik.cicd.api/get-space-id"]
+            use_space__get_space_id__input@{shape: event, label: "env\nspace-name"}
+            use_space__get_space_id__api@{shape: terminal, label: "API"}
+
+            use_space__get_space_id__input --> use_space__get_space_id__api
+        end
+        use_space__is_space_id_null@{shape: decision, label: "nil?"}
+        use_space__return__get@{shape: odd, label: "space-id"}
+
+        subgraph create_space["qlik.cicd.api/create-space"]
+            create_space__input@{shape: event, label: "env\nspace-name\nspace-type = shared"}
+            create_space__api@{shape: terminal, label: "API"}
+
+            create_space__input --> create_space__api
+        end
+
+        use_space__return__create@{shape: odd, label: "space-id"}
+
+        use_space__input --> use_space__get_space_id
+        use_space__get_space_id --> use_space__is_space_id_null
+        use_space__is_space_id_null -->|True|create_space
+        use_space__is_space_id_null -->|False| use_space__return__get
+        create_space --> use_space__return__create
     end
 
-    subgraph deploy[qlik.cicd.core/deploy]
+    subgraph create_app["qlik.cicd.api/create-app"]
+        direction LR
+
+        create_app__input@{shape: event, label: "env\napp-name\napp-usage\nspace-id"}
+        create_app__api@{shape: terminal, label: "API"}
+
+        create_app__input --> create_app__api
     end
 
-    subgraph purge[qlik.cicd.core/purge]
+
+    return__failure__target@{shape: terminal, label: "Raise error"}
+    return__failure__feature@{shape: terminal, label: "Raise error"}
+
+    subgraph pull["qlik.cicd.core/pull"]
+        pull__input@{shape: event, label: "env\napp-name\nspace-name"}
     end
 
+    input --> app_exists
+    app_exists -->|False| get_current_branch
+    app_exists -->|True| return__failure__target
+    get_current_branch --> app_exists__feature
+    app_exists__feature -->|False| use_space
+    app_exists__feature -->|True| return__failure__feature
+    use_space --> create_app
+    create_app --> pull
 
-    main --> init --> init__pull@{shape: prepare, label: "qlik.cicd.core/init"}
-    main --> pull
-    main --> push
-    main --> deploy
-    main --> purge
 ```
