@@ -100,7 +100,7 @@ flowchart TD
 
             use_space__get_space_id__input --> use_space__get_space_id__api
         end
-        use_space__is_space_id_null:::decision@{shape: decision, label: "not-nil?"}
+        use_space__is_space_id_null:::decision@{shape: decision, label: "nil?"}
         use_space__return__get:::odd@{shape: odd, label: "space-id"}
 
         subgraph create_space["qlik.cicd.api/create-space"]
