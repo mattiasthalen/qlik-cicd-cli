@@ -4,14 +4,21 @@
 ### qlik.cicd.core/main
 ```mermaid
 flowchart TD
-    input@{shape: event, label: "function --args"}
-    ensure_env_map@{shape: prepare, label: "qlik.cicd.core/ensure-env-map"}
-    call_function@{shape: process, label: "Call function with args"}
-    init@{shape: prepare, label: "qlik.cicd.core/init"}
-    pull@{shape: prepare, label: "qlik.cicd.core/pull"}
-    push@{shape: prepare, label: "qlik.cicd.core/push"}
-    deploy@{shape: prepare, label: "qlik.cicd.core/deploy"}
-    purge@{shape: prepare, label: "qlik.cicd.core/purge"}
+    classDef event fill:#e8f5e9,stroke:#81c784,stroke-width:2px,color:#33691e;
+    classDef prepare fill:#fff3e0,stroke:#ffb74d,stroke-width:2px,color:#6d4c41;
+    classDef process fill:#e3f2fd,stroke:#64b5f6,stroke-width:2px,color:#01579b;
+    classDef decision fill:#fffde7,stroke:#ffd54f,stroke-width:2px,color:#f57c00;
+    classDef odd fill:#fce4ec,stroke:#f06292,stroke-width:2px,color:#ad1457;
+    classDef terminal fill:#ede7f6,stroke:#9575cd,stroke-width:2px,color:#4527a0;
+
+    input:::event@{shape: event, label: "function --args"}
+    ensure_env_map:::prepare@{shape: prepare, label: "qlik.cicd.core/ensure-env-map"}
+    call_function:::process@{shape: process, label: "Call function with args"}
+    init:::prepare@{shape: prepare, label: "qlik.cicd.core/init"}
+    pull:::prepare@{shape: prepare, label: "qlik.cicd.core/pull"}
+    push:::prepare@{shape: prepare, label: "qlik.cicd.core/push"}
+    deploy:::prepare@{shape: prepare, label: "qlik.cicd.core/deploy"}
+    purge:::prepare@{shape: prepare, label: "qlik.cicd.core/purge"}
 
     input --> ensure_env_map
     ensure_env_map --> call_function
@@ -25,29 +32,36 @@ flowchart TD
 ### qlik.cicd.core/init
 ```mermaid
 flowchart TD
-    input@{shape: event, label: "env\napp-name\napp-usage\ntarget-space"}
+    classDef event fill:#e8f5e9,stroke:#81c784,stroke-width:2px,color:#33691e;
+    classDef prepare fill:#fff3e0,stroke:#ffb74d,stroke-width:2px,color:#6d4c41;
+    classDef process fill:#e3f2fd,stroke:#64b5f6,stroke-width:2px,color:#01579b;
+    classDef decision fill:#e3f2fd,stroke:#64b5f6,stroke-width:2px,color:#01579b;
+    classDef odd fill:#fce4ec,stroke:#f06292,stroke-width:2px,color:#ad1457;
+    classDef terminal fill:#ede7f6,stroke:#9575cd,stroke-width:2px,color:#4527a0;
+
+    input:::event@{shape: event, label: "env\napp-name\napp-usage\ntarget-space"}
 
     subgraph app_exists["qlik.cicd.utilities/app-exists?"]
         direction TB
 
-        app_exists__input@{shape: event, label: "env\napp-name\nspace-name"}
+        app_exists__input:::event@{shape: event, label: "env\napp-name\nspace-name"}
         
         subgraph get_space_id["qlik.cicd.api/get-space-id"]
-            get_space_id__input@{shape: event, label: "env\nspace-name"}
-            get_space_id__api@{shape: terminal, label: "API"}
+            get_space_id__input:::event@{shape: event, label: "env\nspace-name"}
+            get_space_id__api:::terminal@{shape: terminal, label: "API"}
 
             get_space_id__input --> get_space_id__api
         end
 
-        is_space_id_not_null@{shape: decision, label: "not-nil?"}
-        app_exists__return__false__space@{shape: odd, label: "False"}
+        is_space_id_not_null:::decision@{shape: decision, label: "not-nil?"}
+        app_exists__return__false__space:::odd@{shape: odd, label: "False"}
 
         subgraph get_app_id["qlik.cicd.api/get-app-id"]
-            get_app_id__input@{shape: event, label: "env\napp-name\nspace-id"}
+            get_app_id__input:::event@{shape: event, label: "env\napp-name\nspace-id"}
 
             subgraph list_items["qlik.cicd.api/list-items"]
-                list_items__input@{shape: event, label: "env\nname\nresource-type = app\nspace-id"}
-                list_items__api@{shape: terminal, label: "API"}
+                list_items__input:::event@{shape: event, label: "env\nname\nresource-type = app\nspace-id"}
+                list_items__api:::terminal@{shape: terminal, label: "API"}
 
                 list_items__input --> list_items__api
 
@@ -56,10 +70,10 @@ flowchart TD
             get_app_id__input --> list_items
         end
 
-        is_app_id_not_null@{shape: decision, label: "not-nil?"}
+        is_app_id_not_null:::decision@{shape: decision, label: "not-nil?"}
 
-        app_exists__return__true@{shape: odd, label: "True"}
-        app_exists__return__false__app@{shape: odd, label: "False"}
+        app_exists__return__true:::odd@{shape: odd, label: "True"}
+        app_exists__return__false__app:::odd@{shape: odd, label: "False"}
 
         app_exists__input --> get_space_id
         get_space_id --> is_space_id_not_null
@@ -70,33 +84,33 @@ flowchart TD
         is_app_id_not_null -->|True| app_exists__return__true
 
     end
-    get_current_branch@{shape: prepare, label: "qlik.cicd.utilities/get-current-branch"}
+    get_current_branch:::prepare@{shape: prepare, label: "qlik.cicd.utilities/get-current-branch"}
     
     subgraph app_exists__feature["qlik.cicd.utilities/app-exists?"]
-        app_exists__feature__input@{shape: event, label: "env\napp-name\nspace-name = current-branch"}
+        app_exists__feature__input:::event@{shape: event, label: "env\napp-name\nspace-name = current-branch"}
     end
 
     subgraph use_space["qlik.cicd.utilities/use-space"]
         direction TB
 
-        use_space__input@{shape: event, label: "env\nspace-name = current-branch"}
+        use_space__input:::event@{shape: event, label: "env\nspace-name = current-branch"}
         subgraph use_space__get_space_id["qlik.cicd.api/get-space-id"]
-            use_space__get_space_id__input@{shape: event, label: "env\nspace-name"}
-            use_space__get_space_id__api@{shape: terminal, label: "API"}
+            use_space__get_space_id__input:::event@{shape: event, label: "env\nspace-name"}
+            use_space__get_space_id__api:::terminal@{shape: terminal, label: "API"}
 
             use_space__get_space_id__input --> use_space__get_space_id__api
         end
-        use_space__is_space_id_null@{shape: decision, label: "not-nil?"}
-        use_space__return__get@{shape: odd, label: "space-id"}
+        use_space__is_space_id_null:::decision@{shape: decision, label: "not-nil?"}
+        use_space__return__get:::odd@{shape: odd, label: "space-id"}
 
         subgraph create_space["qlik.cicd.api/create-space"]
-            create_space__input@{shape: event, label: "env\nspace-name\nspace-type = shared"}
-            create_space__api@{shape: terminal, label: "API"}
+            create_space__input:::event@{shape: event, label: "env\nspace-name\nspace-type = shared"}
+            create_space__api:::terminal@{shape: terminal, label: "API"}
 
             create_space__input --> create_space__api
         end
 
-        use_space__return__create@{shape: odd, label: "space-id"}
+        use_space__return__create:::odd@{shape: odd, label: "space-id"}
 
         use_space__input --> use_space__get_space_id
         use_space__get_space_id --> use_space__is_space_id_null
@@ -108,18 +122,17 @@ flowchart TD
     subgraph create_app["qlik.cicd.api/create-app"]
         direction LR
 
-        create_app__input@{shape: event, label: "env\napp-name\napp-usage\nspace-id"}
-        create_app__api@{shape: terminal, label: "API"}
+        create_app__input:::event@{shape: event, label: "env\napp-name\napp-usage\nspace-id"}
+        create_app__api:::terminal@{shape: terminal, label: "API"}
 
         create_app__input --> create_app__api
     end
 
-
-    return__failure__target@{shape: terminal, label: "Raise error"}
-    return__failure__feature@{shape: terminal, label: "Raise error"}
+    return__failure__target:::terminal@{shape: terminal, label: "Raise error"}
+    return__failure__feature:::terminal@{shape: terminal, label: "Raise error"}
 
     subgraph pull["qlik.cicd.core/pull"]
-        pull__input@{shape: event, label: "env\napp-name\nspace-name"}
+        pull__input:::event@{shape: event, label: "env\napp-name\nspace-name"}
     end
 
     input --> app_exists
