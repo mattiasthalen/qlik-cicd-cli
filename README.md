@@ -44,9 +44,16 @@ flowchart TD
 
         subgraph get_app_id["qlik.cicd.api/get-app-id"]
             get_app_id__input@{shape: event, label: "env\napp-name\nspace-id"}
-            get_app_id__api@{shape: terminal, label: "API"}
 
-            get_app_id__input --> get_app_id__api
+            subgraph list_items["qlik.cicd.api/list-items"]
+                list_items__input@{shape: event, label: "env\nname\nresource-type = app\nspace-id"}
+                list_items__api@{shape: terminal, label: "API"}
+
+                list_items__input --> list_items__api
+
+            end
+
+            get_app_id__input --> list_items
         end
 
         is_app_id_not_null@{shape: decision, label: "not-nil?"}
