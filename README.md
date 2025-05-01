@@ -48,7 +48,7 @@ flowchart TD
         
         subgraph get_space_id["qlik.cicd.api/get-space-id"]
             get_space_id__input:::event@{shape: event, label: "env\nspace-name"}
-            get_space_id__api:::terminal@{shape: terminal, label: "API"}
+            get_space_id__api:::prepare@{shape: prepare, label: "qlik.cicd.api/call-api"}
 
             get_space_id__input --> get_space_id__api
         end
@@ -61,7 +61,7 @@ flowchart TD
 
             subgraph list_items["qlik.cicd.api/list-items"]
                 list_items__input:::event@{shape: event, label: "env\nname\nresource-type = app\nspace-id"}
-                list_items__api:::terminal@{shape: terminal, label: "API"}
+                list_items__api:::prepare@{shape: prepare, label: "qlik.cicd.api/call-api"}
 
                 list_items__input --> list_items__api
 
@@ -96,7 +96,7 @@ flowchart TD
         use_space__input:::event@{shape: event, label: "env\nspace-name = current-branch"}
         subgraph use_space__get_space_id["qlik.cicd.api/get-space-id"]
             use_space__get_space_id__input:::event@{shape: event, label: "env\nspace-name"}
-            use_space__get_space_id__api:::terminal@{shape: terminal, label: "API"}
+            use_space__get_space_id__api:::prepare@{shape: prepare, label: "qlik.cicd.api/call-api"}
 
             use_space__get_space_id__input --> use_space__get_space_id__api
         end
@@ -105,7 +105,7 @@ flowchart TD
 
         subgraph create_space["qlik.cicd.api/create-space"]
             create_space__input:::event@{shape: event, label: "env\nspace-name\nspace-type = shared"}
-            create_space__api:::terminal@{shape: terminal, label: "API"}
+            create_space__api:::prepare@{shape: prepare, label: "qlik.cicd.api/call-api"}
 
             create_space__input --> create_space__api
         end
@@ -123,7 +123,7 @@ flowchart TD
         direction LR
 
         create_app__input:::event@{shape: event, label: "env\napp-name\napp-usage\nspace-id"}
-        create_app__api:::terminal@{shape: terminal, label: "API"}
+        create_app__api:::prepare@{shape: prepare, label: "qlik.cicd.api/call-api"}
 
         create_app__input --> create_app__api
     end
