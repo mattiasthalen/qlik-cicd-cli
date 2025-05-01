@@ -21,9 +21,9 @@
 (defn get-env-map
   "Constructs a map of required environment variables."
   []
-  {"QLIK__SERVER" (System/getenv "QLIK__SERVER")
-   "QLIK__TOKEN" (System/getenv "QLIK__TOKEN")
-   "QLIK__PROJECT_PATH" (System/getenv "QLIK__PROJECT_PATH")})
+  {"server" (System/getenv "QLIK__SERVER")
+   "token" (System/getenv "QLIK__TOKEN")
+   "project-path" (System/getenv "QLIK__PROJECT_PATH")})
 
 (defn get-missing-vars
   "Returns a list of missing environment variables from the given map."
@@ -47,7 +47,7 @@
   ([]
    (ensure-env-map (get-env-map)))
   ([env]
-   (let [required-vars ["QLIK__SERVER" "QLIK__TOKEN" "QLIK__PROJECT_PATH"]
+   (let [required-vars ["server" "token" "project-path"]
          missing-vars (get-missing-vars env required-vars)]
      (if (empty? missing-vars)
        env
