@@ -21,9 +21,9 @@
 (defn get-env-map
   "Constructs a map of required environment variables."
   []
-  {"server" (System/getenv "QLIK__SERVER")
-   "token" (System/getenv "QLIK__TOKEN")
-   "project-path" (System/getenv "QLIK__PROJECT_PATH")})
+  {:server (System/getenv "QLIK__SERVER")
+   :token (System/getenv "QLIK__TOKEN")
+   :project-path (System/getenv "QLIK__PROJECT_PATH")})
 
 (defn get-missing-vars
   "Returns a list of missing environment variables from the given map."
@@ -35,10 +35,9 @@
   [env missing-vars]
   (reduce
     (fn [acc var]
-      (do
-        (print (str "Please provide a value for " var ": "))
-        (flush)
-        (assoc acc var (read-line))))
+      (print (str "Please provide a value for " (name var) ": "))
+      (flush)
+      (assoc acc var (read-line)))
     env
     missing-vars))
 
@@ -47,7 +46,7 @@
   ([]
    (ensure-env-map (get-env-map)))
   ([env]
-   (let [required-vars ["server" "token" "project-path"]
+   (let [required-vars [:server :token :project-path]
          missing-vars (get-missing-vars env required-vars)]
      (if (empty? missing-vars)
        env
