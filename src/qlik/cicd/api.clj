@@ -11,19 +11,23 @@
                  "Content-Type" "application/json"}
         opts {:headers headers
               :body (when payload (json/generate-string payload))
-              :throw-exceptions false
-              :as :json}
+              :throw-exceptions false}
         resp (case method
                :get (client/get url opts)
                :post (client/post url opts)
                :put (client/put url opts)
                :delete (client/delete url opts)
-               (throw (ex-info "Unsupported HTTP method" {:method method})))]
-    (if (<= 200 (:status resp) 299)
-      resp
+               (throw (ex-info "Unsupported HTTP method" {:method method})))
+        status (:status resp)
+        parsed-body (when-let [b (:body resp)]
+                      (try
+                        (json/parse-string b true)
+                        (catch Exception _ b)))]
+    (if (<= 200 status 299)
+      (assoc resp :body parsed-body)
       (throw (ex-info "API error"
-                      {:status (:status resp)
-                       :body (:body resp)
+                      {:status status
+                       :body parsed-body
                        :url url})))))
 
 (defn list-items
