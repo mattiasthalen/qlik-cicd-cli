@@ -74,60 +74,54 @@
 (test/deftest get-items-no-params-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
-                  (do
-                    (test/is (= endpoint "/items"))
-                    {:status 200 :body [{:id "1"}]}))]
+                  (test/is (= endpoint "/items"))
+                  {:status 200 :body [{:id "1"}]})]
     (let [result (api/get-items env)]
       (test/is (= [{:id "1"}] result)))))
 
 (test/deftest get-items-name-only-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
-                  (do
-                    (test/is (= endpoint "/items?name=My%20App"))
-                    {:status 200 :body [{:id "2" :name "My App"}]}))]
+                  (test/is (= endpoint "/items?name=My%20App"))
+                  {:status 200 :body [{:id "2" :name "My App"}]})]
     (let [result (api/get-items env {:name "My App"})]
       (test/is (= [{:id "2" :name "My App"}] result)))))
 
 (test/deftest get-items-resource-type-only-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
-                  (do
-                    (test/is (= endpoint "/items?resourceType=app"))
-                    {:status 200 :body [{:id "3" :resourceType "app"}]}))]
+                  (test/is (= endpoint "/items?resourceType=app"))
+                  {:status 200 :body [{:id "3" :resourceType "app"}]})]
     (let [result (api/get-items env {:resource-type "app"})]
       (test/is (= [{:id "3" :resourceType "app"}] result)))))
 
 (test/deftest get-items-name-and-resource-type-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
-                  (do
-                    (test/is (or (= endpoint "/items?name=My%20App&resourceType=app")
-                              (= endpoint "/items?resourceType=app&name=My%20App")))
-                    {:status 200 :body [{:id "4" :name "My App" :resourceType "app"}]}))]
+                  (test/is (or (= endpoint "/items?name=My%20App&resourceType=app")
+                               (= endpoint "/items?resourceType=app&name=My%20App")))
+                  {:status 200 :body [{:id "4" :name "My App" :resourceType "app"}]})]
     (let [result (api/get-items env {:name "My App" :resource-type "app"})]
       (test/is (= [{:id "4" :name "My App" :resourceType "app"}] result)))))
 
 (test/deftest get-items-space-id-only-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
-                  (do
-                    (test/is (= endpoint "/items?spaceId=space-123"))
-                    {:status 200 :body [{:id "5" :spaceId "space-123"}]}))]
+                  (test/is (= endpoint "/items?spaceId=space-123"))
+                  {:status 200 :body [{:id "5" :spaceId "space-123"}]})]
     (let [result (api/get-items env {:space-id "space-123"})]
       (test/is (= [{:id "5" :spaceId "space-123"}] result)))))
 
 (test/deftest get-items-name-resource-type-and-space-id-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
-                  (do
-                    (test/is (or (= endpoint "/items?name=My%20App&resourceType=app&spaceId=space-123")
-                                 (= endpoint "/items?name=My%20App&spaceId=space-123&resourceType=app")
-                                 (= endpoint "/items?resourceType=app&name=My%20App&spaceId=space-123")
-                                 (= endpoint "/items?resourceType=app&spaceId=space-123&name=My%20App")
-                                 (= endpoint "/items?spaceId=space-123&name=My%20App&resourceType=app")
-                                 (= endpoint "/items?spaceId=space-123&resourceType=app&name=My%20App")))
-                    {:status 200 :body [{:id "6" :name "My App" :resourceType "app" :spaceId "space-123"}]}))]
+                  (test/is (or (= endpoint "/items?name=My%20App&resourceType=app&spaceId=space-123")
+                               (= endpoint "/items?name=My%20App&spaceId=space-123&resourceType=app")
+                               (= endpoint "/items?resourceType=app&name=My%20App&spaceId=space-123")
+                               (= endpoint "/items?resourceType=app&spaceId=space-123&name=My%20App")
+                               (= endpoint "/items?spaceId=space-123&name=My%20App&resourceType=app")
+                               (= endpoint "/items?spaceId=space-123&resourceType=app&name=My%20App")))
+                  {:status 200 :body [{:id "6" :name "My App" :resourceType "app" :spaceId "space-123"}]})]
     (let [result (api/get-items env {:name "My App" :resource-type "app" :space-id "space-123"})]
       (test/is (= [{:id "6" :name "My App" :resourceType "app" :spaceId "space-123"}] result)))))
 
@@ -145,9 +139,8 @@
 (test/deftest get-spaces-name-only-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
-                  (do
-                    (test/is (= endpoint "spaces?name=Finance"))
-                    {:status 200 :body [{:id "space1" :name "Finance"}]}))]
+                  (test/is (= endpoint "spaces?name=Finance"))
+                  {:status 200 :body [{:id "space1" :name "Finance"}]})]
     (let [result (api/get-spaces {:server "https://example.com" :token "dummy-token"}
                                   {:name "Finance"})]
       (test/is (= [{:id "space1" :name "Finance"}] result)))))
@@ -155,9 +148,8 @@
 (test/deftest get-spaces-type-only-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
-                  (do
-                    (test/is (= endpoint "spaces?type=shared"))
-                    {:status 200 :body [{:id "space2" :type "shared"}]}))]
+                  (test/is (= endpoint "spaces?type=shared"))
+                  {:status 200 :body [{:id "space2" :type "shared"}]})]
     (let [result (api/get-spaces {:server "https://example.com" :token "dummy-token"}
                                   {:type "shared"})]
       (test/is (= [{:id "space2" :type "shared"}] result)))))
@@ -165,10 +157,9 @@
 (test/deftest get-spaces-name-and-type-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
-                  (do
-                    (test/is (or (= endpoint "spaces?name=Finance&type=shared")
-                                 (= endpoint "spaces?type=shared&name=Finance")))
-                    {:status 200 :body [{:id "space3" :name "Finance" :type "shared"}]}))]
+                  (test/is (or (= endpoint "spaces?name=Finance&type=shared")
+                               (= endpoint "spaces?type=shared&name=Finance")))
+                  {:status 200 :body [{:id "space3" :name "Finance" :type "shared"}]})]
     (let [result (api/get-spaces {:server "https://example.com" :token "dummy-token"}
                                   {:name "Finance" :type "shared"})]
       (test/is (= [{:id "space3" :name "Finance" :type "shared"}] result)))))
@@ -176,13 +167,12 @@
 (test/deftest create-space-valid-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
-                  (do
-                    (test/is (= endpoint "spaces"))
-                    (test/is (= method :post))
-                    (test/is (= (:name payload) "ValidName"))
-                    (test/is (= (:type payload) "shared"))
-                    (test/is (= (:description payload) "desc"))
-                    {:status 201 :body {:id "space1" :name "ValidName" :type "shared"}}))]
+                  (test/is (= endpoint "spaces"))
+                  (test/is (= method :post))
+                  (test/is (= (:name payload) "ValidName"))
+                  (test/is (= (:type payload) "shared"))
+                  (test/is (= (:description payload) "desc"))
+                  {:status 201 :body {:id "space1" :name "ValidName" :type "shared"}})]
     (let [resp (api/create-space env "ValidName" "shared" "desc")]
       (test/is (= "space1" (:id resp)))
       (test/is (= "ValidName" (:name resp)))
@@ -191,13 +181,12 @@
 (test/deftest create-space-valid-no-description-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
-                  (do
-                    (test/is (= endpoint "spaces"))
-                    (test/is (= method :post))
-                    (test/is (= (:name payload) "ValidName"))
-                    (test/is (= (:type payload) "managed"))
-                    (test/is (not (contains? payload :description)))
-                    {:status 201 :body {:id "space2" :name "ValidName" :type "managed"}}))]
+                  (test/is (= endpoint "spaces"))
+                  (test/is (= method :post))
+                  (test/is (= (:name payload) "ValidName"))
+                  (test/is (= (:type payload) "managed"))
+                  (test/is (not (contains? payload :description)))
+                  {:status 201 :body {:id "space2" :name "ValidName" :type "managed"}})]
     (let [resp (api/create-space env "ValidName" "managed")]
       (test/is (= "space2" (:id resp)))
       (test/is (= "ValidName" (:name resp)))
@@ -223,14 +212,13 @@
 (test/deftest create-app-valid-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
-                  (do
-                    (test/is (= endpoint "apps"))
-                    (test/is (= method :post))
-                    (test/is (= (get-in payload [:attributes :name]) "AppName"))
-                    (test/is (= (get-in payload [:attributes :usage]) "ANALYTICS"))
-                    (test/is (= (get-in payload [:attributes :spaceId]) "space-1"))
-                    (test/is (= (get-in payload [:attributes :description]) "desc"))
-                    {:status 201 :body {:id "app1" :name "AppName" :usage "ANALYTICS"}}))]
+                  (test/is (= endpoint "apps"))
+                  (test/is (= method :post))
+                  (test/is (= (get-in payload [:attributes :name]) "AppName"))
+                  (test/is (= (get-in payload [:attributes :usage]) "ANALYTICS"))
+                  (test/is (= (get-in payload [:attributes :spaceId]) "space-1"))
+                  (test/is (= (get-in payload [:attributes :description]) "desc"))
+                  {:status 201 :body {:id "app1" :name "AppName" :usage "ANALYTICS"}})]
     (let [resp (api/create-app env "AppName" "ANALYTICS" "space-1" "desc")]
       (test/is (= "app1" (:id resp)))
       (test/is (= "AppName" (:name resp)))
@@ -239,14 +227,13 @@
 (test/deftest create-app-valid-no-description-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
-                  (do
-                    (test/is (= endpoint "apps"))
-                    (test/is (= method :post))
-                    (test/is (= (get-in payload [:attributes :name]) "AppName"))
-                    (test/is (= (get-in payload [:attributes :usage]) "DATA_PREPARATION"))
-                    (test/is (= (get-in payload [:attributes :spaceId]) "space-2"))
-                    (test/is (not (contains? (get payload :attributes) :description)))
-                    {:status 201 :body {:id "app2" :name "AppName" :usage "DATA_PREPARATION"}}))]
+                  (test/is (= endpoint "apps"))
+                  (test/is (= method :post))
+                  (test/is (= (get-in payload [:attributes :name]) "AppName"))
+                  (test/is (= (get-in payload [:attributes :usage]) "DATA_PREPARATION"))
+                  (test/is (= (get-in payload [:attributes :spaceId]) "space-2"))
+                  (test/is (not (contains? (get payload :attributes) :description)))
+                  {:status 201 :body {:id "app2" :name "AppName" :usage "DATA_PREPARATION"}})]
     (let [resp (api/create-app env "AppName" "DATA_PREPARATION" "space-2")]
       (test/is (= "app2" (:id resp)))
       (test/is (= "AppName" (:name resp)))
