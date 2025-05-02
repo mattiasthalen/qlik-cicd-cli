@@ -75,3 +75,21 @@
                      (some? description) (assoc :description description))
            resp (call-api env "spaces" :post payload)]
        (:body resp)))))
+
+(defn create-app
+  ([env name usage-type space-id] (create-app env name usage-type space-id nil))
+  ([env name usage-type space-id description]
+   (let [allowed-usage-types #{"ANALYTICS" "DATA_PREPARATION" "DATAFLOW_PREP" "SINGLE_TABLE_PREP"}]
+     (when-not (allowed-usage-types usage-type)
+       (throw (ex-info "Invalid usage type" {:usage-type usage-type})))
+     (when (not (string? name))
+       (throw (ex-info "Invalid app name" {:name name})))
+     (when (or (not (string? space-id)) (string/blank? space-id))
+       (throw (ex-info "space-id is required" {:space-id space-id})))
+     (let [attributes (cond-> {:name name
+                               :usage usage-type
+                               :spaceId space-id}
+                        (some? description) (assoc :description description))
+           payload {:attributes attributes}
+           resp (call-api env "apps" :post payload)]
+       (:body resp)))))
