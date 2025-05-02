@@ -32,13 +32,14 @@
 
 (defn get-items
   ([env] (get-items env {}))
-  ([env {:keys [name resource-type]}]
+  ([env {:keys [name resource-type space-id]}]
    (let [params (cond-> []
                   name (conj ["name" (java.net.URLEncoder/encode name "UTF-8")])
-                  resource-type (conj ["resourceType" resource-type]))
+                  resource-type (conj ["resourceType" (java.net.URLEncoder/encode resource-type "UTF-8")])
+                  space-id (conj ["spaceId" (java.net.URLEncoder/encode space-id "UTF-8")]))
          query-str (when (seq params)
                      (str "?" (string/join "&"
-                                    (map (fn [[k v]] (str k "=" v)) params))))
+                                           (map (fn [[k v]] (str k "=" v)) params))))
          endpoint (str "/items" (or query-str ""))
          resp (call-api env endpoint :get nil)]
      (get (:body resp) :data))))
@@ -48,7 +49,7 @@
   ([env {:keys [name type]}]
    (let [params (cond-> []
                   name (conj ["name" (java.net.URLEncoder/encode name "UTF-8")])
-                  type (conj ["type" type]))
+                  type (conj ["type" (java.net.URLEncoder/encode type "UTF-8")]))
          query-str (when (seq params)
                      (str "?" (string/join "&"
                                            (map (fn [[k v]] (str k "=" v)) params))))
