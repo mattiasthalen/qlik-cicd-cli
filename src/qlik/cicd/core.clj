@@ -2,7 +2,7 @@
 
 (ns qlik.cicd.core
   (:require [clojure.string :as str]
-            [qlik.cicd.api :as api]))
+            [qlik.cicd.utilities :as utilities]))
 
 (defn init [env]
   (println "Init command not implemented yet"))
