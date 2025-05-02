@@ -1,7 +1,8 @@
 (ns qlik.cicd.api
   (:require [babashka.http-client :as client]
             [cheshire.core :as json]
-            [clojure.string :as str]))
+            [clojure.string :as str]
+            [qlik.cicd.core :as core]))
 
 (defn call-api
   [env endpoint method payload]

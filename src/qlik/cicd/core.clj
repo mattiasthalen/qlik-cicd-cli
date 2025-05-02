@@ -1,7 +1,8 @@
 #!/usr/bin/env bb
 
 (ns qlik.cicd.core
-  (:require [clojure.string :as str]))
+  (:require [clojure.string :as str]
+            [qlik.cicd.api :as api]))
 
 (defn init [env]
   (println "Init command not implemented yet"))
