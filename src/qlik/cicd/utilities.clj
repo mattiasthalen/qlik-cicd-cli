@@ -1,6 +1,7 @@
 (ns qlik.cicd.utilities
   (:require [qlik.cicd.api :as api]
-            [clojure.string :as string]))
+            [clojure.string :as string]
+            [clojure.java.shell :as shell]))
 
 (defn get-space-id [env space-name]
   (let [spaces (api/get-spaces env {:name space-name})
@@ -34,3 +35,12 @@
     (if (nil? space-id)
       false
       (boolean (get-app-id env app-name space-name)))))
+
+(defn get-current-branch
+  ([] (get-current-branch nil))
+  ([env]
+   (let [project-path (or (:project-path env) ".")
+         cmd ["git" "-C" project-path "rev-parse" "--abbrev-ref" "HEAD"]
+         {:keys [exit out]} (apply shell/sh cmd)]
+     (when (zero? exit)
+       (string/trim out)))))

@@ -1,7 +1,8 @@
 (ns qlik.cicd.utilities-test
   (:require [clojure.test :as test]
             [qlik.cicd.utilities :as utilities]
-            [qlik.cicd.api :as api]))
+            [qlik.cicd.api :as api]
+            [clojure.java.shell :as shell]))
 
 (def env {})
 
@@ -59,7 +60,7 @@
                                 [{:name "Other App"
                                   :spaceId "space-1"
                                   :resourceAttributes {:id "app-999"}}])]
-    (test/is (nil? (utilities/get-app-id env "My App" "Finance"))))
+    (test/is (nil? (utilities/get-app-id env "My App" "Finance")))))
 
 (test/deftest app-exists?-space-not-found
   (with-redefs [utilities/get-space-id (fn [_ _] nil)]
@@ -75,3 +76,19 @@
                 utilities/get-app-id (fn [_ _ _] nil)]
     (test/is (false? (utilities/app-exists? env "My App" "Finance")))))
 
+(test/deftest get-current-branch-defaults-to-dot
+  (with-redefs [shell/sh (fn [& args]
+                           (test/is (= args ["git" "-C" "." "rev-parse" "--abbrev-ref" "HEAD"]))
+                           {:exit 0 :out "main\n"})]
+    (test/is (= "main" (utilities/get-current-branch nil)))))
+
+(test/deftest get-current-branch-uses-project-path
+  (with-redefs [shell/sh (fn [& args]
+                           (test/is (= args ["git" "-C" "/some/path" "rev-parse" "--abbrev-ref" "HEAD"]))
+                           {:exit 0 :out "feature/test\n"})]
+    (test/is (= "feature/test" (utilities/get-current-branch {:project-path "/some/path"})))))
+
+(test/deftest get-current-branch-nonzero-exit
+  (with-redefs [shell/sh (fn [& args]
+                           {:exit 1 :out ""})]
+    (test/is (nil? (utilities/get-current-branch {:project-path "/fail/path"})))))
