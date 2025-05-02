@@ -108,6 +108,29 @@
     (let [result (api/get-items env {:name "My App" :resource-type "app"})]
       (test/is (= [{:id "4" :name "My App" :resourceType "app"}] result)))))
 
+(test/deftest get-items-space-id-only-test
+  (with-redefs [api/call-api
+                (fn [env endpoint method payload]
+                  (do
+                    (test/is (= endpoint "/items?spaceId=space-123"))
+                    {:status 200 :body [{:id "5" :spaceId "space-123"}]}))]
+    (let [result (api/get-items env {:space-id "space-123"})]
+      (test/is (= [{:id "5" :spaceId "space-123"}] result)))))
+
+(test/deftest get-items-name-resource-type-and-space-id-test
+  (with-redefs [api/call-api
+                (fn [env endpoint method payload]
+                  (do
+                    (test/is (or (= endpoint "/items?name=My%20App&resourceType=app&spaceId=space-123")
+                                 (= endpoint "/items?name=My%20App&spaceId=space-123&resourceType=app")
+                                 (= endpoint "/items?resourceType=app&name=My%20App&spaceId=space-123")
+                                 (= endpoint "/items?resourceType=app&spaceId=space-123&name=My%20App")
+                                 (= endpoint "/items?spaceId=space-123&name=My%20App&resourceType=app")
+                                 (= endpoint "/items?spaceId=space-123&resourceType=app&name=My%20App")))
+                    {:status 200 :body [{:id "6" :name "My App" :resourceType "app" :spaceId "space-123"}]}))]
+    (let [result (api/get-items env {:name "My App" :resource-type "app" :space-id "space-123"})]
+      (test/is (= [{:id "6" :name "My App" :resourceType "app" :spaceId "space-123"}] result)))))
+
 (test/deftest get-spaces-test
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
