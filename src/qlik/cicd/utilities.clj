@@ -14,3 +14,17 @@
       (:id (first matches))
       :else
       nil)))
+
+(defn get-app-id [env app-name space-name]
+  (let [space-id (get-space-id env space-name)
+        apps (api/get-items env {:name app-name :resource-type "app" :space-id space-id})
+        matches (filter #(= (string/lower-case (:name %))
+                              (string/lower-case app-name))
+                                                   apps)]
+    (cond
+      (> (count matches) 1)
+      (throw (ex-info "Multiple apps found" {:app-name app-name :matches matches}))
+      (= (count matches) 1)
+      (get-in (first matches) [:resourceAttributes :id])
+      :else
+      nil)))
