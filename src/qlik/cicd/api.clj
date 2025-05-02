@@ -56,3 +56,22 @@
          endpoint (str "spaces" (or query-str ""))
          resp (call-api env endpoint :get nil)]
      (get (:body resp) :data))))
+
+(defn create-space
+  ([env name type] (create-space env name type nil))
+  ([env name type description]
+   (let [allowed-types #{"shared" "managed" "data"}
+         name-pattern #"^[^\"*?<>/|\\:]+$"]
+     (when-not (allowed-types type)
+       (throw (ex-info "Invalid space type" {:type type})))
+     (when (or (not (string? name))
+               (> (count name) 256)
+               (not (re-matches name-pattern name)))
+       (throw (ex-info "Invalid space name"
+                       {:name name
+                        :maxLength 256
+                        :pattern "^[^\"*?<>/|\\:]+$"})))
+     (let [payload (cond-> {:name name :type type}
+                     (some? description) (assoc :description description))
+           resp (call-api env "spaces" :post payload)]
+       (:body resp)))))
