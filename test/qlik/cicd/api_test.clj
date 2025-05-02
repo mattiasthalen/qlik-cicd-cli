@@ -172,3 +172,50 @@
     (let [result (api/get-spaces {:server "https://example.com" :token "dummy-token"}
                                   {:name "Finance" :type "shared"})]
       (test/is (= [{:id "space3" :name "Finance" :type "shared"}] result)))))
+
+(test/deftest create-space-valid-test
+  (with-redefs [api/call-api
+                (fn [env endpoint method payload]
+                  (do
+                    (test/is (= endpoint "spaces"))
+                    (test/is (= method :post))
+                    (test/is (= (:name payload) "ValidName"))
+                    (test/is (= (:type payload) "shared"))
+                    (test/is (= (:description payload) "desc"))
+                    {:status 201 :body {:id "space1" :name "ValidName" :type "shared"}}))]
+    (let [resp (api/create-space env "ValidName" "shared" "desc")]
+      (test/is (= "space1" (:id resp)))
+      (test/is (= "ValidName" (:name resp)))
+      (test/is (= "shared" (:type resp))))))
+
+(test/deftest create-space-valid-no-description-test
+  (with-redefs [api/call-api
+                (fn [env endpoint method payload]
+                  (do
+                    (test/is (= endpoint "spaces"))
+                    (test/is (= method :post))
+                    (test/is (= (:name payload) "ValidName"))
+                    (test/is (= (:type payload) "managed"))
+                    (test/is (not (contains? payload :description)))
+                    {:status 201 :body {:id "space2" :name "ValidName" :type "managed"}}))]
+    (let [resp (api/create-space env "ValidName" "managed")]
+      (test/is (= "space2" (:id resp)))
+      (test/is (= "ValidName" (:name resp)))
+      (test/is (= "managed" (:type resp))))))
+
+(test/deftest create-space-invalid-type-test
+  (test/is (thrown-with-msg? clojure.lang.ExceptionInfo
+                             #"Invalid space type"
+                             (api/create-space env "ValidName" "invalidtype" "desc"))))
+
+(test/deftest create-space-invalid-name-too-long-test
+  (let [long-name (apply str (repeat 257 "a"))]
+    (test/is (thrown-with-msg? clojure.lang.ExceptionInfo
+                               #"Invalid space name"
+                               (api/create-space env long-name "shared" "desc")))))
+
+(test/deftest create-space-invalid-name-pattern-test
+  (doseq [bad-name ["bad*name" "bad?name" "bad<name" "bad>name" "bad/name" "bad|name" "bad\\name" "bad:name" "bad\"name"]]
+    (test/is (thrown-with-msg? clojure.lang.ExceptionInfo
+                               #"Invalid space name"
+                               (api/create-space env bad-name "data" "desc")))))
