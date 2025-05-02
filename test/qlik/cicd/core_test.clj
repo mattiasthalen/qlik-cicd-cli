@@ -4,49 +4,49 @@
 
 (t/deftest test-get-missing-vars
   (t/testing "Identifies missing environment variables"
-    (let [env {"QLIK__SERVER" "http://example.com"
-               "QLIK__TOKEN" nil
-               "QLIK__PROJECT_PATH" "/path/to/project"}
-          required-vars ["QLIK__SERVER" "QLIK__TOKEN" "QLIK__PROJECT_PATH"]]
-      (t/is (= ["QLIK__TOKEN"] (core/get-missing-vars env required-vars))))
+    (let [env {:server "http://example.com"
+               :token nil
+               :project-path "/path/to/project"}
+          required-vars [:server :token :project-path]]
+      (t/is (= [:token] (core/get-missing-vars env required-vars))))
 
     (t/testing "No missing variables"
-      (let [env {"QLIK__SERVER" "http://example.com"
-                 "QLIK__TOKEN" "dummy-token"
-                 "QLIK__PROJECT_PATH" "/path/to/project"}
-            required-vars ["QLIK__SERVER" "QLIK__TOKEN" "QLIK__PROJECT_PATH"]]
+      (let [env {:server "http://example.com"
+                 :token "dummy-token"
+                 :project-path "/path/to/project"}
+            required-vars [:server :token :project-path]]
         (t/is (empty? (core/get-missing-vars env required-vars)))))))
 
 (t/deftest test-prompt-for-missing-vars
   (t/testing "Prompts for missing variables and updates the environment map"
-    (let [env {"QLIK__SERVER" "http://example.com"}
-          missing-vars ["QLIK__TOKEN" "QLIK__PROJECT_PATH"]]
+    (let [env {:server "http://example.com"}
+          missing-vars [:token :project-path]]
       (with-redefs [read-line (fn [] "mock-value")]
         (with-out-str 
           (let [updated-env (core/prompt-for-missing-vars env missing-vars)] 
-            (t/is (= "mock-value" (get updated-env "QLIK__TOKEN")))
-            (t/is (= "mock-value" (get updated-env "QLIK__PROJECT_PATH")))))))))
+            (t/is (= "mock-value" (get updated-env :token)))
+            (t/is (= "mock-value" (get updated-env :project-path)))))))))
 
 (t/deftest test-ensure-env-map
   (t/testing "Ensures all required environment variables are set"
-    (let [mock-env {"QLIK__SERVER" "http://example.com"
-                    "QLIK__TOKEN" "dummy-token"
-                    "QLIK__PROJECT_PATH" "/path/to/project"}]
+    (let [mock-env {:server "http://example.com"
+                    :token "dummy-token"
+                    :project-path "/path/to/project"}]
       (t/is (= mock-env (core/ensure-env-map mock-env)))))
 
   (t/testing "Prompts for missing variables and resolves them"
-    (let [mock-env {"QLIK__SERVER" "http://example.com"}]
+    (let [mock-env {:server "http://example.com"}]
       (with-redefs [core/get-missing-vars (fn [env _]
                                             (filter #(nil? (get env %))
-                                                    ["QLIK__TOKEN" "QLIK__PROJECT_PATH"]))
+                                                    [:token :project-path]))
                     core/prompt-for-missing-vars (fn [env missing-vars]
                                                    (reduce (fn [acc var]
-                                                             (assoc acc var (str "mock-" var)))
+                                                             (assoc acc var (str "mock-" (name var))))
                                                            env
                                                            missing-vars))]
         (let [updated-env (core/ensure-env-map mock-env)]
-          (t/is (= "mock-QLIK__TOKEN" (get updated-env "QLIK__TOKEN")))
-          (t/is (= "mock-QLIK__PROJECT_PATH" (get updated-env "QLIK__PROJECT_PATH"))))))))
+          (t/is (= "mock-token" (get updated-env :token)))
+          (t/is (= "mock-project-path" (get updated-env :project-path))))))))
 
 (t/deftest test-main-valid-commands
   (t/testing "Ensure -main handles valid commands"

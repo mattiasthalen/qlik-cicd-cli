@@ -1,7 +1,8 @@
 #!/usr/bin/env bb
 
 (ns qlik.cicd.core
-  (:require [clojure.string :as str]))
+  (:require [clojure.string :as str]
+            [qlik.cicd.api :as api]))
 
 (defn init [env]
   (println "Init command not implemented yet"))
@@ -21,9 +22,9 @@
 (defn get-env-map
   "Constructs a map of required environment variables."
   []
-  {"QLIK__SERVER" (System/getenv "QLIK__SERVER")
-   "QLIK__TOKEN" (System/getenv "QLIK__TOKEN")
-   "QLIK__PROJECT_PATH" (System/getenv "QLIK__PROJECT_PATH")})
+  {:server (System/getenv "QLIK__SERVER")
+   :token (System/getenv "QLIK__TOKEN")
+   :project-path (System/getenv "QLIK__PROJECT_PATH")})
 
 (defn get-missing-vars
   "Returns a list of missing environment variables from the given map."
@@ -35,10 +36,9 @@
   [env missing-vars]
   (reduce
     (fn [acc var]
-      (do
-        (print (str "Please provide a value for " var ": "))
-        (flush)
-        (assoc acc var (read-line))))
+      (print (str "Please provide a value for " (name var) ": "))
+      (flush)
+      (assoc acc var (read-line)))
     env
     missing-vars))
 
@@ -47,7 +47,7 @@
   ([]
    (ensure-env-map (get-env-map)))
   ([env]
-   (let [required-vars ["QLIK__SERVER" "QLIK__TOKEN" "QLIK__PROJECT_PATH"]
+   (let [required-vars [:server :token :project-path]
          missing-vars (get-missing-vars env required-vars)]
      (if (empty? missing-vars)
        env
