@@ -1,14 +1,24 @@
 #!/usr/bin/env bb
 
 (ns qlik.cicd.core
-  (:require [clojure.string :as str]
-            [qlik.cicd.utilities :as utilities]))
+  (:require [qlik.cicd.utilities :as utilities]
+            [qlik.cicd.api :as api]))
 
-(defn init [env]
-  (println "Init command not implemented yet"))
-
-(defn pull [env]
+(defn pull [env app-name space-name]
   (println "Pull command not implemented yet"))
+
+(defn init
+  [env app-name usage-type target-space]
+  (let [feature-space (utilities/get-current-branch)
+        app-exists-in-target? (utilities/app-exists? env app-name target-space)
+        app-exists-in-feature? (utilities/app-exists? env app-name feature-space)]
+    (when app-exists-in-target?
+      (throw (ex-info (str "App '" app-name "' already exists in target space '" target-space "'.") {})))
+    (when app-exists-in-feature?
+      (throw (ex-info (str "App '" app-name "' already exists in feature space '" feature-space "'.") {})))
+    (let [space-id (utilities/use-space env feature-space)]
+      (api/create-app env app-name usage-type space-id "Created by Qlik CI/CD CLI")
+      (pull env app-name feature-space))))
 
 (defn push [env]
   (println "Push command not implemented yet"))
@@ -35,12 +45,12 @@
   "Prompts the user to provide values for missing environment variables."
   [env missing-vars]
   (reduce
-    (fn [acc var]
-      (print (str "Please provide a value for " (name var) ": "))
-      (flush)
-      (assoc acc var (read-line)))
-    env
-    missing-vars))
+   (fn [acc var]
+     (print (str "Please provide a value for " (name var) ": "))
+     (flush)
+     (assoc acc var (read-line)))
+   env
+   missing-vars))
 
 (defn ensure-env-map
   "Ensures that all required environment variables are set, prompting the user for any missing ones."
