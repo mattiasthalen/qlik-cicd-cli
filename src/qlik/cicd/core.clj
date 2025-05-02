@@ -2,8 +2,10 @@
 
 (ns qlik.cicd.core
   (:require [qlik.cicd.utilities :as utilities]
-            [qlik.cicd.api :as api]))
+            [qlik.cicd.api :as api]
+            [clojure.string :as string]))
 
+#_{:clj-kondo/ignore [:unused-binding]}
 (defn pull [env app-name space-name]
   (println "Pull command not implemented yet"))
 
@@ -20,12 +22,15 @@
       (api/create-app env app-name usage-type space-id "Created by Qlik CI/CD CLI")
       (pull env app-name feature-space))))
 
+#_{:clj-kondo/ignore [:unused-binding]}
 (defn push [env]
   (println "Push command not implemented yet"))
 
+#_{:clj-kondo/ignore [:unused-binding]}
 (defn deploy [env]
   (println "Deploy command not implemented yet"))
 
+#_{:clj-kondo/ignore [:unused-binding]}
 (defn purge [env]
   (println "Purge command not implemented yet"))
 
@@ -99,7 +104,7 @@
             (if (empty? missing)
               (init env name usage-type target-space)
               (do
-                (println (str "Error: Missing required argument(s) for init: " (clojure.string/join ", " missing)))
+                (println (str "Error: Missing required argument(s) for init: " (string/join ", " missing)))
                 (System/exit 1))))
           (if command-fn
             (command-fn env)
