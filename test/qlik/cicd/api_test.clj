@@ -49,7 +49,7 @@
                             #"API error"
                             (api/call-api env "test" :get nil)))))
 
-(test/deftest list-items-test
+(test/deftest get-items-test
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   {:status 200
@@ -58,94 +58,94 @@
     (let [env {:server "https://example.com" :token "dummy-token"}
           name "My App"
           resource-type "app"
-          result (api/list-items env {:name name :resource-type resource-type})]
+          result (api/get-items env {:name name :resource-type resource-type})]
       (test/is (vector? result))
       (test/is (= "My App" (:name (first result)))))))
 
-(test/deftest list-items-error-test
+(test/deftest get-items-error-test
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   (throw (ex-info "API error" {:status 500})))]
     (let [env {:server "https://example.com" :token "dummy-token"}]
       (test/is (thrown-with-msg? clojure.lang.ExceptionInfo
                               #"API error"
-                              (api/list-items env {:name "fail" :resource-type "app"}))))))
+                              (api/get-items env {:name "fail" :resource-type "app"}))))))
 
-(test/deftest list-items-no-params-test
+(test/deftest get-items-no-params-test
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   (do
                     (test/is (= endpoint "/items"))
                     {:status 200 :body [{:id "1"}]}))]
-    (let [result (api/list-items env)]
+    (let [result (api/get-items env)]
       (test/is (= [{:id "1"}] result)))))
 
-(test/deftest list-items-name-only-test
+(test/deftest get-items-name-only-test
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   (do
                     (test/is (= endpoint "/items?name=My%20App"))
                     {:status 200 :body [{:id "2" :name "My App"}]}))]
-    (let [result (api/list-items env {:name "My App"})]
+    (let [result (api/get-items env {:name "My App"})]
       (test/is (= [{:id "2" :name "My App"}] result)))))
 
-(test/deftest list-items-resource-type-only-test
+(test/deftest get-items-resource-type-only-test
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   (do
                     (test/is (= endpoint "/items?resourceType=app"))
                     {:status 200 :body [{:id "3" :resourceType "app"}]}))]
-    (let [result (api/list-items env {:resource-type "app"})]
+    (let [result (api/get-items env {:resource-type "app"})]
       (test/is (= [{:id "3" :resourceType "app"}] result)))))
 
-(test/deftest list-items-name-and-resource-type-test
+(test/deftest get-items-name-and-resource-type-test
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   (do
                     (test/is (or (= endpoint "/items?name=My%20App&resourceType=app")
                               (= endpoint "/items?resourceType=app&name=My%20App")))
                     {:status 200 :body [{:id "4" :name "My App" :resourceType "app"}]}))]
-    (let [result (api/list-items env {:name "My App" :resource-type "app"})]
+    (let [result (api/get-items env {:name "My App" :resource-type "app"})]
       (test/is (= [{:id "4" :name "My App" :resourceType "app"}] result)))))
 
-(test/deftest list-spaces-test
+(test/deftest get-spaces-test
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   {:status 200
                    :body [{:id "space1" :name "Finance"}
                           {:id "space2" :name "HR"}]})]
     (let [env {:server "https://example.com" :token "dummy-token"}
-          result (api/list-spaces env)]
+          result (api/get-spaces env)]
       (test/is (vector? result))
       (test/is (= "Finance" (:name (first result)))))))
 
-(test/deftest list-spaces-name-only-test
+(test/deftest get-spaces-name-only-test
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   (do
                     (test/is (= endpoint "spaces?name=Finance"))
                     {:status 200 :body [{:id "space1" :name "Finance"}]}))]
-    (let [result (api/list-spaces {:server "https://example.com" :token "dummy-token"}
+    (let [result (api/get-spaces {:server "https://example.com" :token "dummy-token"}
                                   {:name "Finance"})]
       (test/is (= [{:id "space1" :name "Finance"}] result)))))
 
-(test/deftest list-spaces-type-only-test
+(test/deftest get-spaces-type-only-test
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   (do
                     (test/is (= endpoint "spaces?type=shared"))
                     {:status 200 :body [{:id "space2" :type "shared"}]}))]
-    (let [result (api/list-spaces {:server "https://example.com" :token "dummy-token"}
+    (let [result (api/get-spaces {:server "https://example.com" :token "dummy-token"}
                                   {:type "shared"})]
       (test/is (= [{:id "space2" :type "shared"}] result)))))
 
-(test/deftest list-spaces-name-and-type-test
+(test/deftest get-spaces-name-and-type-test
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   (do
                     (test/is (or (= endpoint "spaces?name=Finance&type=shared")
                                  (= endpoint "spaces?type=shared&name=Finance")))
                     {:status 200 :body [{:id "space3" :name "Finance" :type "shared"}]}))]
-    (let [result (api/list-spaces {:server "https://example.com" :token "dummy-token"}
+    (let [result (api/get-spaces {:server "https://example.com" :token "dummy-token"}
                                   {:name "Finance" :type "shared"})]
       (test/is (= [{:id "space3" :name "Finance" :type "shared"}] result)))))

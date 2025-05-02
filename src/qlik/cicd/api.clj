@@ -30,8 +30,8 @@
                        :body parsed-body
                        :url url})))))
 
-(defn list-items
-  ([env] (list-items env {}))
+(defn get-items
+  ([env] (get-items env {}))
   ([env {:keys [name resource-type]}]
    (let [params (cond-> []
                   name (conj ["name" (java.net.URLEncoder/encode name "UTF-8")])
@@ -41,17 +41,17 @@
                                     (map (fn [[k v]] (str k "=" v)) params))))
          endpoint (str "/items" (or query-str ""))
          resp (call-api env endpoint :get nil)]
-     (:body resp))))
+     (get (:body resp) :data))))
 
-(defn list-spaces
-  ([env] (list-spaces env {}))
+(defn get-spaces
+  ([env] (get-spaces env {}))
   ([env {:keys [name type]}]
    (let [params (cond-> []
                   name (conj ["name" (java.net.URLEncoder/encode name "UTF-8")])
                   type (conj ["type" type]))
          query-str (when (seq params)
                      (str "?" (clojure.string/join "&"
-                                    (map (fn [[k v]] (str k "=" v)) params))))
+                                                   (map (fn [[k v]] (str k "=" v)) params))))
          endpoint (str "spaces" (or query-str ""))
          resp (call-api env endpoint :get nil)]
-     (:body resp))))
+     (get (:body resp) :data))))
