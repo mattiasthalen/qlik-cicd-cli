@@ -107,3 +107,45 @@
                     {:status 200 :body [{:id "4" :name "My App" :resourceType "app"}]}))]
     (let [result (api/list-items env {:name "My App" :resource-type "app"})]
       (test/is (= [{:id "4" :name "My App" :resourceType "app"}] result)))))
+
+(test/deftest list-spaces-test
+  (with-redefs [api/call-api
+                (fn [env endpoint method payload]
+                  {:status 200
+                   :body [{:id "space1" :name "Finance"}
+                          {:id "space2" :name "HR"}]})]
+    (let [env {:server "https://example.com" :token "dummy-token"}
+          result (api/list-spaces env)]
+      (test/is (vector? result))
+      (test/is (= "Finance" (:name (first result)))))))
+
+(test/deftest list-spaces-name-only-test
+  (with-redefs [api/call-api
+                (fn [env endpoint method payload]
+                  (do
+                    (test/is (= endpoint "spaces?name=Finance"))
+                    {:status 200 :body [{:id "space1" :name "Finance"}]}))]
+    (let [result (api/list-spaces {:server "https://example.com" :token "dummy-token"}
+                                  {:name "Finance"})]
+      (test/is (= [{:id "space1" :name "Finance"}] result)))))
+
+(test/deftest list-spaces-type-only-test
+  (with-redefs [api/call-api
+                (fn [env endpoint method payload]
+                  (do
+                    (test/is (= endpoint "spaces?type=shared"))
+                    {:status 200 :body [{:id "space2" :type "shared"}]}))]
+    (let [result (api/list-spaces {:server "https://example.com" :token "dummy-token"}
+                                  {:type "shared"})]
+      (test/is (= [{:id "space2" :type "shared"}] result)))))
+
+(test/deftest list-spaces-name-and-type-test
+  (with-redefs [api/call-api
+                (fn [env endpoint method payload]
+                  (do
+                    (test/is (or (= endpoint "spaces?name=Finance&type=shared")
+                                 (= endpoint "spaces?type=shared&name=Finance")))
+                    {:status 200 :body [{:id "space3" :name "Finance" :type "shared"}]}))]
+    (let [result (api/list-spaces {:server "https://example.com" :token "dummy-token"}
+                                  {:name "Finance" :type "shared"})]
+      (test/is (= [{:id "space3" :name "Finance" :type "shared"}] result)))))
