@@ -44,3 +44,13 @@
          {:keys [exit out]} (apply shell/sh cmd)]
      (when (zero? exit)
        (string/trim out)))))
+
+(defn use-space [env name]
+  (let [space-id (get-space-id env name)]
+    (if space-id
+      space-id
+      (let [resp (api/create-space env name "shared" "Created by Qlik CI/CD CLI")
+            id (:id resp)]
+        (if id
+          id
+          (throw (ex-info "Failed to create space" {:name name :response resp})))))))
