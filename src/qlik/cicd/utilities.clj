@@ -28,3 +28,9 @@
       (get-in (first matches) [:resourceAttributes :id])
       :else
       nil)))
+
+(defn app-exists? [env app-name space-name]
+  (let [space-id (get-space-id env space-name)]
+    (if (nil? space-id)
+      false
+      (boolean (get-app-id env app-name space-name)))))

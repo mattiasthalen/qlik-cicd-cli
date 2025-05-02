@@ -61,3 +61,17 @@
                                   :resourceAttributes {:id "app-999"}}])]
     (test/is (nil? (utilities/get-app-id env "My App" "Finance"))))
 
+(test/deftest app-exists?-space-not-found
+  (with-redefs [utilities/get-space-id (fn [_ _] nil)]
+    (test/is (false? (utilities/app-exists? env "My App" "Finance")))))
+
+(test/deftest app-exists?-app-found
+  (with-redefs [utilities/get-space-id (fn [_ _] "space-1")
+                utilities/get-app-id (fn [_ _ _] "app-123")]
+    (test/is (true? (utilities/app-exists? env "My App" "Finance")))))
+
+(test/deftest app-exists?-app-not-found
+  (with-redefs [utilities/get-space-id (fn [_ _] "space-1")
+                utilities/get-app-id (fn [_ _ _] nil)]
+    (test/is (false? (utilities/app-exists? env "My App" "Finance")))))
+
