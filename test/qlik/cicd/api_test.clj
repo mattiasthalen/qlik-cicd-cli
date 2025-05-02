@@ -219,3 +219,55 @@
     (test/is (thrown-with-msg? clojure.lang.ExceptionInfo
                                #"Invalid space name"
                                (api/create-space env bad-name "data" "desc")))))
+
+(test/deftest create-app-valid-test
+  (with-redefs [api/call-api
+                (fn [env endpoint method payload]
+                  (do
+                    (test/is (= endpoint "apps"))
+                    (test/is (= method :post))
+                    (test/is (= (get-in payload [:attributes :name]) "AppName"))
+                    (test/is (= (get-in payload [:attributes :usage]) "ANALYTICS"))
+                    (test/is (= (get-in payload [:attributes :spaceId]) "space-1"))
+                    (test/is (= (get-in payload [:attributes :description]) "desc"))
+                    {:status 201 :body {:id "app1" :name "AppName" :usage "ANALYTICS"}}))]
+    (let [resp (api/create-app env "AppName" "ANALYTICS" "space-1" "desc")]
+      (test/is (= "app1" (:id resp)))
+      (test/is (= "AppName" (:name resp)))
+      (test/is (= "ANALYTICS" (:usage resp))))))
+
+(test/deftest create-app-valid-no-description-test
+  (with-redefs [api/call-api
+                (fn [env endpoint method payload]
+                  (do
+                    (test/is (= endpoint "apps"))
+                    (test/is (= method :post))
+                    (test/is (= (get-in payload [:attributes :name]) "AppName"))
+                    (test/is (= (get-in payload [:attributes :usage]) "DATA_PREPARATION"))
+                    (test/is (= (get-in payload [:attributes :spaceId]) "space-2"))
+                    (test/is (not (contains? (get payload :attributes) :description)))
+                    {:status 201 :body {:id "app2" :name "AppName" :usage "DATA_PREPARATION"}}))]
+    (let [resp (api/create-app env "AppName" "DATA_PREPARATION" "space-2")]
+      (test/is (= "app2" (:id resp)))
+      (test/is (= "AppName" (:name resp)))
+      (test/is (= "DATA_PREPARATION" (:usage resp))))))
+
+(test/deftest create-app-invalid-usage-type-test
+  (test/is (thrown-with-msg? clojure.lang.ExceptionInfo
+                             #"Invalid usage type"
+                             (api/create-app env "AppName" "INVALID_TYPE" "space-1" "desc"))))
+
+(test/deftest create-app-missing-space-id-test
+  (test/is (thrown-with-msg? clojure.lang.ExceptionInfo
+                             #"space-id is required"
+                             (api/create-app env "AppName" "ANALYTICS" nil "desc"))))
+
+(test/deftest create-app-blank-space-id-test
+  (test/is (thrown-with-msg? clojure.lang.ExceptionInfo
+                             #"space-id is required"
+                             (api/create-app env "AppName" "ANALYTICS" "" "desc"))))
+
+(test/deftest create-app-invalid-name-test
+  (test/is (thrown-with-msg? clojure.lang.ExceptionInfo
+                             #"Invalid app name"
+                             (api/create-app env nil "ANALYTICS" "space-1" "desc"))))
