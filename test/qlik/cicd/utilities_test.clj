@@ -92,3 +92,20 @@
   (with-redefs [shell/sh (fn [& args]
                            {:exit 1 :out ""})]
     (test/is (nil? (utilities/get-current-branch {:project-path "/fail/path"})))))
+
+(test/deftest use-space-returns-existing-id
+  (with-redefs [utilities/get-space-id (fn [_ name] "space-123")]
+    (test/is (= "space-123" (utilities/use-space env "Finance")))))
+
+(test/deftest use-space-creates-space-if-not-found
+  (with-redefs [utilities/get-space-id (fn [_ name] nil)
+                api/create-space (fn [_ name type desc]
+                                   {:id "new-space-456"})]
+    (test/is (= "new-space-456" (utilities/use-space env "NewSpace")))))
+
+(test/deftest use-space-throws-on-create-failure
+  (with-redefs [utilities/get-space-id (fn [_ name] nil)
+                api/create-space (fn [_ name type desc] {})]
+    (test/is (thrown-with-msg? clojure.lang.ExceptionInfo
+                               #"Failed to create space"
+                               (utilities/use-space env "FailSpace")))))
