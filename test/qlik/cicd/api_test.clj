@@ -7,14 +7,14 @@
 (def env {:server "https://example.com"
           :token "dummy-token"})
 
-(test/deftest call-api-get-test
+(test/deftest call-api-get-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [client/get (fn [url opts]
                              {:status 200 :body (json/generate-string {:result "ok"})})]
     (let [resp (api/call-api env "test" :get nil)]
       (test/is (= 200 (:status resp)))
       (test/is (= {:result "ok"} (:body resp))))))
 
-(test/deftest call-api-post-test
+(test/deftest call-api-post-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [client/post (fn [url opts]
                               {:status 201 :body (json/generate-string {:created true})})]
     (let [payload {:foo "bar"}
@@ -22,7 +22,7 @@
       (test/is (= 201 (:status resp)))
       (test/is (= {:created true} (:body resp))))))
 
-(test/deftest call-api-put-test
+(test/deftest call-api-put-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [client/put (fn [url opts]
                              {:status 200 :body (json/generate-string {:updated true})})]
     (let [payload {:id 1}
@@ -30,7 +30,7 @@
       (test/is (= 200 (:status resp)))
       (test/is (= {:updated true} (:body resp))))))
 
-(test/deftest call-api-delete-test
+(test/deftest call-api-delete-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [client/delete (fn [url opts]
                                {:status 204 :body (json/generate-string nil)})]
     (let [resp (api/call-api env "test" :delete nil)]
@@ -42,14 +42,14 @@
                           #"Unsupported HTTP method"
                           (api/call-api env "test" :patch nil))))
 
-(test/deftest call-api-error-response-test
+(test/deftest call-api-error-response-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [client/get (fn [url opts]
                              {:status 404 :body (json/generate-string {:error "Not found"})})]
     (test/is (thrown-with-msg? clojure.lang.ExceptionInfo
                             #"API error"
                             (api/call-api env "test" :get nil)))))
 
-(test/deftest get-items-test
+(test/deftest get-items-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   {:status 200
@@ -62,7 +62,7 @@
       (test/is (vector? result))
       (test/is (= "My App" (:name (first result)))))))
 
-(test/deftest get-items-error-test
+(test/deftest get-items-error-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   (throw (ex-info "API error" {:status 500})))]
@@ -71,7 +71,7 @@
                               #"API error"
                               (api/get-items env {:name "fail" :resource-type "app"}))))))
 
-(test/deftest get-items-no-params-test
+(test/deftest get-items-no-params-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   (do
@@ -80,7 +80,7 @@
     (let [result (api/get-items env)]
       (test/is (= [{:id "1"}] result)))))
 
-(test/deftest get-items-name-only-test
+(test/deftest get-items-name-only-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   (do
@@ -89,7 +89,7 @@
     (let [result (api/get-items env {:name "My App"})]
       (test/is (= [{:id "2" :name "My App"}] result)))))
 
-(test/deftest get-items-resource-type-only-test
+(test/deftest get-items-resource-type-only-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   (do
@@ -98,7 +98,7 @@
     (let [result (api/get-items env {:resource-type "app"})]
       (test/is (= [{:id "3" :resourceType "app"}] result)))))
 
-(test/deftest get-items-name-and-resource-type-test
+(test/deftest get-items-name-and-resource-type-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   (do
@@ -108,7 +108,7 @@
     (let [result (api/get-items env {:name "My App" :resource-type "app"})]
       (test/is (= [{:id "4" :name "My App" :resourceType "app"}] result)))))
 
-(test/deftest get-items-space-id-only-test
+(test/deftest get-items-space-id-only-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   (do
@@ -117,7 +117,7 @@
     (let [result (api/get-items env {:space-id "space-123"})]
       (test/is (= [{:id "5" :spaceId "space-123"}] result)))))
 
-(test/deftest get-items-name-resource-type-and-space-id-test
+(test/deftest get-items-name-resource-type-and-space-id-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   (do
@@ -131,7 +131,7 @@
     (let [result (api/get-items env {:name "My App" :resource-type "app" :space-id "space-123"})]
       (test/is (= [{:id "6" :name "My App" :resourceType "app" :spaceId "space-123"}] result)))))
 
-(test/deftest get-spaces-test
+(test/deftest get-spaces-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   {:status 200
@@ -142,7 +142,7 @@
       (test/is (vector? result))
       (test/is (= "Finance" (:name (first result)))))))
 
-(test/deftest get-spaces-name-only-test
+(test/deftest get-spaces-name-only-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   (do
@@ -152,7 +152,7 @@
                                   {:name "Finance"})]
       (test/is (= [{:id "space1" :name "Finance"}] result)))))
 
-(test/deftest get-spaces-type-only-test
+(test/deftest get-spaces-type-only-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   (do
@@ -162,7 +162,7 @@
                                   {:type "shared"})]
       (test/is (= [{:id "space2" :type "shared"}] result)))))
 
-(test/deftest get-spaces-name-and-type-test
+(test/deftest get-spaces-name-and-type-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   (do
@@ -173,7 +173,7 @@
                                   {:name "Finance" :type "shared"})]
       (test/is (= [{:id "space3" :name "Finance" :type "shared"}] result)))))
 
-(test/deftest create-space-valid-test
+(test/deftest create-space-valid-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   (do
@@ -188,7 +188,7 @@
       (test/is (= "ValidName" (:name resp)))
       (test/is (= "shared" (:type resp))))))
 
-(test/deftest create-space-valid-no-description-test
+(test/deftest create-space-valid-no-description-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   (do
@@ -220,7 +220,7 @@
                                #"Invalid space name"
                                (api/create-space env bad-name "data" "desc")))))
 
-(test/deftest create-app-valid-test
+(test/deftest create-app-valid-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   (do
@@ -236,7 +236,7 @@
       (test/is (= "AppName" (:name resp)))
       (test/is (= "ANALYTICS" (:usage resp))))))
 
-(test/deftest create-app-valid-no-description-test
+(test/deftest create-app-valid-no-description-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   (do
