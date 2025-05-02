@@ -1,7 +1,7 @@
 (ns qlik.cicd.api
   (:require [babashka.http-client :as client]
             [cheshire.core :as json]
-            [clojure.string :as str]))
+            [clojure.string :as string]))
 
 (defn call-api
   [env endpoint method payload]
@@ -30,15 +30,28 @@
                        :body parsed-body
                        :url url})))))
 
-(defn list-items
-  ([env] (list-items env {}))
+(defn get-items
+  ([env] (get-items env {}))
   ([env {:keys [name resource-type]}]
    (let [params (cond-> []
                   name (conj ["name" (java.net.URLEncoder/encode name "UTF-8")])
                   resource-type (conj ["resourceType" resource-type]))
          query-str (when (seq params)
-                     (str "?" (clojure.string/join "&"
+                     (str "?" (string/join "&"
                                     (map (fn [[k v]] (str k "=" v)) params))))
          endpoint (str "/items" (or query-str ""))
          resp (call-api env endpoint :get nil)]
-     (:body resp))))
+     (get (:body resp) :data))))
+
+(defn get-spaces
+  ([env] (get-spaces env {}))
+  ([env {:keys [name type]}]
+   (let [params (cond-> []
+                  name (conj ["name" (java.net.URLEncoder/encode name "UTF-8")])
+                  type (conj ["type" type]))
+         query-str (when (seq params)
+                     (str "?" (string/join "&"
+                                           (map (fn [[k v]] (str k "=" v)) params))))
+         endpoint (str "spaces" (or query-str ""))
+         resp (call-api env endpoint :get nil)]
+     (get (:body resp) :data))))

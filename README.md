@@ -59,7 +59,7 @@ flowchart TD
         subgraph get_app_id["qlik.cicd.api/get-app-id"]
             get_app_id__input:::event@{shape: event, label: "env\napp-name\nspace-id"}
 
-            subgraph list_items["qlik.cicd.api/list-items"]
+            subgraph list_items["qlik.cicd.api/get-items"]
                 list_items__input:::event@{shape: event, label: "env\nname\nresource-type = app\nspace-id"}
                 list_items__api:::prepare@{shape: prepare, label: "qlik.cicd.api/call-api"}
 
