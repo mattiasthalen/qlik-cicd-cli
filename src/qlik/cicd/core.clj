@@ -76,11 +76,14 @@
     (if (empty? args)
       opts
       (let [[k v & rest] args]
-        (cond
-          (= k "--name") (recur (assoc opts :name v) rest)
-          (= k "--usage-type") (recur (assoc opts :usage-type v) rest)
-          (= k "--target-space") (recur (assoc opts :target-space v) rest)
-          :else (recur (update opts :positional (fnil conj []) k) (cons v rest)))))))
+        (if (.startsWith (str k) "--") 
+          (cond
+            (= k "--name") (recur (assoc opts :name v) rest)
+            (= k "--usage-type") (recur (assoc opts :usage-type v) rest)
+            (= k "--target-space") (recur (assoc opts :target-space v) rest)
+            :else (recur opts rest))
+          (recur (update opts :positional (fnil conj []) k) 
+                 (if v (cons v rest) rest)))))))
 
 (defn -main
   "Main entry point for the CLI."
@@ -96,7 +99,8 @@
       (let [parsed (parse-args args)
             cmd (first (:positional parsed))
             command-fn (get commands cmd)]
-        (if (= cmd "init")
+        (cond
+          (= cmd "init")
           (let [{:keys [name usage-type target-space]} parsed
                 missing (->> [[:name "--name"] [:usage-type "--usage-type"] [:target-space "--target-space"]]
                              (filter (fn [[k _]] (nil? (get parsed k))))
@@ -106,11 +110,23 @@
               (do
                 (println (str "Error: Missing required argument(s) for init: " (string/join ", " missing)))
                 (System/exit 1))))
-          (if command-fn
-            (command-fn env)
-            (do
-              (println "Error: Invalid or missing command. Valid commands are: init, pull, push, deploy, purge.")
-              (System/exit 1)))))
+          
+          (= cmd "pull")
+          (let [app-name (second (:positional parsed))
+                space-name (or (nth (:positional parsed) 2 nil) (utilities/get-current-branch))]
+            (if app-name
+              (pull env app-name space-name)
+              (do
+                (println "Error: Missing required argument for pull: app-name")
+                (System/exit 1))))
+          
+          command-fn
+          (command-fn env)
+          
+          :else
+          (do
+            (println "Error: Invalid or missing command. Valid commands are: init, pull, push, deploy, purge.")
+            (System/exit 1))))
       (catch Exception e
         (println (.getMessage e))
         (System/exit 1)))))
