@@ -109,7 +109,7 @@
           (if command-fn
             (command-fn env)
             (do
-              (println "Error: Invalid or missing command. Valid commands are: config, init, pull, push, deploy, purge.")
+              (println "Error: Invalid or missing command. Valid commands are: init, pull, push, deploy, purge.")
               (System/exit 1)))))
       (catch Exception e
         (println (.getMessage e))
