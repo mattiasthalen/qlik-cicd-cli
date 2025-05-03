@@ -174,24 +174,13 @@
                 #"Invalid or missing command"
                 (qlik.cicd.core/handle-command {} parsed))))))
 
-#_(test/deftest test-main-function
-  (test/testing "Main function successfully delegates to handle-command"
-    (let [called (atom {})]
-      (with-redefs [qlik.cicd.core/ensure-env-map (fn [env] (assoc env :ensured true))
-                    qlik.cicd.core/handle-command (fn [env parsed]
-                                                    (swap! called assoc :handle-command [env parsed]))
-                    qlik.cicd.core/parse-args (fn [args] {:positional args})]
-        (qlik.cicd.core/-main "pull" "test-app")
-        (test/is (contains? (first (:handle-command @called)) :ensured))
-        (test/is (= ["pull" "test-app"] (:positional (second (:handle-command @called))))))))
-  
-  (test/testing "Main function catches exceptions"
-    (let [exception-caught (atom false)]
-      (with-redefs [qlik.cicd.core/ensure-env-map (fn [_] (throw (ex-info "Test error" {})))
-                    ;; Instead of mocking System/exit, which causes problems
-                    ;; we'll just watch for println being called with the error message
-                    println (fn [msg] 
-                              (when (= msg "Test error")
-                                (reset! exception-caught true)))]
-        (qlik.cicd.core/-main "invalid")
-        (test/is @exception-caught "Exception should be caught and message printed")))))
+(test/deftest test-main
+  (test/testing "Main function calls handle-command with parsed arguments"
+    (let [handle-called (atom false)]
+      (with-redefs [qlik.cicd.core/ensure-env-map (fn [env] env)
+                    qlik.cicd.core/handle-command (fn [_ _] (reset! handle-called true)) 
+                    qlik.cicd.core/handle-command (fn [_ _] 
+                                                   (reset! handle-called true)
+                                                   nil)]
+        (qlik.cicd.core/-main "test-cmd")
+        (test/is @handle-called "handle-command should be called")))))
