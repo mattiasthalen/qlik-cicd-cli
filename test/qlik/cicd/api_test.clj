@@ -258,3 +258,24 @@
   (test/is (thrown-with-msg? clojure.lang.ExceptionInfo
                              #"Invalid app name"
                              (api/create-app env nil "ANALYTICS" "space-1" "desc"))))
+
+(test/deftest build-query-string-test
+  (test/testing "Empty parameters"
+    (test/is (nil? (api/build-query-string {})))
+    (test/is (nil? (api/build-query-string nil))))
+  
+  (test/testing "Single parameter"
+    (test/is (= "?name=value" (api/build-query-string {"name" "value"}))))
+  
+  (test/testing "Space encoding"
+    (test/is (= "?name=My%20App" (api/build-query-string {"name" "My App"}))))
+  
+  (test/testing "Multiple parameters"
+    (let [result (api/build-query-string {"name" "My App" "type" "shared"})]
+      ;; Order can vary, so we need to check both possibilities
+      (test/is (or (= "?name=My%20App&type=shared" result)
+                   (= "?type=shared&name=My%20App" result)))))
+  
+  (test/testing "Special characters"
+    (test/is (= "?q=a%3Db%26c%3Dd" (api/build-query-string {"q" "a=b&c=d"})))
+    (test/is (= "?path=%2Fuser%2Fdocs" (api/build-query-string {"path" "/user/docs"})))))
