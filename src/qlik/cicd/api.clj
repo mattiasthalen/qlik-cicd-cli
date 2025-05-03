@@ -36,7 +36,7 @@
 (defn get-items
   "Get items from the API with optional query parameters"
   ([env] (get-items env {}))
-  ([env {:keys [name resource-type space-id] :as params}]
+  ([env {:keys [name resource-type space-id]}]
    (let [query-params (cond-> {}
                         name (assoc "name" name)
                         resource-type (assoc "resourceType" resource-type)
@@ -46,10 +46,10 @@
          response (call-api env endpoint :get nil)]
      (:body response))))
 
-(defn get-spaces
+(defn get-spaces 
   "Get spaces with optional filters"
   ([env] (get-spaces env {}))
-  ([env {:keys [name type] :as params}]
+  ([env {:keys [name type]}]
    (let [query-params (cond-> {}
                         name (assoc "name" name)
                         type (assoc "type" type))
