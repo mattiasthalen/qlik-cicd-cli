@@ -35,19 +35,16 @@
   (println "Purge command not implemented yet"))
 
 (defn get-env-map
-  "Constructs a map of required environment variables."
   []
   {:server (System/getenv "QLIK__SERVER")
    :token (System/getenv "QLIK__TOKEN")
    :project-path (System/getenv "QLIK__PROJECT_PATH")})
 
 (defn get-missing-vars
-  "Returns a list of missing environment variables from the given map."
   [env required-vars]
   (filter #(nil? (get env %)) required-vars))
 
 (defn prompt-for-missing-vars
-  "Prompts the user to provide values for missing environment variables."
   [env missing-vars]
   (reduce
    (fn [acc var]
@@ -58,7 +55,6 @@
    missing-vars))
 
 (defn ensure-env-map
-  "Ensures that all required environment variables are set, prompting the user for any missing ones."
   ([]
    (ensure-env-map (get-env-map)))
   ([env]
@@ -70,47 +66,61 @@
          (ensure-env-map updated-env))))))
 
 (defn parse-args
-  "Parses CLI args into a map of options and a vector of positional args."
   [args]
   (loop [opts {} args args]
     (if (empty? args)
       opts
       (let [[k v & rest] args]
-        (cond
-          (= k "--name") (recur (assoc opts :name v) rest)
-          (= k "--usage-type") (recur (assoc opts :usage-type v) rest)
-          (= k "--target-space") (recur (assoc opts :target-space v) rest)
-          :else (recur (update opts :positional (fnil conj []) k) (cons v rest)))))))
+        (if (.startsWith (str k) "--") 
+          (cond
+            (= k "--name") (recur (assoc opts :name v) rest)
+            (= k "--usage-type") (recur (assoc opts :usage-type v) rest)
+            (= k "--target-space") (recur (assoc opts :target-space v) rest)
+            :else (recur opts rest))
+          (recur (update opts :positional (fnil conj []) k) 
+                 (if v (cons v rest) rest)))))))
+
+(defn handle-init
+  [env parsed]
+  (let [{:keys [name usage-type target-space]} parsed
+        missing (->> [[:name "--name"] [:usage-type "--usage-type"] [:target-space "--target-space"]]
+                     (filter (fn [[k _]] (nil? (get parsed k))))
+                     (map second))]
+    (if (empty? missing)
+      (init env name usage-type target-space)
+      (throw (ex-info (str "Missing required argument(s) for init: " (string/join ", " missing)) {})))))
+
+(defn handle-pull
+  [env parsed]
+  (let [app-name (second (:positional parsed))
+        space-name (or (nth (:positional parsed) 2 nil) (utilities/get-current-branch))]
+    (if app-name
+      (pull env app-name space-name)
+      (throw (ex-info "Missing required argument for pull: app-name" {})))))
+
+(defn handle-command
+  [env parsed]
+  (let [cmd (first (:positional parsed))
+        command-handlers {"init" handle-init
+                          "pull" handle-pull
+                          "push" push
+                          "deploy" deploy
+                          "purge" purge}
+        handler (get command-handlers cmd)]
+    (if handler
+      (if (or (= cmd "init") (= cmd "pull"))
+        (handler env parsed)
+        (handler env))
+      (throw (ex-info (str "Invalid or missing command. Valid commands are: " 
+                           (string/join ", " (keys command-handlers))) {})))))
 
 (defn -main
   "Main entry point for the CLI."
   [& args]
-  (let [env (get-env-map)
-        commands {"init" init
-                  "pull" pull
-                  "push" push
-                  "deploy" deploy
-                  "purge" purge}]
-    (try
-      (ensure-env-map env)
-      (let [parsed (parse-args args)
-            cmd (first (:positional parsed))
-            command-fn (get commands cmd)]
-        (if (= cmd "init")
-          (let [{:keys [name usage-type target-space]} parsed
-                missing (->> [[:name "--name"] [:usage-type "--usage-type"] [:target-space "--target-space"]]
-                             (filter (fn [[k _]] (nil? (get parsed k))))
-                             (map second))]
-            (if (empty? missing)
-              (init env name usage-type target-space)
-              (do
-                (println (str "Error: Missing required argument(s) for init: " (string/join ", " missing)))
-                (System/exit 1))))
-          (if command-fn
-            (command-fn env)
-            (do
-              (println "Error: Invalid or missing command. Valid commands are: config, init, pull, push, deploy, purge.")
-              (System/exit 1)))))
-      (catch Exception e
-        (println (.getMessage e))
-        (System/exit 1)))))
+  (try
+    (let [env (ensure-env-map (get-env-map))
+          parsed (parse-args args)]
+      (handle-command env parsed))
+    (catch Exception e
+      (println (.getMessage e))
+      (System/exit 1))))

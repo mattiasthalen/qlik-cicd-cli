@@ -1,2 +1,8 @@
 {:paths ["src" "test"]
- :main qlik.cicd.core}
+ 
+ :tasks {test {:task (exec 'cognitect.test-runner.api/test)
+               :extra-deps {io.github.cognitect-labs/test-runner
+                            {:git/tag "v0.5.1" :git/sha "dfb30dd"}}
+               :requires ([babashka.tasks :refer [shell]])}
+         qlik {:task (apply core/-main *command-line-args*) 
+               :requires ([qlik.cicd.core :as core])}}}

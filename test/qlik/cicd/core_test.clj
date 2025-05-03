@@ -50,43 +50,21 @@
           (test/is (= "mock-token" (get updated-env :token)))
           (test/is (= "mock-project-path" (get updated-env :project-path))))))))
 
-(test/deftest test-main-valid-commands
-  (test/testing "Ensure -main handles valid commands"
-    (test/is (= "Init command not implemented yet\n" (with-out-str (qlik.cicd.core/-main "init"))))
-    (test/is (= "Pull command not implemented yet\n" (with-out-str (qlik.cicd.core/-main "pull"))))
-    (test/is (= "Push command not implemented yet\n" (with-out-str (qlik.cicd.core/-main "push"))))
-    (test/is (= "Deploy command not implemented yet\n" (with-out-str (qlik.cicd.core/-main "deploy"))))
-    (test/is (= "Purge command not implemented yet\n" (with-out-str (qlik.cicd.core/-main "purge"))))))
-
-(test/deftest test-main-invalid-command
-  (test/testing "Ensure -main handles invalid commands"
-    (let [output (with-out-str
-                   (try
-                     (qlik.cicd.core/-main "invalid-command")
-                     (catch Exception _)))]
-      (test/is (.contains output "Error: Invalid or missing command")))))
-
-(test/deftest test-main-missing-command
-  (test/testing "Ensure -main handles missing commands"
-    (let [output (with-out-str
-                   (try
-                     (qlik.cicd.core/-main)
-                     (catch Exception _)))]
-      (test/is (.contains output "Error: Invalid or missing command")))))
-
-(test/deftest test-init
+(test/deftest test-init #_{:clj-kondo/ignore [:unused-binding]}
   (test/testing "Throws if app exists in target space"
     (with-redefs [qlik.cicd.utilities/get-current-branch (fn [] "feature-branch")
-                  qlik.cicd.utilities/app-exists? (fn [env app-name space]
+                  qlik.cicd.utilities/app-exists?
+                                                  (fn [env app-name space]
                                                     (= space "target-space"))]
       (test/is (thrown-with-msg?
                  clojure.lang.ExceptionInfo
                  #"already exists in target space"
                  (qlik.cicd.core/init {} "my-app" "managed" "target-space")))))
 
-  (test/testing "Throws if app exists in feature space"
+  (test/testing "Throws if app exists in feature space" #_{:clj-kondo/ignore [:unused-binding]}
     (with-redefs [qlik.cicd.utilities/get-current-branch (fn [] "feature-branch")
-                  qlik.cicd.utilities/app-exists? (fn [env app-name space]
+                  qlik.cicd.utilities/app-exists?
+                                                  (fn [env app-name space]
                                                     (= space "feature-branch"))]
       (test/is (thrown-with-msg?
                  clojure.lang.ExceptionInfo
@@ -106,3 +84,103 @@
         (test/is (= ["my-app" "managed" "space-id-123" "Created by Qlik CI/CD CLI"]
                     (:create-app @called)))
         (test/is (= ["my-app" "feature-branch"] (:pull @called)))))))
+
+(test/deftest test-parse-args
+  (test/testing "Parses named and positional arguments"
+    (let [args ["init" "--name" "my-app" "--usage-type" "managed" "--target-space" "target-space"]
+          parsed (qlik.cicd.core/parse-args args)]
+      (test/is (= ["init"] (:positional parsed)))
+      (test/is (= "my-app" (:name parsed)))
+      (test/is (= "managed" (:usage-type parsed)))
+      (test/is (= "target-space" (:target-space parsed)))))
+  (test/testing "Handles missing named arguments"
+    (let [args ["init" "--name" "my-app"]
+          parsed (qlik.cicd.core/parse-args args)]
+      (test/is (= ["init"] (:positional parsed)))
+      (test/is (= "my-app" (:name parsed)))
+      (test/is (nil? (:usage-type parsed)))
+      (test/is (nil? (:target-space parsed))))))
+
+(test/deftest test-handle-init
+  (test/testing "Handles init command with all required arguments"
+    (let [called (atom {})
+          parsed {:name "my-app" :usage-type "managed" :target-space "target-space"}]
+      (with-redefs [qlik.cicd.core/init (fn [env name usage-type target-space]
+                                           (swap! called assoc :init [env name usage-type target-space]))]
+        (qlik.cicd.core/handle-init {} parsed)
+        (test/is (= [{} "my-app" "managed" "target-space"] (:init @called))))))
+  
+  (test/testing "Throws exception when missing required arguments"
+    (let [parsed {:name "my-app"}]
+      (test/is (thrown-with-msg?
+                clojure.lang.ExceptionInfo
+                #"Missing required argument\(s\) for init: --usage-type, --target-space"
+                (qlik.cicd.core/handle-init {} parsed))))))
+
+(test/deftest test-handle-pull
+  (test/testing "Handles pull command with app name argument"
+    (let [called (atom {})
+          parsed {:positional ["pull" "my-app"]}]
+      (with-redefs [qlik.cicd.utilities/get-current-branch (fn [] "feature-branch")
+                    qlik.cicd.core/pull (fn [env app-name space-name]
+                                           (swap! called assoc :pull [env app-name space-name]))]
+        (qlik.cicd.core/handle-pull {} parsed)
+        (test/is (= [{} "my-app" "feature-branch"] (:pull @called))))))
+  
+  (test/testing "Handles pull command with app name and space name arguments"
+    (let [called (atom {})
+          parsed {:positional ["pull" "my-app" "custom-space"]}]
+      (with-redefs [qlik.cicd.core/pull (fn [env app-name space-name]
+                                           (swap! called assoc :pull [env app-name space-name]))]
+        (qlik.cicd.core/handle-pull {} parsed)
+        (test/is (= [{} "my-app" "custom-space"] (:pull @called))))))
+  
+  (test/testing "Throws exception when missing app name argument"
+    (let [parsed {:positional ["pull"]}]
+      (test/is (thrown-with-msg?
+                clojure.lang.ExceptionInfo
+                #"Missing required argument for pull: app-name"
+                (qlik.cicd.core/handle-pull {} parsed))))))
+
+(test/deftest test-handle-command
+  (test/testing "Handles init command"
+    (let [called (atom {})
+          parsed {:positional ["init"] :name "my-app" :usage-type "managed" :target-space "target-space"}]
+      (with-redefs [qlik.cicd.core/handle-init (fn [env p]
+                                                  (swap! called assoc :handle-init [env p]))]
+        (qlik.cicd.core/handle-command {} parsed)
+        (test/is (= [{} parsed] (:handle-init @called))))))
+  
+  (test/testing "Handles pull command"
+    (let [called (atom {})
+          parsed {:positional ["pull" "my-app"]}]
+      (with-redefs [qlik.cicd.core/handle-pull (fn [env p]
+                                                  (swap! called assoc :handle-pull [env p]))]
+        (qlik.cicd.core/handle-command {} parsed)
+        (test/is (= [{} parsed] (:handle-pull @called))))))
+  
+  (test/testing "Handles simple commands"
+    (let [called (atom {})
+          parsed {:positional ["push"]}]
+      (with-redefs [qlik.cicd.core/push (fn [env]
+                                           (swap! called assoc :push [env]))]
+        (qlik.cicd.core/handle-command {} parsed)
+        (test/is (= [{}] (:push @called))))))
+  
+  (test/testing "Throws exception for invalid command"
+    (let [parsed {:positional ["invalid-command"]}]
+      (test/is (thrown-with-msg?
+                clojure.lang.ExceptionInfo
+                #"Invalid or missing command"
+                (qlik.cicd.core/handle-command {} parsed))))))
+
+(test/deftest test-main
+  (test/testing "Main function calls handle-command with parsed arguments"
+    (let [handle-called (atom false)]
+      (with-redefs [qlik.cicd.core/ensure-env-map (fn [env] env)
+                    qlik.cicd.core/handle-command (fn [_ _] (reset! handle-called true)) 
+                    qlik.cicd.core/handle-command (fn [_ _] 
+                                                   (reset! handle-called true)
+                                                   nil)]
+        (qlik.cicd.core/-main "test-cmd")
+        (test/is @handle-called "handle-command should be called")))))
