@@ -1,7 +1,6 @@
 {
     "image": "babashka/babashka",
     "features": {
-        "ghcr.io/devcontainers/features/git:1": {},
         "ghcr.io/devcontainers/features/java:1": {}
     },
     "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/qlik-cicd-cli,type=bind",
@@ -19,7 +18,10 @@
                 "betterthantomorrow.calva",
                 "betterthantomorrow.calva-mcp-server",
                 "eamodio.gitlens"
-            ]
+            ],
+            "settings": {
+                "files.eol": "\n"
+            }
         }
     }
 }
