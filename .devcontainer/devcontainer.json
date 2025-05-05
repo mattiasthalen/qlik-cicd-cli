@@ -1,6 +1,7 @@
 {
     "image": "babashka/babashka",
     "features": {
+        "ghcr.io/devcontainers/features/git:1": {}
     },
     "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/qlik-cicd-cli,type=bind",
     "workspaceFolder": "/workspaces/qlik-cicd-cli",
