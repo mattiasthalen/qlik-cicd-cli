@@ -16,11 +16,11 @@
                 "oderwat.indent-rainbow",
                 "bierner.markdown-mermaid",
                 "betterthantomorrow.calva",
-                "betterthantomorrow.calva-mcp-server"
+                "betterthantomorrow.calva-mcp-server",
+                "eamodio.gitlens"
             ],
             "settings": {
-                "files.eol": "\n",
-                "git.enabled": false
+                "files.eol": "\n"
             }
         }
     }
