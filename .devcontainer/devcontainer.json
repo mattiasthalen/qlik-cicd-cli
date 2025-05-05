@@ -1,7 +1,6 @@
 {
     "image": "babashka/babashka",
     "features": {
-        "ghcr.io/devcontainers/features/java:1": {}
     },
     "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/qlik-cicd-cli,type=bind",
     "workspaceFolder": "/workspaces/qlik-cicd-cli",
@@ -16,8 +15,7 @@
                 "oderwat.indent-rainbow",
                 "bierner.markdown-mermaid",
                 "betterthantomorrow.calva",
-                "betterthantomorrow.calva-mcp-server",
-                "eamodio.gitlens"
+                "betterthantomorrow.calva-mcp-server"
             ],
             "settings": {
                 "files.eol": "\n"
