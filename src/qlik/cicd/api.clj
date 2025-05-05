@@ -5,7 +5,7 @@
 
 (defn call-api
   [env endpoint method payload]
-  (let [url (str (:server env) "/" endpoint)
+  (let [url (str (:server env) "/api/v1/" endpoint)
         headers {"Authorization" (str "Bearer " (:token env))
                  "Content-Type" "application/json"}
         opts {:headers headers}
@@ -44,7 +44,7 @@
          query-string (build-query-string query-params)
          endpoint (str "/items" query-string)
          response (call-api env endpoint :get nil)]
-     (:body response))))
+     (:data (:body response)))))
 
 (defn get-spaces 
   "Get spaces with optional filters"
@@ -56,7 +56,7 @@
          query-string (build-query-string query-params)
          endpoint (str "spaces" query-string)
          response (call-api env endpoint :get nil)]
-     (:body response))))
+     (:data (:body response)))))
 
 (defn create-space
   ([env name type] (create-space env name type nil))
