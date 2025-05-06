@@ -1,7 +1,8 @@
 (ns qlik.cicd.utilities
   (:require [qlik.cicd.api :as api]
             [clojure.string :as string]
-            [clojure.java.shell :as shell]))
+            [clojure.java.shell :as shell]
+            [clojure.java.io :as io]))
 
 (defn get-space-id [env space-name]
   (let [spaces (api/get-spaces env {:name space-name})
@@ -62,6 +63,33 @@
   (let [items (api/get-items env {:resource-id app-id :resource-type "app"})
         app (first items)]
     (= "script" (:resourceSubType app))))
+
+(defn get-app-name
+  [env app-id]
+  (when (nil? app-id)
+    (throw (ex-info "app-id cannot be nil" {:function "get-app-name"})))
+  (let [items (api/get-items env {:resource-id app-id :resource-type "app"})
+        app (first items)]
+    (when app
+      (:name app))))
+
+(defn get-target-path
+  [env app-id target-space]
+  (let [project-path (:project-path env)]
+    (when-not project-path
+      (throw (ex-info "Project path is required" {:env env})))
+    (when-not app-id
+      (throw (ex-info "app-id cannot be nil" {:function "get-target-path"})))
+    
+    (let [app-name (get-app-name env app-id)]
+      (when-not app-name
+        (throw (ex-info (str "App with id '" app-id "' not found") 
+                       {:app-id app-id})))
+      
+      (let [dir-type (if (is-script-app? env app-id) "scripts" "apps")
+            target-path (str project-path "/spaces/" target-space "/" dir-type "/" app-name "/")]
+        (io/make-parents (str target-path "placeholder"))
+        target-path))))
 
 #_{:clj-kondo/ignore [:unused-binding]}
 (defn unbuild-app [env app-id target-path]

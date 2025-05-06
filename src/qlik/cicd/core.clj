@@ -3,8 +3,7 @@
 (ns qlik.cicd.core
   (:require [qlik.cicd.utilities :as utilities]
             [qlik.cicd.api :as api]
-            [clojure.string :as string]
-            [clojure.java.io :as io]))
+            [clojure.string :as string]))
 
 (defn pull
   ([env app-name source-space]
@@ -12,12 +11,7 @@
   ([env app-name source-space target-space]
    (if (utilities/app-exists? env app-name source-space)
      (let [app-id (utilities/get-app-id env app-name source-space)
-           project-path (:project-path env)
-           _ (when-not project-path
-               (throw (ex-info "Project path is required" {:env env})))
-           
-           target-path (str project-path "/spaces/" target-space "/apps/" app-name "/") 
-           _ (clojure.java.io/make-parents (str target-path "placeholder"))]
+           target-path (utilities/get-target-path env app-id target-space)]
        
        (utilities/unbuild-app env app-id target-path))
      
