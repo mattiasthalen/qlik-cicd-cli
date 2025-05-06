@@ -1,0 +1,58 @@
+[
+  {
+    "qInfo": {
+      "qId": "22697c46-f061-4932-a74e-c0beafe03739",
+      "qType": "variable"
+    },
+    "qMetaDef": {},
+    "qName": "name",
+    "qNumberPresentation": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "qDefinition": "das.raw__adventure_works__addresses"
+  },
+  {
+    "qInfo": {
+      "qId": "f129ccd7-198d-4e0d-822f-8ce8303820ae",
+      "qType": "variable"
+    },
+    "qMetaDef": {},
+    "qName": "index",
+    "qNumberPresentation": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "qDefinition": "0"
+  },
+  {
+    "qInfo": {
+      "qId": "409e2e87-5fd2-4f77-9649-b49f345d759e",
+      "qType": "variable"
+    },
+    "qMetaDef": {},
+    "qName": "currentName",
+    "qNumberPresentation": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "qDefinition": "das.raw__adventure_works__addresses"
+  },
+  {
+    "qInfo": {
+      "qId": "5afaf86e-36b3-4f52-809c-d062139e5829",
+      "qType": "variable"
+    },
+    "qMetaDef": {},
+    "qName": "matches",
+    "qNumberPresentation": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "qDefinition": "0"
+  }
+]

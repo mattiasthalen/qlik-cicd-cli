@@ -1,0 +1,33 @@
+[
+  {
+    "qInfo": {
+      "qId": "WWcHPP",
+      "qType": "dimension"
+    },
+    "qDim": {
+      "qGrouping": "H",
+      "qFieldDefs": [
+        "state_province_id",
+        "city",
+        "postal_code",
+        "address_line1",
+        "address_line2",
+        "address_id"
+      ],
+      "qFieldLabels": [],
+      "qAlias": "Address Hierarchy",
+      "title": "Address Hierarchy",
+      "coloring": {
+        "changeHash": "0.4426617822524045",
+        "hasValueColors": false
+      }
+    },
+    "qMetaDef": {
+      "title": "Address Hierarchy",
+      "description": "State/Province ID \u003e City \u003e Postal Code \u003e Address Line 1 \u003e Address Line 2 \u003e Address ID",
+      "tags": [
+        "Hierarchy"
+      ]
+    }
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "qInfo": {
+      "qId": "wTZm",
+      "qType": "measure"
+    },
+    "qMeasure": {
+      "qLabel": "# Addresses",
+      "qDef": "Count(Distinct address_id)",
+      "qGrouping": "N",
+      "qExpressions": [],
+      "qActiveExpression": 0,
+      "qLabelExpression": "='# Addresses'",
+      "qNumFormat": {
+        "qType": "U",
+        "qnDec": 10,
+        "qUseThou": 0
+      },
+      "coloring": {}
+    },
+    "qMetaDef": {
+      "title": "# Addresses",
+      "description": "Test master measure",
+      "tags": []
+    }
+  }
+]

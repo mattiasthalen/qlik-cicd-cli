@@ -1,0 +1,1630 @@
+{
+  "qProperty": {
+    "qInfo": {
+      "qId": "yKNmU",
+      "qType": "sheet"
+    },
+    "qMetaDef": {
+      "title": "Mitt nya ark",
+      "description": ""
+    },
+    "creationDate": "2025-05-06T06:49:37.215Z",
+    "rank": null,
+    "thumbnail": {
+      "qStaticContentUrlDef": {}
+    },
+    "columns": 24,
+    "rows": 12,
+    "cells": [
+      {
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 100,
+          "height": 50
+        },
+        "col": 0,
+        "colspan": 24,
+        "name": "ZwWGj",
+        "row": 0,
+        "rowspan": 6,
+        "smartGrid": {
+          "rowIdx": 0,
+          "itemIdx": 0,
+          "item": {
+            "width": 1
+          }
+        },
+        "type": "auto-chart"
+      },
+      {
+        "bounds": {
+          "x": 0,
+          "y": 50,
+          "width": 100,
+          "height": 50
+        },
+        "col": 0,
+        "colspan": 24,
+        "name": "SUXaLDP",
+        "row": 6,
+        "rowspan": 6,
+        "smartGrid": {
+          "rowIdx": 1,
+          "itemIdx": 0,
+          "item": {
+            "width": 1
+          }
+        },
+        "type": "barchart"
+      }
+    ],
+    "qChildListDef": {
+      "qData": {
+        "title": "/title"
+      }
+    },
+    "gridMode": "simpleEdit",
+    "layoutOptions": {
+      "extendable": false
+    }
+  },
+  "qChildren": [
+    {
+      "qProperty": {
+        "qInfo": {
+          "qId": "ZwWGj",
+          "qType": "auto-chart"
+        },
+        "qMetaDef": {},
+        "qHyperCubeDef": {
+          "qDimensions": [
+            {
+              "qDef": {
+                "qGrouping": "N",
+                "qFieldDefs": [
+                  "city"
+                ],
+                "qFieldLabels": [
+                  ""
+                ],
+                "qSortCriterias": [
+                  {
+                    "qSortByLoadOrder": 1,
+                    "qExpression": {}
+                  }
+                ],
+                "qNumberPresentations": [],
+                "qActiveField": 0,
+                "autoSort": true,
+                "cId": "ekppTys",
+                "othersLabel": "Övriga"
+              },
+              "qOtherTotalSpec": {
+                "qOtherMode": "OTHER_OFF",
+                "qOtherCounted": {
+                  "qv": "10"
+                },
+                "qOtherLimit": {
+                  "qv": "0"
+                },
+                "qOtherLimitMode": "OTHER_GE_LIMIT",
+                "qForceBadValueKeeping": true,
+                "qApplyEvenWhenPossiblyWrongResult": true,
+                "qOtherSortMode": "OTHER_SORT_DESCENDING",
+                "qTotalMode": "TOTAL_OFF",
+                "qReferencedExpression": {}
+              },
+              "qOtherLabel": {
+                "qv": "Övriga"
+              },
+              "qTotalLabel": {},
+              "qCalcCond": {},
+              "qAttributeExpressions": [],
+              "qAttributeDimensions": [],
+              "qCalcCondition": {
+                "qCond": {},
+                "qMsg": {}
+              }
+            }
+          ],
+          "qMeasures": [
+            {
+              "qDef": {
+                "qTags": [],
+                "qGrouping": "N",
+                "qDef": "Count(address_id)",
+                "qNumFormat": {
+                  "qType": "U",
+                  "qnDec": 10,
+                  "qUseThou": 0
+                },
+                "qAccumulate": 0,
+                "qActiveExpression": 0,
+                "qExpressions": [],
+                "autoSort": true,
+                "cId": "mZKY",
+                "numFormatFromTemplate": true
+              },
+              "qSortBy": {
+                "qSortByLoadOrder": 1,
+                "qExpression": {}
+              },
+              "qAttributeExpressions": [],
+              "qAttributeDimensions": [],
+              "qCalcCond": {},
+              "qCalcCondition": {
+                "qCond": {},
+                "qMsg": {}
+              },
+              "qTrendLines": [],
+              "qMiniChartDef": {
+                "qSortBy": {
+                  "qExpression": {}
+                },
+                "qOtherTotalSpec": {
+                  "qOtherMode": "OTHER_OFF",
+                  "qOtherCounted": {},
+                  "qOtherLimit": {},
+                  "qOtherLimitMode": "OTHER_GT_LIMIT",
+                  "qForceBadValueKeeping": true,
+                  "qApplyEvenWhenPossiblyWrongResult": true,
+                  "qOtherSortMode": "OTHER_SORT_DESCENDING",
+                  "qTotalMode": "TOTAL_OFF",
+                  "qReferencedExpression": {}
+                },
+                "qMaxNumberPoints": -1,
+                "qAttributeExpressions": []
+              }
+            }
+          ],
+          "qInterColumnSortOrder": [
+            0,
+            1
+          ],
+          "qSuppressMissing": true,
+          "qInitialDataFetch": [],
+          "qReductionMode": "N",
+          "qMode": "S",
+          "qPseudoDimPos": -1,
+          "qNoOfLeftDims": -1,
+          "qMaxStackedCells": 5000,
+          "qCalcCond": {},
+          "qTitle": {},
+          "qCalcCondition": {
+            "qCond": {},
+            "qMsg": {}
+          },
+          "qColumnOrder": [],
+          "qExpansionState": [],
+          "qDynamicScript": [],
+          "qLayoutExclude": {
+            "qHyperCubeDef": {
+              "qDimensions": [],
+              "qMeasures": [],
+              "qInterColumnSortOrder": [],
+              "qInitialDataFetch": [],
+              "qReductionMode": "N",
+              "qMode": "S",
+              "qPseudoDimPos": -1,
+              "qNoOfLeftDims": -1,
+              "qMaxStackedCells": 5000,
+              "qCalcCond": {},
+              "qTitle": {},
+              "qCalcCondition": {
+                "qCond": {},
+                "qMsg": {}
+              },
+              "qColumnOrder": [],
+              "qExpansionState": [],
+              "qDynamicScript": []
+            }
+          }
+        },
+        "script": "",
+        "filter": null,
+        "showTitles": true,
+        "title": "",
+        "subtitle": "",
+        "footnote": "",
+        "disableNavMenu": false,
+        "showDetails": true,
+        "showDetailsExpression": false,
+        "visualization": "auto-chart",
+        "qUndoExclude": {
+          "hashCode": -478795087,
+          "generated": {
+            "gaLayers": [
+              {
+                "type": "PointLayer",
+                "cId": "cao_geoPointLayer",
+                "locationOrLatitude": {
+                  "key": "=[das.raw__adventure_works__addresses.city_GeoInfo]",
+                  "label": "das.raw__adventure_works__addresses.city_GeoInfo",
+                  "type": "expression"
+                },
+                "locationDefault": "=[Customers.City_GeoInfo]",
+                "locationNamesAuto": true,
+                "locationType": "",
+                "locationCountry": {
+                  "key": "",
+                  "label": "",
+                  "type": ""
+                },
+                "locationAdmin1": {
+                  "key": "",
+                  "label": "",
+                  "type": ""
+                },
+                "locationAdmin2": {
+                  "key": "",
+                  "label": "",
+                  "type": ""
+                },
+                "maxObjects": 4000,
+                "showLayer": true,
+                "hideCalcCond": false,
+                "exclFromAutozoom": false,
+                "layerSelectionsDisabled": false,
+                "color": {
+                  "outline": {
+                    "index": -1,
+                    "color": "#7b7a78"
+                  },
+                  "outlineOpacity": 1,
+                  "opacity": 1,
+                  "auto": false,
+                  "mode": "byMeasure",
+                  "paletteColor": {
+                    "index": 6,
+                    "color": "#4477aa"
+                  },
+                  "measureScheme": "sg",
+                  "dimensionScheme": "12",
+                  "colorExpression": "",
+                  "expressionIsColor": true,
+                  "measureMin": 0,
+                  "measureMax": 10,
+                  "byMeasureDef": {
+                    "key": "=Count([address_id])",
+                    "label": "Count address_id",
+                    "type": "expression"
+                  },
+                  "altLabel": "Count address_id"
+                },
+                "displayLegend": "auto",
+                "showSizeLegend": true,
+                "showToolTip": true,
+                "showInAllLevels": true,
+                "zoomRange": [
+                  0,
+                  20
+                ],
+                "showPopUp": true,
+                "displayUnselected": false,
+                "label": {
+                  "show": false,
+                  "expression": {
+                    "key": "city",
+                    "label": "dimension.qDef.qFieldDefs[0]",
+                    "type": "expression"
+                  },
+                  "position": "TOP",
+                  "showInAllLevels": true,
+                  "visibleRange": [
+                    0,
+                    20
+                  ]
+                },
+                "drillDown": {
+                  "auto": true,
+                  "showLevel0": true,
+                  "showLevel1": true,
+                  "showLevel2": true,
+                  "showLevel3": true,
+                  "showLevel4": true,
+                  "showLevel5": true,
+                  "showLevel6": true,
+                  "showLevel7": true
+                },
+                "qHyperCubeDef": {
+                  "qDimensions": [
+                    {
+                      "qDef": {
+                        "qGrouping": "N",
+                        "qFieldDefs": [
+                          "[city]"
+                        ],
+                        "qFieldLabels": [
+                          "city"
+                        ],
+                        "qSortCriterias": [],
+                        "qNumberPresentations": [],
+                        "qActiveField": 0,
+                        "cId": "dd0"
+                      },
+                      "qOtherTotalSpec": {
+                        "qOtherMode": "OTHER_OFF",
+                        "qOtherCounted": {},
+                        "qOtherLimit": {},
+                        "qOtherLimitMode": "OTHER_GT_LIMIT",
+                        "qForceBadValueKeeping": true,
+                        "qApplyEvenWhenPossiblyWrongResult": true,
+                        "qOtherSortMode": "OTHER_SORT_DESCENDING",
+                        "qTotalMode": "TOTAL_OFF",
+                        "qReferencedExpression": {}
+                      },
+                      "qOtherLabel": {},
+                      "qTotalLabel": {},
+                      "qCalcCond": {},
+                      "qAttributeExpressions": [
+                        {
+                          "qExpression": "=Count([address_id])",
+                          "id": "colorByAlternative",
+                          "label": "Count address_id"
+                        }
+                      ],
+                      "qAttributeDimensions": [],
+                      "qCalcCondition": {
+                        "qCond": {},
+                        "qMsg": {}
+                      }
+                    }
+                  ],
+                  "qMeasures": [],
+                  "qInterColumnSortOrder": [],
+                  "qInitialDataFetch": [],
+                  "qReductionMode": "N",
+                  "qMode": "S",
+                  "qPseudoDimPos": -1,
+                  "qNoOfLeftDims": -1,
+                  "qMaxStackedCells": 5000,
+                  "qCalcCond": {},
+                  "qTitle": {},
+                  "qCalcCondition": {
+                    "qCond": {},
+                    "qMsg": {}
+                  },
+                  "qColumnOrder": [],
+                  "qExpansionState": [],
+                  "qDynamicScript": []
+                },
+                "tooltip": {
+                  "auto": true,
+                  "data": {
+                    "qHyperCubeDef": {
+                      "qDimensions": [],
+                      "qMeasures": [],
+                      "qInterColumnSortOrder": [],
+                      "qInitialDataFetch": [
+                        {
+                          "qLeft": 0,
+                          "qTop": 0,
+                          "qWidth": 1,
+                          "qHeight": 0
+                        }
+                      ],
+                      "qReductionMode": "N",
+                      "qMode": "S",
+                      "qPseudoDimPos": -1,
+                      "qNoOfLeftDims": -1,
+                      "qMaxStackedCells": 5000,
+                      "qCalcCond": {},
+                      "qTitle": {},
+                      "qCalcCondition": {
+                        "qCond": {},
+                        "qMsg": {}
+                      },
+                      "qColumnOrder": [],
+                      "qExpansionState": [],
+                      "qDynamicScript": []
+                    }
+                  }
+                },
+                "size": {
+                  "radiusMin": 4,
+                  "radiusMax": 12,
+                  "radiusValueMin": 0,
+                  "radiusValueMax": 1,
+                  "autoRadiusValueRange": true,
+                  "expression": {
+                    "key": "",
+                    "label": "",
+                    "type": "",
+                    "qNumFormat": {
+                      "qType": "U"
+                    }
+                  },
+                  "label": "",
+                  "slider": [
+                    8,
+                    24
+                  ],
+                  "sliderSingle": 16,
+                  "shape": "points",
+                  "formatting": {
+                    "qNumFormat": {
+                      "qType": "U"
+                    }
+                  }
+                }
+              }
+            ],
+            "mapSettings": {
+              "_layerType": "",
+              "baseMap": "default",
+              "projection": "default",
+              "mapLanguage": "auto",
+              "useImperialUnits": false,
+              "selectionType": "lasso",
+              "initialView": null,
+              "showLegend": true,
+              "sidebarAlignment": "auto",
+              "showFindLocationButton": false,
+              "showScaleBar": true,
+              "zoomLimitSwitch": false,
+              "zoomLimit": {
+                "range": [
+                  0,
+                  20
+                ]
+              },
+              "panLimitSwitch": false,
+              "panLimits": null,
+              "showDebugInfo": false,
+              "labelColoring": "auto",
+              "selection": {
+                "color": {
+                  "index": -1,
+                  "color": "#ff41ff"
+                }
+              }
+            },
+            "autoZoomOnSelection": true,
+            "showTitles": true,
+            "title": "",
+            "subtitle": "",
+            "footnote": "",
+            "disableNavMenu": false,
+            "showDetails": true,
+            "showDetailsExpression": false,
+            "qStateName": "",
+            "navigation": false,
+            "qInfo": {
+              "qType": "map"
+            },
+            "visualization": "map",
+            "gaVersion": 2,
+            "layers": [],
+            "components": [],
+            "recommendation": {
+              "chartType": "map",
+              "options": {
+                "visualization": "map",
+                "gaVersion": 2,
+                "gaLayers": [
+                  {
+                    "type": "PointLayer",
+                    "cId": "cao_geoPointLayer",
+                    "locationOrLatitude": {
+                      "key": "=[das.raw__adventure_works__addresses.city_GeoInfo]",
+                      "label": "das.raw__adventure_works__addresses.city_GeoInfo",
+                      "type": "expression"
+                    },
+                    "locationDefault": "=[Customers.City_GeoInfo]",
+                    "locationNamesAuto": true,
+                    "locationType": "",
+                    "locationCountry": {
+                      "key": "",
+                      "label": "",
+                      "type": ""
+                    },
+                    "locationAdmin1": {
+                      "key": "",
+                      "label": "",
+                      "type": ""
+                    },
+                    "locationAdmin2": {
+                      "key": "",
+                      "label": "",
+                      "type": ""
+                    },
+                    "maxObjects": 4000,
+                    "showLayer": true,
+                    "hideCalcCond": false,
+                    "exclFromAutozoom": false,
+                    "layerSelectionsDisabled": false,
+                    "color": {
+                      "outline": {
+                        "index": -1,
+                        "color": "#7b7a78"
+                      },
+                      "outlineOpacity": 1,
+                      "opacity": 1,
+                      "auto": false,
+                      "mode": "byMeasure",
+                      "paletteColor": {
+                        "index": 6,
+                        "color": "#4477aa"
+                      },
+                      "measureScheme": "sg",
+                      "dimensionScheme": "12",
+                      "colorExpression": "",
+                      "expressionIsColor": true,
+                      "measureMin": 0,
+                      "measureMax": 10,
+                      "byMeasureDef": {
+                        "key": "=Count([address_id])",
+                        "label": "Count address_id",
+                        "type": "expression"
+                      },
+                      "altLabel": "Count address_id"
+                    },
+                    "displayLegend": "auto",
+                    "showSizeLegend": true,
+                    "showToolTip": true,
+                    "showInAllLevels": true,
+                    "zoomRange": [
+                      0,
+                      20
+                    ],
+                    "showPopUp": true,
+                    "displayUnselected": false,
+                    "label": {
+                      "show": false,
+                      "expression": {
+                        "key": "city",
+                        "label": "dimension.qDef.qFieldDefs[0]",
+                        "type": "expression"
+                      },
+                      "position": "TOP",
+                      "showInAllLevels": true,
+                      "visibleRange": [
+                        0,
+                        20
+                      ]
+                    },
+                    "drillDown": {
+                      "auto": true,
+                      "showLevel0": true,
+                      "showLevel1": true,
+                      "showLevel2": true,
+                      "showLevel3": true,
+                      "showLevel4": true,
+                      "showLevel5": true,
+                      "showLevel6": true,
+                      "showLevel7": true
+                    },
+                    "qHyperCubeDef": {
+                      "qDimensions": [
+                        {
+                          "qDef": {
+                            "qGrouping": "N",
+                            "qFieldDefs": [
+                              "[city]"
+                            ],
+                            "qFieldLabels": [
+                              "city"
+                            ],
+                            "qSortCriterias": [],
+                            "qNumberPresentations": [],
+                            "qActiveField": 0,
+                            "cId": "dd0"
+                          },
+                          "qOtherTotalSpec": {
+                            "qOtherMode": "OTHER_OFF",
+                            "qOtherCounted": {},
+                            "qOtherLimit": {},
+                            "qOtherLimitMode": "OTHER_GT_LIMIT",
+                            "qForceBadValueKeeping": true,
+                            "qApplyEvenWhenPossiblyWrongResult": true,
+                            "qOtherSortMode": "OTHER_SORT_DESCENDING",
+                            "qTotalMode": "TOTAL_OFF",
+                            "qReferencedExpression": {}
+                          },
+                          "qOtherLabel": {},
+                          "qTotalLabel": {},
+                          "qCalcCond": {},
+                          "qAttributeExpressions": [
+                            {
+                              "qExpression": "=Count([address_id])",
+                              "id": "colorByAlternative",
+                              "label": "Count address_id"
+                            }
+                          ],
+                          "qAttributeDimensions": [],
+                          "qCalcCondition": {
+                            "qCond": {},
+                            "qMsg": {}
+                          }
+                        }
+                      ],
+                      "qMeasures": [],
+                      "qInterColumnSortOrder": [],
+                      "qInitialDataFetch": [],
+                      "qReductionMode": "N",
+                      "qMode": "S",
+                      "qPseudoDimPos": -1,
+                      "qNoOfLeftDims": -1,
+                      "qMaxStackedCells": 5000,
+                      "qCalcCond": {},
+                      "qTitle": {},
+                      "qCalcCondition": {
+                        "qCond": {},
+                        "qMsg": {}
+                      },
+                      "qColumnOrder": [],
+                      "qExpansionState": [],
+                      "qDynamicScript": []
+                    },
+                    "tooltip": {
+                      "auto": true,
+                      "data": {
+                        "qHyperCubeDef": {
+                          "qDimensions": [],
+                          "qMeasures": [],
+                          "qInterColumnSortOrder": [],
+                          "qInitialDataFetch": [
+                            {
+                              "qLeft": 0,
+                              "qTop": 0,
+                              "qWidth": 1,
+                              "qHeight": 0
+                            }
+                          ],
+                          "qReductionMode": "N",
+                          "qMode": "S",
+                          "qPseudoDimPos": -1,
+                          "qNoOfLeftDims": -1,
+                          "qMaxStackedCells": 5000,
+                          "qCalcCond": {},
+                          "qTitle": {},
+                          "qCalcCondition": {
+                            "qCond": {},
+                            "qMsg": {}
+                          },
+                          "qColumnOrder": [],
+                          "qExpansionState": [],
+                          "qDynamicScript": []
+                        }
+                      }
+                    },
+                    "size": {
+                      "radiusMin": 4,
+                      "radiusMax": 12,
+                      "radiusValueMin": 0,
+                      "radiusValueMax": 1,
+                      "autoRadiusValueRange": true,
+                      "expression": {
+                        "key": "",
+                        "label": "",
+                        "type": "",
+                        "qNumFormat": {
+                          "qType": "U"
+                        }
+                      },
+                      "label": "",
+                      "slider": [
+                        8,
+                        24
+                      ],
+                      "sliderSingle": 16,
+                      "shape": "points",
+                      "formatting": {
+                        "qNumFormat": {
+                          "qType": "U"
+                        }
+                      }
+                    }
+                  }
+                ],
+                "title": "Distribution av Count address_id för city",
+                "mapSettings": {
+                  "_layerType": "",
+                  "baseMap": "default",
+                  "projection": "default",
+                  "mapLanguage": "auto",
+                  "useImperialUnits": false,
+                  "selectionType": "lasso",
+                  "initialView": null,
+                  "showLegend": true,
+                  "sidebarAlignment": "auto",
+                  "showFindLocationButton": false,
+                  "showScaleBar": true,
+                  "zoomLimitSwitch": false,
+                  "zoomLimit": {
+                    "range": [
+                      0,
+                      20
+                    ]
+                  },
+                  "panLimitSwitch": false,
+                  "panLimits": null,
+                  "showDebugInfo": false
+                },
+                "components": []
+              },
+              "analysis": {
+                "analysis": "geoAnalysis",
+                "analysisGroup": "breakdown",
+                "description": {
+                  "short": "Uppdelning (geospatial)",
+                  "long": "Visa geografiska bidrag."
+                },
+                "title": "Distribution av Count address_id för city",
+                "titleTemplate": [
+                  {
+                    "msgId": "cao.chart.map.2.title",
+                    "msgParams": {
+                      "$$1": 0,
+                      "$$2": 1
+                    }
+                  },
+                  {
+                    "msgId": "cao.chart.map.title",
+                    "msgParams": {
+                      "$$1": 0,
+                      "$$3": 1
+                    }
+                  },
+                  {
+                    "msgId": "cao.chart.map.title",
+                    "msgParams": {
+                      "$$2": 0,
+                      "$$3": 1
+                    }
+                  },
+                  {
+                    "msgId": "cao.chart.map.title",
+                    "msgParams": {
+                      "$$2": 0,
+                      "$$4": 1
+                    }
+                  }
+                ],
+                "dims": [
+                  {
+                    "expr": "[city]",
+                    "cType": "eField",
+                    "field": "city",
+                    "locationInfo": {
+                      "expr": "=[das.raw__adventure_works__addresses.city_GeoInfo]",
+                      "mapLayer": "PointLayer",
+                      "field": "das.raw__adventure_works__addresses.city_GeoInfo"
+                    },
+                    "fieldStats": {
+                      "distinctCount": 575,
+                      "dataType": "string"
+                    }
+                  }
+                ],
+                "msrs": [
+                  {
+                    "expr": "=Count([address_id])",
+                    "cType": "eField",
+                    "field": "address_id",
+                    "fieldStats": {
+                      "dataType": "integer",
+                      "valueRange": {
+                        "min": 1,
+                        "max": 434
+                      },
+                      "classification": [
+                        "measure"
+                      ]
+                    }
+                  }
+                ]
+              },
+              "isExtendedAnalysis": false,
+              "matchRecord": {
+                "analysisPrecedentId": "P-GeoMixed-SlotGroup",
+                "matches": [
+                  {
+                    "slot": "$$2",
+                    "slotRole": "dimension",
+                    "field": "city"
+                  },
+                  {
+                    "slot": "$$3",
+                    "slotRole": "measure",
+                    "field": "address_id",
+                    "aggr": "Count",
+                    "overallAggr": "Count"
+                  }
+                ],
+                "precedentStats": {
+                  "matchedFields": 0,
+                  "uniquePrecedents": 0
+                },
+                "renderingId": "P-Map"
+              },
+              "relevance": 1,
+              "analysisIntentRelevance": 0.225
+            },
+            "qUndoExclude": {
+              "hashCode": 1049670052,
+              "gaLayers": [
+                {
+                  "qHyperCubeDef": {
+                    "qDimensions": [
+                      {
+                        "qDef": {
+                          "qGrouping": "N",
+                          "qFieldDefs": [
+                            "[city]"
+                          ],
+                          "qFieldLabels": [
+                            "city"
+                          ],
+                          "qSortCriterias": [],
+                          "qNumberPresentations": [],
+                          "qActiveField": 0,
+                          "cId": "dd0"
+                        },
+                        "qOtherTotalSpec": {
+                          "qOtherMode": "OTHER_OFF",
+                          "qOtherCounted": {},
+                          "qOtherLimit": {},
+                          "qOtherLimitMode": "OTHER_GT_LIMIT",
+                          "qForceBadValueKeeping": true,
+                          "qApplyEvenWhenPossiblyWrongResult": true,
+                          "qOtherSortMode": "OTHER_SORT_DESCENDING",
+                          "qTotalMode": "TOTAL_OFF",
+                          "qReferencedExpression": {}
+                        },
+                        "qOtherLabel": {},
+                        "qTotalLabel": {},
+                        "qCalcCond": {},
+                        "qAttributeExpressions": [
+                          {
+                            "qExpression": "=Count([address_id])",
+                            "id": "colorByAlternative",
+                            "label": "Count address_id"
+                          },
+                          {
+                            "qExpression": "=[das.raw__adventure_works__addresses.city_GeoInfo]",
+                            "id": "locationOrLatitude"
+                          }
+                        ],
+                        "qAttributeDimensions": [],
+                        "qCalcCondition": {
+                          "qCond": {},
+                          "qMsg": {}
+                        }
+                      }
+                    ],
+                    "qMeasures": [],
+                    "qInterColumnSortOrder": [],
+                    "qInitialDataFetch": [
+                      {
+                        "qLeft": 0,
+                        "qTop": 0,
+                        "qWidth": 1,
+                        "qHeight": 1000
+                      }
+                    ],
+                    "qReductionMode": "N",
+                    "qMode": "S",
+                    "qPseudoDimPos": -1,
+                    "qNoOfLeftDims": -1,
+                    "qMaxStackedCells": 5000,
+                    "qCalcCond": {},
+                    "qTitle": {},
+                    "qCalcCondition": {
+                      "qCond": {},
+                      "qMsg": {}
+                    },
+                    "qColumnOrder": [],
+                    "qExpansionState": [],
+                    "qDynamicScript": []
+                  },
+                  "color": {
+                    "outline": {
+                      "index": -1,
+                      "color": "#7b7a78"
+                    },
+                    "outlineOpacity": 1,
+                    "opacity": 1,
+                    "auto": false,
+                    "mode": "byMeasure",
+                    "paletteColor": {
+                      "index": 6,
+                      "color": "#4477aa"
+                    },
+                    "measureScheme": "sg",
+                    "dimensionScheme": "12",
+                    "colorExpression": "",
+                    "expressionIsColor": true,
+                    "measureMin": 0,
+                    "measureMax": 10,
+                    "byMeasureDef": {
+                      "key": "=Count([address_id])",
+                      "label": "Count address_id",
+                      "type": "expression"
+                    },
+                    "altLabel": "Count address_id"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "qChildren": []
+    },
+    {
+      "qProperty": {
+        "qInfo": {
+          "qId": "SUXaLDP",
+          "qType": "barchart"
+        },
+        "qMetaDef": {},
+        "qHyperCubeDef": {
+          "qDimensions": [
+            {
+              "qLibraryId": "WWcHPP",
+              "qDef": {
+                "qGrouping": "N",
+                "qFieldDefs": [],
+                "qFieldLabels": [],
+                "qSortCriterias": [
+                  {
+                    "qSortByNumeric": 1,
+                    "qSortByAscii": 1,
+                    "qSortByLoadOrder": 1,
+                    "qExpression": {}
+                  },
+                  {
+                    "qSortByNumeric": 1,
+                    "qSortByAscii": 1,
+                    "qSortByLoadOrder": 1,
+                    "qExpression": {}
+                  },
+                  {
+                    "qSortByNumeric": 1,
+                    "qSortByAscii": 1,
+                    "qSortByLoadOrder": 1,
+                    "qExpression": {}
+                  },
+                  {
+                    "qSortByNumeric": 1,
+                    "qSortByAscii": 1,
+                    "qSortByLoadOrder": 1,
+                    "qExpression": {}
+                  },
+                  {
+                    "qSortByNumeric": 1,
+                    "qSortByAscii": 1,
+                    "qSortByLoadOrder": 1,
+                    "qExpression": {}
+                  },
+                  {
+                    "qSortByNumeric": 1,
+                    "qSortByAscii": 1,
+                    "qSortByLoadOrder": 1,
+                    "qExpression": {}
+                  }
+                ],
+                "qNumberPresentations": [],
+                "qActiveField": 0,
+                "autoSort": true,
+                "cId": "XVmGFAq",
+                "othersLabel": "Övriga"
+              },
+              "qOtherTotalSpec": {
+                "qOtherMode": "OTHER_OFF",
+                "qOtherCounted": {
+                  "qv": "10"
+                },
+                "qOtherLimit": {
+                  "qv": "0"
+                },
+                "qOtherLimitMode": "OTHER_GE_LIMIT",
+                "qForceBadValueKeeping": true,
+                "qApplyEvenWhenPossiblyWrongResult": true,
+                "qOtherSortMode": "OTHER_SORT_DESCENDING",
+                "qTotalMode": "TOTAL_OFF",
+                "qReferencedExpression": {}
+              },
+              "qOtherLabel": {
+                "qv": "Övriga"
+              },
+              "qTotalLabel": {},
+              "qCalcCond": {},
+              "qAttributeExpressions": [],
+              "qAttributeDimensions": [],
+              "qCalcCondition": {
+                "qCond": {},
+                "qMsg": {}
+              },
+              "title": "Address Hierarchy",
+              "othersLabel": "Others"
+            }
+          ],
+          "qMeasures": [
+            {
+              "qLibraryId": "wTZm",
+              "qDef": {
+                "qTags": [],
+                "qGrouping": "N",
+                "qAccumulate": 0,
+                "qActiveExpression": 0,
+                "qExpressions": [],
+                "autoSort": false,
+                "cId": "aYzUuch",
+                "numFormatFromTemplate": true,
+                "quarantine": {
+                  "qNumFormat": {},
+                  "isCustomFormatted": false
+                }
+              },
+              "qSortBy": {
+                "qSortByNumeric": -1,
+                "qExpression": {}
+              },
+              "qAttributeExpressions": [],
+              "qAttributeDimensions": [],
+              "qCalcCond": {},
+              "qCalcCondition": {
+                "qCond": {},
+                "qMsg": {}
+              },
+              "qTrendLines": [],
+              "qMiniChartDef": {
+                "qSortBy": {
+                  "qExpression": {}
+                },
+                "qOtherTotalSpec": {
+                  "qOtherMode": "OTHER_OFF",
+                  "qOtherCounted": {},
+                  "qOtherLimit": {},
+                  "qOtherLimitMode": "OTHER_GT_LIMIT",
+                  "qForceBadValueKeeping": true,
+                  "qApplyEvenWhenPossiblyWrongResult": true,
+                  "qOtherSortMode": "OTHER_SORT_DESCENDING",
+                  "qTotalMode": "TOTAL_OFF",
+                  "qReferencedExpression": {}
+                },
+                "qMaxNumberPoints": -1,
+                "qAttributeExpressions": []
+              },
+              "title": "# Addresses"
+            }
+          ],
+          "qInterColumnSortOrder": [
+            1,
+            0
+          ],
+          "qSuppressMissing": true,
+          "qInitialDataFetch": [
+            {
+              "qLeft": 0,
+              "qTop": 0,
+              "qWidth": 17,
+              "qHeight": 500
+            }
+          ],
+          "qReductionMode": "N",
+          "qMode": "S",
+          "qPseudoDimPos": -1,
+          "qNoOfLeftDims": -1,
+          "qMaxStackedCells": 5000,
+          "qCalcCond": {},
+          "qTitle": {},
+          "qCalcCondition": {
+            "qCond": {},
+            "qMsg": {}
+          },
+          "qColumnOrder": [],
+          "qExpansionState": [],
+          "qDynamicScript": [],
+          "columnOrder": []
+        },
+        "script": "",
+        "filter": null,
+        "showTitles": true,
+        "title": "",
+        "subtitle": "",
+        "footnote": "",
+        "disableNavMenu": false,
+        "showDetails": true,
+        "showDetailsExpression": false,
+        "visualization": "barchart",
+        "refLine": {
+          "refLines": [],
+          "dimRefLines": []
+        },
+        "showDisclaimer": true,
+        "barGrouping": {
+          "grouping": "grouped"
+        },
+        "orientation": "vertical",
+        "scrollbar": "miniChart",
+        "scrollStartPos": 0,
+        "gridLine": {
+          "auto": true,
+          "spacing": 2
+        },
+        "dataPoint": {
+          "showLabels": false,
+          "showSegmentLabels": false,
+          "showTotalLabels": true
+        },
+        "color": {
+          "auto": true,
+          "mode": "primary",
+          "formatting": {
+            "numFormatFromTemplate": true
+          },
+          "useBaseColors": "off",
+          "paletteColor": {
+            "index": 6
+          },
+          "useDimColVal": true,
+          "useMeasureGradient": true,
+          "persistent": false,
+          "expressionIsColor": true,
+          "expressionLabel": "",
+          "measureScheme": "sg",
+          "reverseScheme": false,
+          "dimensionScheme": "12",
+          "autoMinMax": true,
+          "measureMin": 0,
+          "measureMax": 10
+        },
+        "legend": {
+          "show": true,
+          "dock": "auto",
+          "showTitle": true
+        },
+        "dimensionAxis": {
+          "continuousAuto": true,
+          "show": "all",
+          "label": "auto",
+          "dock": "near",
+          "axisDisplayMode": "auto",
+          "maxVisibleItems": 10
+        },
+        "preferContinuousAxis": true,
+        "measureAxis": {
+          "show": "all",
+          "dock": "near",
+          "spacing": 1,
+          "autoMinMax": true,
+          "minMax": "min",
+          "min": 0,
+          "max": 10
+        },
+        "tooltip": {
+          "auto": true,
+          "hideBasic": false,
+          "chart": {
+            "style": {
+              "size": "medium"
+            }
+          },
+          "data": {},
+          "title": "",
+          "description": ""
+        },
+        "version": "1.38.4",
+        "components": [
+          {
+            "key": "general"
+          },
+          {
+            "key": "bar"
+          }
+        ],
+        "showMiniChartForContinuousAxis": true,
+        "qLayoutExclude": {
+          "disabled": {
+            "qExtendsId": "",
+            "qUndoExclude": {
+              "hashCode": 680043777,
+              "generated": {
+                "qHyperCubeDef": {
+                  "qDimensions": [
+                    {
+                      "qLibraryId": "WWcHPP",
+                      "qDef": {
+                        "qGrouping": "N",
+                        "qFieldDefs": [],
+                        "qFieldLabels": [],
+                        "qSortCriterias": [
+                          {
+                            "qSortByNumeric": 1,
+                            "qSortByAscii": 1,
+                            "qSortByLoadOrder": 1,
+                            "qExpression": {}
+                          },
+                          {
+                            "qSortByNumeric": 1,
+                            "qSortByAscii": 1,
+                            "qSortByLoadOrder": 1,
+                            "qExpression": {}
+                          },
+                          {
+                            "qSortByNumeric": 1,
+                            "qSortByAscii": 1,
+                            "qSortByLoadOrder": 1,
+                            "qExpression": {}
+                          },
+                          {
+                            "qSortByNumeric": 1,
+                            "qSortByAscii": 1,
+                            "qSortByLoadOrder": 1,
+                            "qExpression": {}
+                          },
+                          {
+                            "qSortByNumeric": 1,
+                            "qSortByAscii": 1,
+                            "qSortByLoadOrder": 1,
+                            "qExpression": {}
+                          },
+                          {
+                            "qSortByNumeric": 1,
+                            "qSortByAscii": 1,
+                            "qSortByLoadOrder": 1,
+                            "qExpression": {}
+                          }
+                        ],
+                        "qNumberPresentations": [],
+                        "qActiveField": 0,
+                        "autoSort": true,
+                        "cId": "jKyJFm",
+                        "othersLabel": "Övriga"
+                      },
+                      "qOtherTotalSpec": {
+                        "qOtherMode": "OTHER_OFF",
+                        "qOtherCounted": {
+                          "qv": "10"
+                        },
+                        "qOtherLimit": {
+                          "qv": "0"
+                        },
+                        "qOtherLimitMode": "OTHER_GE_LIMIT",
+                        "qForceBadValueKeeping": true,
+                        "qApplyEvenWhenPossiblyWrongResult": true,
+                        "qOtherSortMode": "OTHER_SORT_DESCENDING",
+                        "qTotalMode": "TOTAL_OFF",
+                        "qReferencedExpression": {}
+                      },
+                      "qOtherLabel": {
+                        "qv": "Övriga"
+                      },
+                      "qTotalLabel": {},
+                      "qCalcCond": {},
+                      "qAttributeExpressions": [],
+                      "qAttributeDimensions": [],
+                      "qCalcCondition": {
+                        "qCond": {},
+                        "qMsg": {}
+                      },
+                      "othersLabel": "Others"
+                    }
+                  ],
+                  "qMeasures": [
+                    {
+                      "qLibraryId": "wTZm",
+                      "qDef": {
+                        "qTags": [],
+                        "qGrouping": "N",
+                        "qAccumulate": 0,
+                        "qActiveExpression": 0,
+                        "qExpressions": [],
+                        "autoSort": true,
+                        "cId": "pces",
+                        "numFormatFromTemplate": true,
+                        "quarantine": {
+                          "qNumFormat": {},
+                          "isCustomFormatted": false
+                        }
+                      },
+                      "qSortBy": {
+                        "qSortByNumeric": -1,
+                        "qSortByLoadOrder": 1,
+                        "qExpression": {}
+                      },
+                      "qAttributeExpressions": [],
+                      "qAttributeDimensions": [],
+                      "qCalcCond": {},
+                      "qCalcCondition": {
+                        "qCond": {},
+                        "qMsg": {}
+                      },
+                      "qTrendLines": [],
+                      "qMiniChartDef": {
+                        "qSortBy": {
+                          "qExpression": {}
+                        },
+                        "qOtherTotalSpec": {
+                          "qOtherMode": "OTHER_OFF",
+                          "qOtherCounted": {},
+                          "qOtherLimit": {},
+                          "qOtherLimitMode": "OTHER_GT_LIMIT",
+                          "qForceBadValueKeeping": true,
+                          "qApplyEvenWhenPossiblyWrongResult": true,
+                          "qOtherSortMode": "OTHER_SORT_DESCENDING",
+                          "qTotalMode": "TOTAL_OFF",
+                          "qReferencedExpression": {}
+                        },
+                        "qMaxNumberPoints": -1,
+                        "qAttributeExpressions": []
+                      }
+                    }
+                  ],
+                  "qInterColumnSortOrder": [
+                    1,
+                    0
+                  ],
+                  "qSuppressMissing": true,
+                  "qInitialDataFetch": [
+                    {
+                      "qLeft": 0,
+                      "qTop": 0,
+                      "qWidth": 17,
+                      "qHeight": 500
+                    }
+                  ],
+                  "qReductionMode": "N",
+                  "qMode": "S",
+                  "qPseudoDimPos": -1,
+                  "qNoOfLeftDims": -1,
+                  "qMaxStackedCells": 5000,
+                  "qCalcCond": {},
+                  "qTitle": {},
+                  "qCalcCondition": {
+                    "qCond": {},
+                    "qMsg": {}
+                  },
+                  "qColumnOrder": [],
+                  "qExpansionState": [],
+                  "qDynamicScript": [],
+                  "columnOrder": []
+                },
+                "script": "",
+                "filter": null,
+                "refLine": {
+                  "refLines": [],
+                  "dimRefLines": []
+                },
+                "showTitles": true,
+                "title": "",
+                "subtitle": "",
+                "footnote": "",
+                "disableNavMenu": false,
+                "showDetails": true,
+                "showDetailsExpression": false,
+                "showDisclaimer": true,
+                "qStateName": "",
+                "barGrouping": {
+                  "grouping": "grouped"
+                },
+                "orientation": "vertical",
+                "scrollbar": "miniChart",
+                "scrollStartPos": 0,
+                "gridLine": {
+                  "auto": true,
+                  "spacing": 2
+                },
+                "dataPoint": {
+                  "showLabels": false,
+                  "showSegmentLabels": false,
+                  "showTotalLabels": true
+                },
+                "color": {
+                  "auto": true,
+                  "mode": "primary",
+                  "formatting": {
+                    "numFormatFromTemplate": true
+                  },
+                  "useBaseColors": "off",
+                  "paletteColor": {
+                    "index": 6
+                  },
+                  "useDimColVal": true,
+                  "useMeasureGradient": true,
+                  "persistent": false,
+                  "expressionIsColor": true,
+                  "expressionLabel": "",
+                  "measureScheme": "sg",
+                  "reverseScheme": false,
+                  "dimensionScheme": "12",
+                  "autoMinMax": true,
+                  "measureMin": 0,
+                  "measureMax": 10
+                },
+                "legend": {
+                  "show": true,
+                  "dock": "auto",
+                  "showTitle": true
+                },
+                "dimensionAxis": {
+                  "continuousAuto": true,
+                  "show": "all",
+                  "label": "auto",
+                  "dock": "near",
+                  "axisDisplayMode": "auto",
+                  "maxVisibleItems": 10
+                },
+                "preferContinuousAxis": true,
+                "measureAxis": {
+                  "show": "all",
+                  "dock": "near",
+                  "spacing": 1,
+                  "autoMinMax": true,
+                  "minMax": "min",
+                  "min": 0,
+                  "max": 10
+                },
+                "tooltip": {
+                  "auto": true,
+                  "hideBasic": false,
+                  "chart": {
+                    "style": {
+                      "size": "medium"
+                    }
+                  },
+                  "data": {}
+                },
+                "qInfo": {
+                  "qType": "barchart"
+                },
+                "visualization": "barchart",
+                "version": "1.38.4",
+                "components": [],
+                "showMiniChartForContinuousAxis": true,
+                "isRecommended": true,
+                "qLayoutExclude": {
+                  "quarantine": {
+                    "conditionalShowHide": {
+                      "measures": {},
+                      "dimensions": {}
+                    }
+                  },
+                  "disabled": {}
+                },
+                "recommendation": {
+                  "options": {},
+                  "analysis": {
+                    "analysis": "rank",
+                    "analysisGroup": "rank",
+                    "description": {
+                      "short": "Rangordning",
+                      "long": "Visa dimensioner efter deras bidrag."
+                    },
+                    "title": "# Addresses efter Address Hierarchy",
+                    "titleTemplate": [
+                      {
+                        "msgId": "cao.chart.rank.2.title",
+                        "msgParams": {
+                          "$$1": 1,
+                          "$$2": 0
+                        }
+                      }
+                    ],
+                    "dims": [
+                      {
+                        "expr": "WWcHPP",
+                        "cType": "eLibItem",
+                        "libId": "WWcHPP",
+                        "label": "Address Hierarchy",
+                        "fieldStats": {
+                          "distinctCount": 74,
+                          "dataType": "integer"
+                        }
+                      }
+                    ],
+                    "msrs": [
+                      {
+                        "expr": "wTZm",
+                        "overridenMsrFormat": {
+                          "qType": "U",
+                          "qnDec": 10,
+                          "qUseThou": 0
+                        },
+                        "masterMsrFormat": {
+                          "qType": "U",
+                          "qnDec": 10,
+                          "qUseThou": 0
+                        },
+                        "coloring": {},
+                        "cType": "eLibItem",
+                        "libId": "wTZm",
+                        "label": "# Addresses",
+                        "fieldStats": {
+                          "dataType": "integer",
+                          "valueRange": {
+                            "min": 1,
+                            "max": 4564
+                          },
+                          "classification": [
+                            "measure"
+                          ]
+                        }
+                      }
+                    ],
+                    "colorByExpr": {
+                      "expr": "wTZm",
+                      "byMeasure": true,
+                      "measureScheme": "sg",
+                      "reverseScheme": true,
+                      "label": "# Addresses",
+                      "overridenMsrFormat": {
+                        "qType": "U",
+                        "qnDec": 10,
+                        "qUseThou": 0
+                      },
+                      "masterMsrFormat": {
+                        "qType": "U",
+                        "qnDec": 10,
+                        "qUseThou": 0
+                      },
+                      "coloring": {},
+                      "cType": "eLibItem",
+                      "libId": "wTZm",
+                      "basedOns": [
+                        "$$2"
+                      ]
+                    }
+                  },
+                  "isExtendedAnalysis": false,
+                  "matchRecord": {
+                    "analysisPrecedentId": "P-Rank",
+                    "matches": [
+                      {
+                        "slot": "$$1",
+                        "slotRole": "dimension",
+                        "libId": "WWcHPP",
+                        "libIdLabel": "Address Hierarchy"
+                      },
+                      {
+                        "slot": "$$2",
+                        "slotRole": "measure",
+                        "libId": "wTZm",
+                        "libIdLabel": "# Addresses",
+                        "overallAggr": "count"
+                      }
+                    ],
+                    "parameters": [
+                      {
+                        "name": "favourableTrend",
+                        "type": "oneOfOptions",
+                        "options": [
+                          {
+                            "value": "up",
+                            "msgId": "cao.macroAnalysis.parameters.favourableTrend.up",
+                            "localizedMsg": "Uppåt"
+                          },
+                          {
+                            "value": "down",
+                            "msgId": "cao.macroAnalysis.parameters.favourableTrend.down",
+                            "localizedMsg": "Nedåt"
+                          }
+                        ],
+                        "default": "up",
+                        "msgId": "cao.macroAnalysis.parameters.favourableTrend",
+                        "value": "up",
+                        "localizedMsg": "Gynnsam trend"
+                      }
+                    ],
+                    "precedentStats": {
+                      "matchedFields": 0,
+                      "uniquePrecedents": 0
+                    }
+                  },
+                  "relevance": 1,
+                  "analysisIntentRelevance": 0.09000000000000001
+                }
+              }
+            }
+          },
+          "quarantine": {}
+        }
+      },
+      "qChildren": []
+    }
+  ]
+}

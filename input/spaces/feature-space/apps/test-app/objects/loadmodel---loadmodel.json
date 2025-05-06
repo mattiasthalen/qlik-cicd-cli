@@ -1,0 +1,690 @@
+{
+  "qInfo": {
+    "qId": "LoadModel",
+    "qType": "LoadModel"
+  },
+  "qMetaDef": {},
+  "connectionMetaDataModels": {
+    "DataFiles": {
+      "name": "DataFiles",
+      "displayName": "DataFiles",
+      "id": "a17a3146-86b6-428a-860f-9d17ccc81db6",
+      "type": {
+        "provider": "qix-datafiles.exe",
+        "type": "qix-datafiles.exe",
+        "isFolderConnector": true,
+        "displayName": "scripteditor.dataconnectors.filedirectory",
+        "connectDialog": "scripteditor.views/fileconnectdialog/fileconnectdialog",
+        "selectDialog": "scripteditor.views/fileselectdialog/fileselectdialog",
+        "connectorMain": "assets/hldm/data-connectors/native-file-connector/connector-main-datafiles",
+        "needsConnect": false,
+        "isStandardConnector": true
+      },
+      "typeName": "qix-datafiles.exe",
+      "privileges": [
+        "read"
+      ],
+      "sourceConnectorID": "qix-datafiles.exe",
+      "dataconnectorPrefix": "Analytical Data Storage System:",
+      "isInAppSpace": true,
+      "space": "67f8c39b04786783d7d48503",
+      "connectionString": "CUSTOM CONNECT TO \"provider=qix-datafiles.exe;path=Analytical+Data+Storage+System:datafiles;\"",
+      "canDelete": false,
+      "connectorImagePath": "https://cdn.qlikcloud.com/qmfe/qmfe-data-client-parcels/1.25.0/img/connector-logos/connector-folder-qvx-logo.png",
+      "connectorDisplayName": "Mapp",
+      "dbInfo": {
+        "dbusage": false,
+        "ownerusage": false,
+        "dbfirst": false,
+        "specialchars": "!  　\"$\u0026'()*+,-/:;\u003c\u003e´`{}~[]\r\n\t",
+        "dbseparator": "",
+        "ownerseparator": "",
+        "quotesuffix": "\"",
+        "quoteprefix": "\"",
+        "quotesuffixfordoublequotes": "]",
+        "quoteprefixfordoublequotes": "[",
+        "keywords": []
+      }
+    }
+  },
+  "tables": [
+    {
+      "dataconnectorName": "DataFiles",
+      "dataconnectorPrefix": "Analytical Data Storage System:",
+      "boxType": "load-file",
+      "databaseName": "Adventure Works/das.raw__adventure_works__addresses.parquet",
+      "ownerName": "TYPE9_PARQUET",
+      "tableName": "das.raw__adventure_works__addresses",
+      "tableAlias": "das.raw__adventure_works__addresses",
+      "key": "DataFiles:Adventure Works/das.raw__adventure_works__addresses.parquet:TYPE9_PARQUET:das.raw__adventure_works__addresses",
+      "fields": [
+        {
+          "id": "dsd.das..raw__adventure_works__addresses.address_id",
+          "name": "address_id",
+          "alias": "address_id",
+          "selected": true
+        },
+        {
+          "id": "dsd.das..raw__adventure_works__addresses.address_line1",
+          "name": "address_line1",
+          "alias": "address_line1",
+          "selected": true
+        },
+        {
+          "id": "dsd.das..raw__adventure_works__addresses.city",
+          "name": "city",
+          "alias": "city",
+          "selected": true
+        },
+        {
+          "id": "dsd.das..raw__adventure_works__addresses.state_province_id",
+          "name": "state_province_id",
+          "alias": "state_province_id",
+          "selected": true
+        },
+        {
+          "id": "dsd.das..raw__adventure_works__addresses.postal_code",
+          "name": "postal_code",
+          "alias": "postal_code",
+          "selected": true
+        },
+        {
+          "id": "dsd.das..raw__adventure_works__addresses.rowguid",
+          "name": "rowguid",
+          "alias": "rowguid",
+          "selected": true
+        },
+        {
+          "id": "dsd.das..raw__adventure_works__addresses.modified_date",
+          "name": "modified_date",
+          "alias": "modified_date",
+          "selected": true
+        },
+        {
+          "id": "dsd.das..raw__adventure_works__addresses._dlt_load_id",
+          "name": "_dlt_load_id",
+          "alias": "_dlt_load_id",
+          "selected": true
+        },
+        {
+          "id": "dsd.das..raw__adventure_works__addresses.address_line2",
+          "name": "address_line2",
+          "alias": "address_line2",
+          "selected": true
+        }
+      ],
+      "connectionInfo": {
+        "name": "DataFiles",
+        "displayName": "DataFiles",
+        "id": "a17a3146-86b6-428a-860f-9d17ccc81db6",
+        "type": {
+          "provider": "qix-datafiles.exe",
+          "type": "qix-datafiles.exe",
+          "isFolderConnector": true,
+          "displayName": "scripteditor.dataconnectors.filedirectory",
+          "connectDialog": "scripteditor.views/fileconnectdialog/fileconnectdialog",
+          "selectDialog": "scripteditor.views/fileselectdialog/fileselectdialog",
+          "connectorMain": "assets/hldm/data-connectors/native-file-connector/connector-main-datafiles",
+          "needsConnect": false,
+          "isStandardConnector": true
+        },
+        "typeName": "qix-datafiles.exe",
+        "privileges": [
+          "read"
+        ],
+        "sourceConnectorID": "qix-datafiles.exe",
+        "dataconnectorPrefix": "Analytical Data Storage System:",
+        "isInAppSpace": true,
+        "space": "67f8c39b04786783d7d48503",
+        "connectionString": "CUSTOM CONNECT TO \"provider=qix-datafiles.exe;path=Analytical+Data+Storage+System:datafiles;\"",
+        "canDelete": false,
+        "connectorImagePath": "https://cdn.qlikcloud.com/qmfe/qmfe-data-client-parcels/1.25.0/img/connector-logos/connector-folder-qvx-logo.png",
+        "connectorDisplayName": "Mapp",
+        "dbInfo": {
+          "dbusage": false,
+          "ownerusage": false,
+          "dbfirst": false,
+          "specialchars": "!  　\"$\u0026'()*+,-/:;\u003c\u003e´`{}~[]\r\n\t",
+          "dbseparator": "",
+          "ownerseparator": "",
+          "quotesuffix": "\"",
+          "quoteprefix": "\"",
+          "quotesuffixfordoublequotes": "]",
+          "quoteprefixfordoublequotes": "[",
+          "keywords": []
+        }
+      },
+      "id": "dsd.das..raw__adventure_works__addresses",
+      "formatSpec": "(parquet)",
+      "fileFormatSettings": {
+        "qLabel": "embedded labels",
+        "qHeaderSize": 0,
+        "qDelimiter": {
+          "qNumber": 0,
+          "qIsMultiple": false
+        },
+        "qQuote": "standard",
+        "qCodePage": 1252,
+        "qIgnoreEOF": false,
+        "qFixedWidthDelimiters": "1",
+        "qTabSize": 0,
+        "qRecordSize": 0,
+        "qComment": ""
+      },
+      "selectStatement": "LOAD [address_id] AS [address_id],\n\t[address_line1] AS [address_line1],\n\t[city] AS [city],\n\t[state_province_id] AS [state_province_id],\n\t[postal_code] AS [postal_code],\n\t[rowguid] AS [rowguid],\n\t[modified_date] AS [modified_date],\n\t[_dlt_load_id] AS [_dlt_load_id],\n\t[address_line2] AS [address_line2]\nFROM [lib://DataFiles/Adventure Works/das.raw__adventure_works__addresses.parquet]\n(parquet);\n",
+      "caching": {
+        "enabled": true,
+        "type": "qvd"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "id": "b6862aec-2d63-4a1b-9908-195a484b123d",
+      "type": "Query",
+      "name": "das.raw__adventure_works__addresses",
+      "tableRef": "dsd.das..raw__adventure_works__addresses",
+      "status": "",
+      "fields": [
+        {
+          "id": "1e2f27c9-0377-40b5-b13d-1d71cced00e2",
+          "type": "QueryField",
+          "name": "address_id",
+          "fieldRef": "dsd.das..raw__adventure_works__addresses.address_id",
+          "classifications": [
+            "dimension",
+            "identifier"
+          ],
+          "originalClassification": [
+            "dimension",
+            "identifier"
+          ],
+          "transformations": [],
+          "originalTransformations": []
+        },
+        {
+          "id": "5424e4de-f532-4ec4-aae3-c30c85d95de5",
+          "type": "QueryField",
+          "name": "address_line1",
+          "fieldRef": "dsd.das..raw__adventure_works__addresses.address_line1",
+          "classifications": [
+            "address"
+          ],
+          "originalClassification": [
+            "address"
+          ],
+          "transformations": [],
+          "originalTransformations": []
+        },
+        {
+          "id": "f187cc6f-f6bb-40ef-a04e-7e9e41abd46a",
+          "type": "QueryField",
+          "name": "city",
+          "fieldRef": "dsd.das..raw__adventure_works__addresses.city",
+          "classifications": [
+            "city"
+          ],
+          "originalClassification": [
+            "city"
+          ],
+          "transformations": [
+            {
+              "op": "lookupGeoInfo",
+              "appliedTo": "f187cc6f-f6bb-40ef-a04e-7e9e41abd46a",
+              "arguments": {
+                "geoType": "cityAlias",
+                "matchRatio": 0.8,
+                "unmatched": [
+                  "alpine",
+                  "ascheim",
+                  "aujan mournede",
+                  "austell",
+                  "ballard",
+                  "basingstoke hants",
+                  "berks",
+                  "berkshire",
+                  "bluffton",
+                  "branch",
+                  "branson",
+                  "byron",
+                  "campbellsville",
+                  "carnation",
+                  "central valley",
+                  "chalk riber",
+                  "chehalis",
+                  "city of commerce",
+                  "clackamas",
+                  "clarkston"
+                ]
+              }
+            }
+          ],
+          "originalTransformations": [
+            {
+              "op": "lookupGeoInfo",
+              "appliedTo": "f187cc6f-f6bb-40ef-a04e-7e9e41abd46a",
+              "arguments": {
+                "geoType": "cityAlias",
+                "matchRatio": 0.8,
+                "unmatched": [
+                  "alpine",
+                  "ascheim",
+                  "aujan mournede",
+                  "austell",
+                  "ballard",
+                  "basingstoke hants",
+                  "berks",
+                  "berkshire",
+                  "bluffton",
+                  "branch",
+                  "branson",
+                  "byron",
+                  "campbellsville",
+                  "carnation",
+                  "central valley",
+                  "chalk riber",
+                  "chehalis",
+                  "city of commerce",
+                  "clackamas",
+                  "clarkston"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "3551a496-44c7-4716-a742-e9ad77199178",
+          "type": "QueryField",
+          "name": "state_province_id",
+          "fieldRef": "dsd.das..raw__adventure_works__addresses.state_province_id",
+          "classifications": [
+            "dimension",
+            "identifier"
+          ],
+          "originalClassification": [
+            "dimension",
+            "identifier"
+          ],
+          "transformations": [],
+          "originalTransformations": []
+        },
+        {
+          "id": "670b3ca6-bac7-44ac-8002-7e0479d02d5f",
+          "type": "QueryField",
+          "name": "postal_code",
+          "fieldRef": "dsd.das..raw__adventure_works__addresses.postal_code",
+          "classifications": [
+            "postalCode",
+            "identifier"
+          ],
+          "originalClassification": [
+            "postalCode",
+            "identifier"
+          ],
+          "transformations": [],
+          "originalTransformations": []
+        },
+        {
+          "id": "ebe0f375-15dd-485e-ada3-ea71f61341dc",
+          "type": "QueryField",
+          "name": "rowguid",
+          "fieldRef": "dsd.das..raw__adventure_works__addresses.rowguid",
+          "classifications": [
+            "dimension"
+          ],
+          "originalClassification": [
+            "dimension"
+          ],
+          "transformations": [
+            {
+              "op": "fieldSplit",
+              "appliedTo": "ebe0f375-15dd-485e-ada3-ea71f61341dc",
+              "arguments": {
+                "splitType": "generic",
+                "splitInfo": {
+                  "del": "-",
+                  "subFields": [
+                    {
+                      "idx": 1
+                    },
+                    {
+                      "afterIdx": 1
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "originalTransformations": [
+            {
+              "op": "fieldSplit",
+              "appliedTo": "ebe0f375-15dd-485e-ada3-ea71f61341dc",
+              "arguments": {
+                "splitType": "generic",
+                "splitInfo": {
+                  "del": "-",
+                  "subFields": [
+                    {
+                      "idx": 1
+                    },
+                    {
+                      "afterIdx": 1
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "ac5bd903-fd20-4bcf-9b6a-fac89fd6f136",
+          "type": "QueryField",
+          "name": "modified_date",
+          "fieldRef": "dsd.das..raw__adventure_works__addresses.modified_date",
+          "classifications": [
+            "date"
+          ],
+          "originalClassification": [
+            "date"
+          ],
+          "transformations": [],
+          "originalTransformations": []
+        },
+        {
+          "id": "1421d5c1-92d2-477d-966f-976cdf49f5d1",
+          "type": "QueryField",
+          "name": "_dlt_load_id",
+          "fieldRef": "dsd.das..raw__adventure_works__addresses._dlt_load_id",
+          "classifications": [
+            "dimension",
+            "identifier"
+          ],
+          "originalClassification": [
+            "dimension",
+            "identifier"
+          ],
+          "transformations": [
+            {
+              "op": "fieldSplit",
+              "appliedTo": "1421d5c1-92d2-477d-966f-976cdf49f5d1",
+              "arguments": {
+                "splitType": "generic",
+                "splitInfo": {
+                  "del": ".",
+                  "subFields": [
+                    {
+                      "idx": 1
+                    },
+                    {
+                      "afterIdx": 1
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "originalTransformations": [
+            {
+              "op": "fieldSplit",
+              "appliedTo": "1421d5c1-92d2-477d-966f-976cdf49f5d1",
+              "arguments": {
+                "splitType": "generic",
+                "splitInfo": {
+                  "del": ".",
+                  "subFields": [
+                    {
+                      "idx": 1
+                    },
+                    {
+                      "afterIdx": 1
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "cb11d5aa-2a86-41be-bb91-c550925d1da8",
+          "type": "QueryField",
+          "name": "address_line2",
+          "fieldRef": "dsd.das..raw__adventure_works__addresses.address_line2",
+          "classifications": [
+            "dimension"
+          ],
+          "originalClassification": [
+            "dimension"
+          ],
+          "transformations": [],
+          "originalTransformations": []
+        },
+        {
+          "id": "f7298917-c2c0-4b17-9054-13f4b1a41668",
+          "type": "QueryTransformField",
+          "name": "das.raw__adventure_works__addresses.city_GeoInfo",
+          "transformations": [
+            {
+              "op": "lookupGeoInfo",
+              "appliedTo": "f187cc6f-f6bb-40ef-a04e-7e9e41abd46a",
+              "arguments": {
+                "geoType": "cityAlias",
+                "matchRatio": 0.8,
+                "unmatched": [
+                  "alpine",
+                  "ascheim",
+                  "aujan mournede",
+                  "austell",
+                  "ballard",
+                  "basingstoke hants",
+                  "berks",
+                  "berkshire",
+                  "bluffton",
+                  "branch",
+                  "branson",
+                  "byron",
+                  "campbellsville",
+                  "carnation",
+                  "central valley",
+                  "chalk riber",
+                  "chehalis",
+                  "city of commerce",
+                  "clackamas",
+                  "clarkston"
+                ]
+              }
+            }
+          ],
+          "classifications": [
+            "geoPoint"
+          ]
+        }
+      ]
+    }
+  ],
+  "associations": {},
+  "locale": {
+    "0": "e",
+    "1": "n",
+    "2": "-",
+    "3": "U",
+    "4": "S"
+  },
+  "defaultCalendar": {
+    "id": "autoCalendar",
+    "name": "autoCalendar",
+    "appliedToTags": [
+      "$date"
+    ],
+    "derivedFields": [
+      {
+        "id": "Decade",
+        "name": "Decade",
+        "translation": "",
+        "definition": "Dual(Div(Year($1),10)*10, MakeDate(Div(Year($1),10)*10, 1, 1))",
+        "tags": [
+          "$axis",
+          "$decade"
+        ],
+        "selected": false
+      },
+      {
+        "id": "Year",
+        "name": "Year",
+        "translation": "scripteditor.autoCalendarYear",
+        "definition": "Dual(Year($1), YearStart($1))",
+        "tags": [
+          "$axis",
+          "$year"
+        ],
+        "selected": true
+      },
+      {
+        "id": "Quarter",
+        "name": "Quarter",
+        "translation": "scripteditor.autoCalendarQuarter",
+        "definition": "Dual('Q'\u0026Num(Ceil(Num(Month($1))/3)),Num(Ceil(NUM(Month($1))/3),00))",
+        "tags": [
+          "$quarter",
+          "$cyclic"
+        ],
+        "selected": true
+      },
+      {
+        "id": "YearQuarter",
+        "name": "YearQuarter",
+        "translation": "scripteditor.autoCalendarQuarterYear",
+        "definition": "Dual(Year($1)\u0026'-Q'\u0026Num(Ceil(Num(Month($1))/3)),QuarterStart($1))",
+        "tags": [
+          "$yearquarter",
+          "$qualified"
+        ],
+        "selected": true
+      },
+      {
+        "id": "_YearQuarter",
+        "name": "_YearQuarter",
+        "translation": "scripteditor.autoCalendarQuarterYear",
+        "definition": "Dual('Q'\u0026Num(Ceil(Num(Month($1))/3)),QuarterStart($1))",
+        "tags": [
+          "$yearquarter",
+          "$hidden",
+          "$simplified"
+        ],
+        "selected": true
+      },
+      {
+        "id": "Month",
+        "name": "Month",
+        "translation": "scripteditor.autoCalendarMonth",
+        "definition": "Month($1)",
+        "tags": [
+          "$month",
+          "$cyclic"
+        ],
+        "selected": true
+      },
+      {
+        "id": "YearMonth",
+        "name": "YearMonth",
+        "translation": "scripteditor.autoCalendarMonthYear",
+        "definition": "Dual(Year($1)\u0026'-'\u0026Month($1), monthstart($1))",
+        "tags": [
+          "$axis",
+          "$yearmonth",
+          "$qualified"
+        ],
+        "selected": true
+      },
+      {
+        "id": "_YearMonth",
+        "name": "_YearMonth",
+        "translation": "scripteditor.autoCalendarMonthYear",
+        "definition": "Dual(Month($1), monthstart($1))",
+        "tags": [
+          "$axis",
+          "$yearmonth",
+          "$simplified",
+          "$hidden"
+        ],
+        "selected": true
+      },
+      {
+        "id": "Week",
+        "name": "Week",
+        "translation": "scripteditor.autoCalendarWeek",
+        "definition": "Dual('W'\u0026Num(Week($1),00), Num(Week($1),00))",
+        "tags": [
+          "$weeknumber",
+          "$cyclic"
+        ],
+        "selected": true
+      },
+      {
+        "id": "YearWeek",
+        "name": "YearWeek",
+        "translation": "",
+        "definition": "Dual(Year($1)\u0026'-W'\u0026num(Week($1),00), weekstart($1))",
+        "tags": [
+          "$yearweek"
+        ],
+        "selected": false
+      },
+      {
+        "id": "WeekDay",
+        "name": "WeekDay",
+        "translation": "",
+        "definition": "Dual(WeekDay($1),num(WeekDay($1)))",
+        "tags": [
+          "$weekday"
+        ],
+        "selected": false
+      },
+      {
+        "id": "Date",
+        "name": "Date",
+        "translation": "scripteditor.autoCalendarDate",
+        "definition": "Date(Floor($1))",
+        "tags": [
+          "$axis",
+          "$date",
+          "$qualified"
+        ],
+        "selected": true
+      },
+      {
+        "id": "_Date",
+        "name": "_Date",
+        "translation": "scripteditor.autoCalendarDate",
+        "definition": "Date(Floor($1), 'D')",
+        "tags": [
+          "$axis",
+          "$date",
+          "$hidden",
+          "$simplified"
+        ],
+        "selected": true
+      }
+    ],
+    "groups": [
+      {
+        "name": "YearMonthDay",
+        "drillDown": "true",
+        "fieldRefs": [
+          "Year",
+          "Month",
+          "WeekDay"
+        ]
+      },
+      {
+        "name": "YearMonth",
+        "drillDown": "false",
+        "fieldRefs": [
+          "Year",
+          "Month"
+        ]
+      }
+    ],
+    "deriveFieldsType": "fieldExplicit"
+  },
+  "schemaVersion": 2.1
+}
