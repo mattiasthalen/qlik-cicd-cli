@@ -21,7 +21,8 @@
                 "betterthantomorrow.calva-backseat-driver"
             ],
             "settings": {
-                "files.eol": "\n"
+                "files.eol": "\n",
+                "calva-backseat-driver.enableReplEvaluation": true
             }
         }
     }
