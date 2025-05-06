@@ -22,7 +22,18 @@
             ],
             "settings": {
                 "files.eol": "\n",
-                "calva-backseat-driver.enableReplEvaluation": true
+                "calva-backseat-driver.enableReplEvaluation": true,
+                "calva.autoStartRepl": true,
+                "calva.replConnectSequences": [
+                    {
+                        "name": "Babashka REPL",
+                        "projectType": "babashka",
+                        "autoSelectForJackIn": true,
+                        "projectRootPath": ["."],
+                        "afterCLJReplJackInCode": "(println \"Babashka REPL connected and ready!\")",
+                        "menuSelections": {}
+                    }
+                ]
             }
         }
     }
