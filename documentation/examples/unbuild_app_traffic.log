@@ -1,0 +1,576 @@
+<-- {"jsonrpc":"2.0","method":"OnConnected","params":{"qSessionState":"SESSION_CREATED"}}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetActiveDoc","handle":-1,"id":1,"params":[]}
+<-- {"jsonrpc":"2.0","id":1,"error":{"code":1017,"parameter":"No active document","message":"Unknown error"}}
+--> {"jsonrpc":"2.0","delta":false,"method":"OpenDoc","handle":-1,"id":2,"params":["98c246c9-cce6-4fd9-afaf-691c81c9672f",""
+,"","",true]}
+<-- {"jsonrpc":"2.0","id":2,"result":{"qReturn":{"qType":"Doc","qHandle":1,"qGenericId":"98c246c9-cce6-4fd9-afaf-691c81c9672
+f"}},"change":[1]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetAppLayout","handle":1,"id":3,"params":[]}
+<-- {"jsonrpc":"2.0","id":3,"result":{"qLayout":{"qTitle":"test-app","qFileName":"98c246c9-cce6-4fd9-afaf-691c81c9672f","qLa
+stReloadTime":"2025-05-06T06:49:36.440Z","qHasScript":true,"qStateNames":[],"qMeta":{},"qLocaleInfo":{"qDecimalSep":".","qTh
+ousandSep":",","qListSep":";","qMoneyDecimalSep":".","qMoneyThousandSep":",","qCurrentYear":2025,"qMoneyFmt":"Â£#,##0.00;-Â£
+#,##0.00","qTimeFmt":"hh:mm:ss","qDateFmt":"DD/MM/YYYY","qTimestampFmt":"DD/MM/YYYY hh:mm:ss[.fff]","qCalendarStrings":{"qDa
+yNames":["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],"qMonthNames":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","O
+ct","Nov","Dec"],"qLongDayNames":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"qLongMonthNames":
+["January","February","March","April","May","June","July","August","September","October","November","December"]},"qFirstWeek
+Day":0,"qReferenceDay":4,"qFirstMonthOfYear":1,"qCollation":"en-GB","qNumericalAbbreviation":"3:k;6:M;9:G;12:T;15:P;18:E;21:
+Z;24:Y;-3:m;-6:Î¼;-9:n;-12:p;-15:f;-18:a;-21:z;-24:y"},"qIsOpenedWithoutData":true,"qThumbnail":{},"qUnsupportedFeatures":[]
+,"qUsage":"ANALYTICS","encrypted":true,"id":"98c246c9-cce6-4fd9-afaf-691c81c9672f","published":false,"owner":"auth0|c0d795e9
+3c2853478859fa8df258ee58b2ce3b5449c73abdc835659a73f3f9aa","ownerId":"67d979c7b7881ab6e9dff493","createdDate":"2025-05-05T08:
+49:49.965Z","modifiedDate":"2025-05-06T06:54:04.051Z","spaceId":"68187b87541e02c791ee335a","hassectionaccess":false,"_resour
+cetype":"app","privileges":["read","update","delete","reload","export","duplicate","change_owner","change_space","export_red
+uced","source","exportappdata"],"create":[{"resource":"sheet","canCreate":true},{"resource":"bookmark","canCreate":true},{"r
+esource":"snapshot","canCreate":true},{"resource":"story","canCreate":true},{"resource":"dimension","canCreate":true},{"reso
+urce":"measure","canCreate":true},{"resource":"masterobject","canCreate":true},{"resource":"sheetgroup","canCreate":true},{"
+resource":"variable","canCreate":true}]}}}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetAllInfos","handle":1,"id":4,"params":[]}
+<-- {"jsonrpc":"2.0","id":4,"result":{"qInfos":[{"qId":"pcW","qType":"sheet"},{"qId":"hJDkSVB","qType":"auto-chart"},{"qId":
+"yKNmU","qType":"sheet"},{"qId":"ZwWGj","qType":"auto-chart"},{"qId":"SUXaLDP","qType":"barchart"},{"qId":"LoadModel","qType
+":"LoadModel"},{"qId":"WWcHPP","qType":"dimension"},{"qId":"wTZm","qType":"measure"}]}}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetDimension","handle":1,"id":5,"params":["pcW"]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetDimension","handle":1,"id":6,"params":["wTZm"]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetDimension","handle":1,"id":7,"params":["SUXaLDP"]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetDimension","handle":1,"id":8,"params":["hJDkSVB"]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetDimension","handle":1,"id":10,"params":["ZwWGj"]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetDimension","handle":1,"id":9,"params":["yKNmU"]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetDimension","handle":1,"id":11,"params":["WWcHPP"]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetDimension","handle":1,"id":12,"params":["LoadModel"]}
+<-- {"jsonrpc":"2.0","id":5,"result":{"qReturn":{"qType":null,"qHandle":null}}}
+<-- {"jsonrpc":"2.0","id":6,"result":{"qReturn":{"qType":null,"qHandle":null}}}
+<-- {"jsonrpc":"2.0","id":7,"result":{"qReturn":{"qType":null,"qHandle":null}}}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetMeasure","handle":1,"id":13,"params":["pcW"]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetMeasure","handle":1,"id":15,"params":["wTZm"]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetMeasure","handle":1,"id":14,"params":["SUXaLDP"]}
+<-- {"jsonrpc":"2.0","id":10,"result":{"qReturn":{"qType":null,"qHandle":null}}}
+<-- {"jsonrpc":"2.0","id":8,"result":{"qReturn":{"qType":null,"qHandle":null}}}
+<-- {"jsonrpc":"2.0","id":9,"result":{"qReturn":{"qType":null,"qHandle":null}}}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetMeasure","handle":1,"id":16,"params":["yKNmU"]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetMeasure","handle":1,"id":17,"params":["ZwWGj"]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetMeasure","handle":1,"id":18,"params":["hJDkSVB"]}
+<-- {"jsonrpc":"2.0","id":11,"result":{"qReturn":{"qType":"GenericDimension","qHandle":2,"qGenericType":"dimension","qGeneri
+cId":"WWcHPP"}}}
+<-- {"jsonrpc":"2.0","id":12,"result":{"qReturn":{"qType":null,"qHandle":null}}}
+<-- {"jsonrpc":"2.0","id":13,"result":{"qReturn":{"qType":null,"qHandle":null}}}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetObject","handle":1,"id":19,"params":["pcW"]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetProperties","handle":2,"id":20,"params":[]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetMeasure","handle":1,"id":21,"params":["LoadModel"]}
+<-- {"jsonrpc":"2.0","id":15,"result":{"qReturn":{"qType":"GenericMeasure","qHandle":3,"qGenericType":"measure","qGenericId"
+:"wTZm"}}}
+<-- {"jsonrpc":"2.0","id":14,"result":{"qReturn":{"qType":null,"qHandle":null}}}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetProperties","handle":3,"id":22,"params":[]}
+<-- {"jsonrpc":"2.0","id":16,"result":{"qReturn":{"qType":null,"qHandle":null}}}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetObject","handle":1,"id":24,"params":["yKNmU"]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetObject","handle":1,"id":23,"params":["SUXaLDP"]}
+<-- {"jsonrpc":"2.0","id":17,"result":{"qReturn":{"qType":null,"qHandle":null}}}
+<-- {"jsonrpc":"2.0","id":18,"result":{"qReturn":{"qType":null,"qHandle":null}}}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetObject","handle":1,"id":25,"params":["hJDkSVB"]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetObject","handle":1,"id":26,"params":["ZwWGj"]}
+<-- {"jsonrpc":"2.0","id":19,"result":{"qReturn":{"qType":"GenericObject","qHandle":4,"qGenericType":"sheet","qGenericId":"p
+cW"}}}
+<-- {"jsonrpc":"2.0","id":21,"result":{"qReturn":{"qType":null,"qHandle":null}}}
+<-- {"jsonrpc":"2.0","id":20,"result":{"qProp":{"qInfo":{"qId":"WWcHPP","qType":"dimension"},"qDim":{"qGrouping":"H","qField
+Defs":["state_province_id","city","postal_code","address_line1","address_line2","address_id"],"qFieldLabels":[],"qAlias":"Ad
+dress Hierarchy","title":"Address Hierarchy","coloring":{"changeHash":"0.4426617822524045","hasValueColors":false}},"qMetaDe
+f":{"title":"Address Hierarchy","description":"State/Province ID > City > Postal Code > Address Line 1 > Address Line 2 > Ad
+dress ID","tags":["Hierarchy"]}}}}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetParent","handle":4,"id":27,"params":[]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetObject","handle":1,"id":28,"params":["LoadModel"]}
+<-- {"jsonrpc":"2.0","id":22,"result":{"qProp":{"qInfo":{"qId":"wTZm","qType":"measure"},"qMeasure":{"qLabel":"# Addresses",
+"qDef":"Count(Distinct address_id)","qGrouping":"N","qExpressions":[],"qActiveExpression":0,"qLabelExpression":"='# Addresse
+s'","qNumFormat":{"qType":"U","qnDec":10,"qUseThou":0},"coloring":{}},"qMetaDef":{"title":"# Addresses","description":"Test 
+master measure","tags":[]}}}}
+<-- {"jsonrpc":"2.0","id":23,"result":{"qReturn":{"qType":"GenericObject","qHandle":5,"qGenericType":"barchart","qGenericId"
+:"SUXaLDP"}}}
+<-- {"jsonrpc":"2.0","id":24,"result":{"qReturn":{"qType":"GenericObject","qHandle":6,"qGenericType":"sheet","qGenericId":"y
+KNmU"}}}
+<-- {"jsonrpc":"2.0","id":25,"result":{"qReturn":{"qType":"GenericObject","qHandle":7,"qGenericType":"auto-chart","qGenericI
+d":"hJDkSVB"}}}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetParent","handle":7,"id":29,"params":[]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetParent","handle":5,"id":30,"params":[]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetParent","handle":6,"id":31,"params":[]}
+<-- {"jsonrpc":"2.0","id":28,"result":{"qReturn":{"qType":"GenericObject","qHandle":8,"qGenericType":"LoadModel","qGenericId
+":"LoadModel"}}}
+<-- {"jsonrpc":"2.0","id":26,"result":{"qReturn":{"qType":"GenericObject","qHandle":9,"qGenericType":"auto-chart","qGenericI
+d":"ZwWGj"}}}
+<-- {"jsonrpc":"2.0","id":27,"result":{"qReturn":{"qType":null,"qHandle":null}}}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetChildInfos","handle":4,"id":32,"params":[]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetParent","handle":8,"id":33,"params":[]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetParent","handle":9,"id":34,"params":[]}
+<-- {"jsonrpc":"2.0","id":29,"result":{"qReturn":{"qType":"GenericObject","qHandle":4,"qGenericType":"sheet","qGenericId":"p
+cW"}}}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetChildInfos","handle":7,"id":35,"params":[]}
+<-- {"jsonrpc":"2.0","id":30,"result":{"qReturn":{"qType":"GenericObject","qHandle":6,"qGenericType":"sheet","qGenericId":"y
+KNmU"}}}
+<-- {"jsonrpc":"2.0","id":31,"result":{"qReturn":{"qType":null,"qHandle":null}}}
+<-- {"jsonrpc":"2.0","id":32,"result":{"qInfos":[{"qId":"hJDkSVB","qType":"auto-chart"}]}}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetFullPropertyTree","handle":4,"id":36,"params":[]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetChildInfos","handle":5,"id":37,"params":[]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetChildInfos","handle":6,"id":38,"params":[]}
+<-- {"jsonrpc":"2.0","id":33,"result":{"qReturn":{"qType":null,"qHandle":null}}}
+<-- {"jsonrpc":"2.0","id":34,"result":{"qReturn":{"qType":"GenericObject","qHandle":6,"qGenericType":"sheet","qGenericId":"y
+KNmU"}}}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetChildInfos","handle":9,"id":39,"params":[]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetChildInfos","handle":8,"id":40,"params":[]}
+<-- {"jsonrpc":"2.0","id":35,"result":{"qInfos":[]}}
+<-- {"jsonrpc":"2.0","id":36,"result":{"qPropEntry":{"qProperty":{"qInfo":{"qId":"pcW","qType":"sheet"},"qMetaDef":{"title":
+"Mitt nya ark (1)","description":""},"creationDate":"2025-05-06T06:56:14.325Z","rank":1,"thumbnail":{"qStaticContentUrlDef":
+{}},"columns":24,"rows":12,"cells":[{"bounds":{"x":0,"y":0,"width":100,"height":100},"col":0,"colspan":24,"name":"hJDkSVB","
+row":0,"rowspan":12,"smartGrid":{"rowIdx":0,"itemIdx":0,"item":{"width":1}},"type":"auto-chart"}],"customRowBase":12,"gridRe
+solution":"small","layoutOptions":{"mobileLayout":"LIST","extendable":false},"qChildListDef":{"qData":{"title":"/title"}},"g
+ridMode":"simpleEdit"},"qChildren":[{"qProperty":{"qInfo":{"qId":"hJDkSVB","qType":"auto-chart"},"qMetaDef":{},"qHyperCubeDe
+f":{"qDimensions":[{"qDef":{"qGrouping":"N","qFieldDefs":["modified_date"],"qFieldLabels":[""],"qSortCriterias":[{"qSortByLo
+adOrder":1,"qExpression":{}}],"qNumberPresentations":[],"qActiveField":0,"autoSort":true,"cId":"BctD","othersLabel":"Ã–vriga
+"},"qOtherTotalSpec":{"qOtherMode":"OTHER_OFF","qOtherCounted":{"qv":"10"},"qOtherLimit":{"qv":"0"},"qOtherLimitMode":"OTHER
+_GE_LIMIT","qForceBadValueKeeping":true,"qApplyEvenWhenPossiblyWrongResult":true,"qOtherSortMode":"OTHER_SORT_DESCENDING","q
+TotalMode":"TOTAL_OFF","qReferencedExpression":{}},"qOtherLabel":{"qv":"Ã–vriga"},"qTotalLabel":{},"qCalcCond":{},"qAttribut
+eExpressions":[],"qAttributeDimensions":[],"qCalcCondition":{"qCond":{},"qMsg":{}}}],"qMeasures":[{"qLibraryId":"wTZm","qDef
+":{"qTags":[],"qGrouping":"N","qAccumulate":0,"qActiveExpression":0,"qExpressions":[],"autoSort":true,"cId":"eurjv","numForm
+atFromTemplate":true,"quarantine":{"qNumFormat":{},"isCustomFormatted":false}},"qSortBy":{"qSortByLoadOrder":1,"qExpression"
+:{}},"qAttributeExpressions":[],"qAttributeDimensions":[],"qCalcCond":{},"qCalcCondition":{"qCond":{},"qMsg":{}},"qTrendLine
+s":[],"qMiniChartDef":{"qSortBy":{"qExpression":{}},"qOtherTotalSpec":{"qOtherMode":"OTHER_OFF","qOtherCounted":{},"qOtherLi
+mit":{},"qOtherLimitMode":"OTHER_GT_LIMIT","qForceBadValueKeeping":true,"qApplyEvenWhenPossiblyWrongResult":true,"qOtherSort
+Mode":"OTHER_SORT_DESCENDING","qTotalMode":"TOTAL_OFF","qReferencedExpression":{}},"qMaxNumberPoints":-1,"qAttributeExpressi
+ons":[]}}],"qInterColumnSortOrder":[0,1],"qSuppressMissing":true,"qInitialDataFetch":[],"qReductionMode":"N","qMode":"S","qP
+seudoDimPos":-1,"qNoOfLeftDims":-1,"qMaxStackedCells":5000,"qCalcCond":{},"qTitle":{},"qCalcCondition":{"qCond":{},"qMsg":{}
+},"qColumnOrder":[],"qExpansionState":[],"qDynamicScript":[],"qLayoutExclude":{"qHyperCubeDef":{"qDimensions":[],"qMeasures"
+:[],"qInterColumnSortOrder":[],"qInitialDataFetch":[],"qReductionMode":"N","qMode":"S","qPseudoDimPos":-1,"qNoOfLeftDims":-1
+,"qMaxStackedCells":5000,"qCalcCond":{},"qTitle":{},"qCalcCondition":{"qCond":{},"qMsg":{}},"qColumnOrder":[],"qExpansionSta
+te":[],"qDynamicScript":[]}}},"script":"","filter":null,"showTitles":true,"title":"","subtitle":"","footnote":"","disableNav
+Menu":false,"showDetails":true,"showDetailsExpression":false,"visualization":"auto-chart","qUndoExclude":{"hashCode":-116803
+2882,"generated":{"qHyperCubeDef":{"qDimensions":[{"qDef":{"qGrouping":"N","qFieldDefs":["modified_date"],"qFieldLabels":[""
+],"qSortCriterias":[{"qSortByNumeric":1,"qSortByAscii":1,"qSortByLoadOrder":1,"qExpression":{}}],"qNumberPresentations":[],"
+qActiveField":0,"autoSort":true,"cId":"hEtad","othersLabel":"Ã–vriga","forecast":{"stepSize":"days"}},"qOtherTotalSpec":{"qO
+therMode":"OTHER_OFF","qOtherCounted":{"qv":"10"},"qOtherLimit":{"qv":"0"},"qOtherLimitMode":"OTHER_GE_LIMIT","qForceBadValu
+eKeeping":true,"qApplyEvenWhenPossiblyWrongResult":true,"qOtherSortMode":"OTHER_SORT_DESCENDING","qTotalMode":"TOTAL_OFF","q
+ReferencedExpression":{}},"qOtherLabel":{"qv":"Ã–vriga"},"qTotalLabel":{},"qCalcCond":{},"qAttributeExpressions":[],"qAttrib
+uteDimensions":[],"qCalcCondition":{"qCond":{},"qMsg":{}},"othersLabel":"Others"}],"qMeasures":[{"qLibraryId":"wTZm","qDef":
+{"qTags":[],"qGrouping":"N","qAccumulate":0,"qActiveExpression":0,"qExpressions":[],"autoSort":true,"cId":"PJpmPpg","numForm
+atFromTemplate":true,"styling":[],"forecast":{"enabled":false,"method":"ssa_forecast","paletteColor":{"index":0,"color":"non
+e"},"lineThickness":1,"lineType":"dashed","lineCurve":"linear","showConfidence":true,"confidence":0.95},"quarantine":{"qNumF
+ormat":{},"isCustomFormatted":false}},"qSortBy":{"qSortByNumeric":-1,"qSortByLoadOrder":1,"qExpression":{}},"qAttributeExpre
+ssions":[],"qAttributeDimensions":[],"qCalcCond":{},"qCalcCondition":{"qCond":{},"qMsg":{}},"qTrendLines":[],"qMiniChartDef"
+:{"qSortBy":{"qExpression":{}},"qOtherTotalSpec":{"qOtherMode":"OTHER_OFF","qOtherCounted":{},"qOtherLimit":{},"qOtherLimitM
+ode":"OTHER_GT_LIMIT","qForceBadValueKeeping":true,"qApplyEvenWhenPossiblyWrongResult":true,"qOtherSortMode":"OTHER_SORT_DES
+CENDING","qTotalMode":"TOTAL_OFF","qReferencedExpression":{}},"qMaxNumberPoints":-1,"qAttributeExpressions":[]}}],"qInterCol
+umnSortOrder":[0,1],"qSuppressMissing":true,"qInitialDataFetch":[{"qLeft":0,"qTop":0,"qWidth":17,"qHeight":500}],"qReduction
+Mode":"N","qMode":"S","qPseudoDimPos":-1,"qNoOfLeftDims":-1,"qAlwaysFullyExpanded":true,"qMaxStackedCells":5000,"qCalcCond":
+{},"qTitle":{},"qCalcCondition":{"qCond":{},"qMsg":{}},"qColumnOrder":[],"qExpansionState":[],"qDynamicScript":[],"columnOrd
+er":[]},"script":"","filter":null,"refLine":{"refLines":[],"dimRefLines":[]},"plugins":[],"showTitles":true,"title":"","subt
+itle":"","footnote":"","disableNavMenu":false,"showDetails":true,"showDetailsExpression":false,"showDisclaimer":true,"qState
+Name":"","lineType":"line","stackedArea":false,"separateStacking":true,"orientation":"horizontal","scrollbar":"miniChart","s
+crollStartPos":0,"nullMode":"gap","dataPoint":{"show":false,"showLabels":false},"maxNumPoints":2000,"maxNumLines":12,"gridLi
+ne":{"auto":true,"spacing":2},"color":{"auto":true,"mode":"primary","formatting":{"numFormatFromTemplate":true},"useBaseColo
+rs":"off","paletteColor":{"index":6},"useDimColVal":true,"useMeasureGradient":true,"persistent":false,"expressionIsColor":tr
+ue,"expressionLabel":"","measureScheme":"sg","reverseScheme":false,"dimensionScheme":"12","autoMinMax":true,"measureMin":0,"
+measureMax":10},"legend":{"show":true,"dock":"auto","showTitle":true},"dimensionAxis":{"continuousAuto":true,"show":"all","l
+abel":"auto","dock":"near","axisDisplayMode":"auto","maxVisibleItems":10},"preferContinuousAxis":true,"measureAxis":{"show":
+"all","dock":"near","spacing":1,"autoMinMax":true,"minMax":"min","min":0,"max":10,"logarithmic":false},"tooltip":{"auto":tru
+e,"hideBasic":false,"chart":{"style":{"size":"medium"}},"title":"","description":""},"qInfo":{"qType":"linechart"},"visualiz
+ation":"linechart","version":"1.44.1","components":[],"showMiniChartForContinuousAxis":true,"isRecommended":true,"qLayoutExc
+lude":{"quarantine":{"conditionalShowHide":{"measures":{},"dimensions":{}}},"disabled":{}},"recommendation":{"options":{},"a
+nalysis":{"analysis":"trend","analysisGroup":"trend","description":{"short":"Trend Ã¶ver tid","long":"Resultatet fÃ¶r ett mÃ
+¥tt Ã¶ver tid, valfritt uppdelat efter en dimension."},"title":"# Addresses Ã¶ver modified_date","titleTemplate":[{"msgId":"
+cao.chart.trend.2.title","msgParams":{"$$1":0,"$$3":1}}],"dims":[{"expr":"[modified_date]","cType":"eField","field":"modifie
+d_date","fieldStats":{"distinctCount":1279,"dataType":"date"}}],"msrs":[{"expr":"wTZm","overridenMsrFormat":{"qType":"U","qn
+Dec":10,"qUseThou":0},"masterMsrFormat":{"qType":"U","qnDec":10,"qUseThou":0},"coloring":{},"cType":"eLibItem","libId":"wTZm
+","label":"# Addresses","fieldStats":{"dataType":"integer","valueRange":{"min":1,"max":1873},"classification":["measure"]}}]
+},"isExtendedAnalysis":false,"matchRecord":{"analysisPrecedentId":"P-Trend","matches":[{"slot":"$$1","slotRole":"dimension",
+"field":"modified_date"},{"slot":"$$3","slotRole":"measure","libId":"wTZm","libIdLabel":"# Addresses","overallAggr":"count"}
+],"precedentStats":{"matchedFields":0,"uniquePrecedents":0}},"relevance":1,"analysisIntentRelevance":0.225}}}},"qChildren":[
+]}]}}}
+<-- {"jsonrpc":"2.0","id":37,"result":{"qInfos":[]}}
+<-- {"jsonrpc":"2.0","id":39,"result":{"qInfos":[]}}
+<-- {"jsonrpc":"2.0","id":38,"result":{"qInfos":[{"qId":"ZwWGj","qType":"auto-chart"},{"qId":"SUXaLDP","qType":"barchart"}]}
+}
+<-- {"jsonrpc":"2.0","id":40,"result":{"qInfos":[]}}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetProperties","handle":8,"id":41,"params":[]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetFullPropertyTree","handle":6,"id":42,"params":[]}
+<-- {"jsonrpc":"2.0","id":41,"result":{"qProp":{"qInfo":{"qId":"LoadModel","qType":"LoadModel"},"qMetaDef":{},"connectionMet
+aDataModels":{"DataFiles":{"name":"DataFiles","displayName":"DataFiles","id":"a17a3146-86b6-428a-860f-9d17ccc81db6","type":{
+"provider":"qix-datafiles.exe","type":"qix-datafiles.exe","isFolderConnector":true,"displayName":"scripteditor.dataconnector
+s.filedirectory","connectDialog":"scripteditor.views/fileconnectdialog/fileconnectdialog","selectDialog":"scripteditor.views
+/fileselectdialog/fileselectdialog","connectorMain":"assets/hldm/data-connectors/native-file-connector/connector-main-datafi
+les","needsConnect":false,"isStandardConnector":true},"typeName":"qix-datafiles.exe","privileges":["read"],"sourceConnectorI
+D":"qix-datafiles.exe","dataconnectorPrefix":"Analytical Data Storage System:","isInAppSpace":true,"space":"67f8c39b04786783
+d7d48503","connectionString":"CUSTOM CONNECT TO \"provider=qix-datafiles.exe;path=Analytical+Data+Storage+System:datafiles;\
+"","canDelete":false,"connectorImagePath":"https://cdn.qlikcloud.com/qmfe/qmfe-data-client-parcels/1.25.0/img/connector-logo
+s/connector-folder-qvx-logo.png","connectorDisplayName":"Mapp","dbInfo":{"dbusage":false,"ownerusage":false,"dbfirst":false,
+"specialchars":"! Â ã€€\"$&'()*+,-/:;<>Â´`{}~[]\r\n\t","dbseparator":"","ownerseparator":"","quotesuffix":"\"","quoteprefix"
+:"\"","quotesuffixfordoublequotes":"]","quoteprefixfordoublequotes":"[","keywords":[]}}},"tables":[{"dataconnectorName":"Dat
+aFiles","dataconnectorPrefix":"Analytical Data Storage System:","boxType":"load-file","databaseName":"Adventure Works/das.ra
+w__adventure_works__addresses.parquet","ownerName":"TYPE9_PARQUET","tableName":"das.raw__adventure_works__addresses","tableA
+lias":"das.raw__adventure_works__addresses","key":"DataFiles:Adventure Works/das.raw__adventure_works__addresses.parquet:TYP
+E9_PARQUET:das.raw__adventure_works__addresses","fields":[{"id":"dsd.das..raw__adventure_works__addresses.address_id","name"
+:"address_id","alias":"address_id","selected":true},{"id":"dsd.das..raw__adventure_works__addresses.address_line1","name":"a
+ddress_line1","alias":"address_line1","selected":true},{"id":"dsd.das..raw__adventure_works__addresses.city","name":"city","
+alias":"city","selected":true},{"id":"dsd.das..raw__adventure_works__addresses.state_province_id","name":"state_province_id"
+,"alias":"state_province_id","selected":true},{"id":"dsd.das..raw__adventure_works__addresses.postal_code","name":"postal_co
+de","alias":"postal_code","selected":true},{"id":"dsd.das..raw__adventure_works__addresses.rowguid","name":"rowguid","alias"
+:"rowguid","selected":true},{"id":"dsd.das..raw__adventure_works__addresses.modified_date","name":"modified_date","alias":"m
+odified_date","selected":true},{"id":"dsd.das..raw__adventure_works__addresses._dlt_load_id","name":"_dlt_load_id","alias":"
+_dlt_load_id","selected":true},{"id":"dsd.das..raw__adventure_works__addresses.address_line2","name":"address_line2","alias"
+:"address_line2","selected":true}],"connectionInfo":{"name":"DataFiles","displayName":"DataFiles","id":"a17a3146-86b6-428a-8
+60f-9d17ccc81db6","type":{"provider":"qix-datafiles.exe","type":"qix-datafiles.exe","isFolderConnector":true,"displayName":"
+scripteditor.dataconnectors.filedirectory","connectDialog":"scripteditor.views/fileconnectdialog/fileconnectdialog","selectD
+ialog":"scripteditor.views/fileselectdialog/fileselectdialog","connectorMain":"assets/hldm/data-connectors/native-file-conne
+ctor/connector-main-datafiles","needsConnect":false,"isStandardConnector":true},"typeName":"qix-datafiles.exe","privileges":
+["read"],"sourceConnectorID":"qix-datafiles.exe","dataconnectorPrefix":"Analytical Data Storage System:","isInAppSpace":true
+,"space":"67f8c39b04786783d7d48503","connectionString":"CUSTOM CONNECT TO \"provider=qix-datafiles.exe;path=Analytical+Data+
+Storage+System:datafiles;\"","canDelete":false,"connectorImagePath":"https://cdn.qlikcloud.com/qmfe/qmfe-data-client-parcels
+/1.25.0/img/connector-logos/connector-folder-qvx-logo.png","connectorDisplayName":"Mapp","dbInfo":{"dbusage":false,"ownerusa
+ge":false,"dbfirst":false,"specialchars":"! Â ã€€\"$&'()*+,-/:;<>Â´`{}~[]\r\n\t","dbseparator":"","ownerseparator":"","quote
+suffix":"\"","quoteprefix":"\"","quotesuffixfordoublequotes":"]","quoteprefixfordoublequotes":"[","keywords":[]}},"id":"dsd.
+das..raw__adventure_works__addresses","formatSpec":"(parquet)","fileFormatSettings":{"qLabel":"embedded labels","qHeaderSize
+":0,"qDelimiter":{"qNumber":0,"qIsMultiple":false},"qQuote":"standard","qCodePage":1252,"qIgnoreEOF":false,"qFixedWidthDelim
+iters":"1","qTabSize":0,"qRecordSize":0,"qComment":""},"selectStatement":"LOAD [address_id] AS [address_id],\n\t[address_lin
+e1] AS [address_line1],\n\t[city] AS [city],\n\t[state_province_id] AS [state_province_id],\n\t[postal_code] AS [postal_code
+],\n\t[rowguid] AS [rowguid],\n\t[modified_date] AS [modified_date],\n\t[_dlt_load_id] AS [_dlt_load_id],\n\t[address_line2]
+ AS [address_line2]\nFROM [lib://DataFiles/Adventure Works/das.raw__adventure_works__addresses.parquet]\n(parquet);\n","cach
+ing":{"enabled":true,"type":"qvd"}}],"queries":[{"id":"b6862aec-2d63-4a1b-9908-195a484b123d","type":"Query","name":"das.raw_
+_adventure_works__addresses","tableRef":"dsd.das..raw__adventure_works__addresses","status":"","fields":[{"id":"1e2f27c9-037
+7-40b5-b13d-1d71cced00e2","type":"QueryField","name":"address_id","fieldRef":"dsd.das..raw__adventure_works__addresses.addre
+ss_id","classifications":["dimension","identifier"],"originalClassification":["dimension","identifier"],"transformations":[]
+,"originalTransformations":[]},{"id":"5424e4de-f532-4ec4-aae3-c30c85d95de5","type":"QueryField","name":"address_line1","fiel
+dRef":"dsd.das..raw__adventure_works__addresses.address_line1","classifications":["address"],"originalClassification":["addr
+ess"],"transformations":[],"originalTransformations":[]},{"id":"f187cc6f-f6bb-40ef-a04e-7e9e41abd46a","type":"QueryField","n
+ame":"city","fieldRef":"dsd.das..raw__adventure_works__addresses.city","classifications":["city"],"originalClassification":[
+"city"],"transformations":[{"op":"lookupGeoInfo","appliedTo":"f187cc6f-f6bb-40ef-a04e-7e9e41abd46a","arguments":{"geoType":"
+cityAlias","matchRatio":0.8,"unmatched":["alpine","ascheim","aujan mournede","austell","ballard","basingstoke hants","berks"
+,"berkshire","bluffton","branch","branson","byron","campbellsville","carnation","central valley","chalk riber","chehalis","c
+ity of commerce","clackamas","clarkston"]}}],"originalTransformations":[{"op":"lookupGeoInfo","appliedTo":"f187cc6f-f6bb-40e
+f-a04e-7e9e41abd46a","arguments":{"geoType":"cityAlias","matchRatio":0.8,"unmatched":["alpine","ascheim","aujan mournede","a
+ustell","ballard","basingstoke hants","berks","berkshire","bluffton","branch","branson","byron","campbellsville","carnation"
+,"central valley","chalk riber","chehalis","city of commerce","clackamas","clarkston"]}}]},{"id":"3551a496-44c7-4716-a742-e9
+ad77199178","type":"QueryField","name":"state_province_id","fieldRef":"dsd.das..raw__adventure_works__addresses.state_provin
+ce_id","classifications":["dimension","identifier"],"originalClassification":["dimension","identifier"],"transformations":[]
+,"originalTransformations":[]},{"id":"670b3ca6-bac7-44ac-8002-7e0479d02d5f","type":"QueryField","name":"postal_code","fieldR
+ef":"dsd.das..raw__adventure_works__addresses.postal_code","classifications":["postalCode","identifier"],"originalClassifica
+tion":["postalCode","identifier"],"transformations":[],"originalTransformations":[]},{"id":"ebe0f375-15dd-485e-ada3-ea71f613
+41dc","type":"QueryField","name":"rowguid","fieldRef":"dsd.das..raw__adventure_works__addresses.rowguid","classifications":[
+"dimension"],"originalClassification":["dimension"],"transformations":[{"op":"fieldSplit","appliedTo":"ebe0f375-15dd-485e-ad
+a3-ea71f61341dc","arguments":{"splitType":"generic","splitInfo":{"del":"-","subFields":[{"idx":1},{"afterIdx":1}]}}}],"origi
+nalTransformations":[{"op":"fieldSplit","appliedTo":"ebe0f375-15dd-485e-ada3-ea71f61341dc","arguments":{"splitType":"generic
+","splitInfo":{"del":"-","subFields":[{"idx":1},{"afterIdx":1}]}}}]},{"id":"ac5bd903-fd20-4bcf-9b6a-fac89fd6f136","type":"Qu
+eryField","name":"modified_date","fieldRef":"dsd.das..raw__adventure_works__addresses.modified_date","classifications":["dat
+e"],"originalClassification":["date"],"transformations":[],"originalTransformations":[]},{"id":"1421d5c1-92d2-477d-966f-976c
+df49f5d1","type":"QueryField","name":"_dlt_load_id","fieldRef":"dsd.das..raw__adventure_works__addresses._dlt_load_id","clas
+sifications":["dimension","identifier"],"originalClassification":["dimension","identifier"],"transformations":[{"op":"fieldS
+plit","appliedTo":"1421d5c1-92d2-477d-966f-976cdf49f5d1","arguments":{"splitType":"generic","splitInfo":{"del":".","subField
+s":[{"idx":1},{"afterIdx":1}]}}}],"originalTransformations":[{"op":"fieldSplit","appliedTo":"1421d5c1-92d2-477d-966f-976cdf4
+9f5d1","arguments":{"splitType":"generic","splitInfo":{"del":".","subFields":[{"idx":1},{"afterIdx":1}]}}}]},{"id":"cb11d5aa
+-2a86-41be-bb91-c550925d1da8","type":"QueryField","name":"address_line2","fieldRef":"dsd.das..raw__adventure_works__addresse
+s.address_line2","classifications":["dimension"],"originalClassification":["dimension"],"transformations":[],"originalTransf
+ormations":[]},{"id":"f7298917-c2c0-4b17-9054-13f4b1a41668","type":"QueryTransformField","name":"das.raw__adventure_works__a
+ddresses.city_GeoInfo","transformations":[{"op":"lookupGeoInfo","appliedTo":"f187cc6f-f6bb-40ef-a04e-7e9e41abd46a","argument
+s":{"geoType":"cityAlias","matchRatio":0.8,"unmatched":["alpine","ascheim","aujan mournede","austell","ballard","basingstoke
+ hants","berks","berkshire","bluffton","branch","branson","byron","campbellsville","carnation","central valley","chalk riber
+","chehalis","city of commerce","clackamas","clarkston"]}}],"classifications":["geoPoint"]}]}],"associations":{},"locale":{"
+0":"e","1":"n","2":"-","3":"U","4":"S"},"defaultCalendar":{"id":"autoCalendar","name":"autoCalendar","appliedToTags":["$date
+"],"derivedFields":[{"id":"Decade","name":"Decade","translation":"","definition":"Dual(Div(Year($1),10)*10, MakeDate(Div(Yea
+r($1),10)*10, 1, 1))","tags":["$axis","$decade"],"selected":false},{"id":"Year","name":"Year","translation":"scripteditor.au
+toCalendarYear","definition":"Dual(Year($1), YearStart($1))","tags":["$axis","$year"],"selected":true},{"id":"Quarter","name
+":"Quarter","translation":"scripteditor.autoCalendarQuarter","definition":"Dual('Q'&Num(Ceil(Num(Month($1))/3)),Num(Ceil(NUM
+(Month($1))/3),00))","tags":["$quarter","$cyclic"],"selected":true},{"id":"YearQuarter","name":"YearQuarter","translation":"
+scripteditor.autoCalendarQuarterYear","definition":"Dual(Year($1)&'-Q'&Num(Ceil(Num(Month($1))/3)),QuarterStart($1))","tags"
+:["$yearquarter","$qualified"],"selected":true},{"id":"_YearQuarter","name":"_YearQuarter","translation":"scripteditor.autoC
+alendarQuarterYear","definition":"Dual('Q'&Num(Ceil(Num(Month($1))/3)),QuarterStart($1))","tags":["$yearquarter","$hidden","
+$simplified"],"selected":true},{"id":"Month","name":"Month","translation":"scripteditor.autoCalendarMonth","definition":"Mon
+th($1)","tags":["$month","$cyclic"],"selected":true},{"id":"YearMonth","name":"YearMonth","translation":"scripteditor.autoCa
+lendarMonthYear","definition":"Dual(Year($1)&'-'&Month($1), monthstart($1))","tags":["$axis","$yearmonth","$qualified"],"sel
+ected":true},{"id":"_YearMonth","name":"_YearMonth","translation":"scripteditor.autoCalendarMonthYear","definition":"Dual(Mo
+nth($1), monthstart($1))","tags":["$axis","$yearmonth","$simplified","$hidden"],"selected":true},{"id":"Week","name":"Week",
+"translation":"scripteditor.autoCalendarWeek","definition":"Dual('W'&Num(Week($1),00), Num(Week($1),00))","tags":["$weeknumb
+er","$cyclic"],"selected":true},{"id":"YearWeek","name":"YearWeek","translation":"","definition":"Dual(Year($1)&'-W'&num(Wee
+k($1),00), weekstart($1))","tags":["$yearweek"],"selected":false},{"id":"WeekDay","name":"WeekDay","translation":"","definit
+ion":"Dual(WeekDay($1),num(WeekDay($1)))","tags":["$weekday"],"selected":false},{"id":"Date","name":"Date","translation":"sc
+ripteditor.autoCalendarDate","definition":"Date(Floor($1))","tags":["$axis","$date","$qualified"],"selected":true},{"id":"_D
+ate","name":"_Date","translation":"scripteditor.autoCalendarDate","definition":"Date(Floor($1), 'D')","tags":["$axis","$date
+","$hidden","$simplified"],"selected":true}],"groups":[{"name":"YearMonthDay","drillDown":"true","fieldRefs":["Year","Month"
+,"WeekDay"]},{"name":"YearMonth","drillDown":"false","fieldRefs":["Year","Month"]}],"deriveFieldsType":"fieldExplicit"},"sch
+emaVersion":2.1}}}
+<-- {"jsonrpc":"2.0","id":42,"result":{"qPropEntry":{"qProperty":{"qInfo":{"qId":"yKNmU","qType":"sheet"},"qMetaDef":{"title
+":"Mitt nya ark","description":""},"creationDate":"2025-05-06T06:49:37.215Z","rank":null,"thumbnail":{"qStaticContentUrlDef"
+:{}},"columns":24,"rows":12,"cells":[{"bounds":{"x":0,"y":0,"width":100,"height":50},"col":0,"colspan":24,"name":"ZwWGj","ro
+w":0,"rowspan":6,"smartGrid":{"rowIdx":0,"itemIdx":0,"item":{"width":1}},"type":"auto-chart"},{"bounds":{"x":0,"y":50,"width
+":100,"height":50},"col":0,"colspan":24,"name":"SUXaLDP","row":6,"rowspan":6,"smartGrid":{"rowIdx":1,"itemIdx":0,"item":{"wi
+dth":1}},"type":"barchart"}],"qChildListDef":{"qData":{"title":"/title"}},"gridMode":"simpleEdit","layoutOptions":{"extendab
+le":false}},"qChildren":[{"qProperty":{"qInfo":{"qId":"ZwWGj","qType":"auto-chart"},"qMetaDef":{},"qHyperCubeDef":{"qDimensi
+ons":[{"qDef":{"qGrouping":"N","qFieldDefs":["city"],"qFieldLabels":[""],"qSortCriterias":[{"qSortByLoadOrder":1,"qExpressio
+n":{}}],"qNumberPresentations":[],"qActiveField":0,"autoSort":true,"cId":"ekppTys","othersLabel":"Ã–vriga"},"qOtherTotalSpec
+":{"qOtherMode":"OTHER_OFF","qOtherCounted":{"qv":"10"},"qOtherLimit":{"qv":"0"},"qOtherLimitMode":"OTHER_GE_LIMIT","qForceB
+adValueKeeping":true,"qApplyEvenWhenPossiblyWrongResult":true,"qOtherSortMode":"OTHER_SORT_DESCENDING","qTotalMode":"TOTAL_O
+FF","qReferencedExpression":{}},"qOtherLabel":{"qv":"Ã–vriga"},"qTotalLabel":{},"qCalcCond":{},"qAttributeExpressions":[],"q
+AttributeDimensions":[],"qCalcCondition":{"qCond":{},"qMsg":{}}}],"qMeasures":[{"qDef":{"qTags":[],"qGrouping":"N","qDef":"C
+ount(address_id)","qNumFormat":{"qType":"U","qnDec":10,"qUseThou":0},"qAccumulate":0,"qActiveExpression":0,"qExpressions":[]
+,"autoSort":true,"cId":"mZKY","numFormatFromTemplate":true},"qSortBy":{"qSortByLoadOrder":1,"qExpression":{}},"qAttributeExp
+ressions":[],"qAttributeDimensions":[],"qCalcCond":{},"qCalcCondition":{"qCond":{},"qMsg":{}},"qTrendLines":[],"qMiniChartDe
+f":{"qSortBy":{"qExpression":{}},"qOtherTotalSpec":{"qOtherMode":"OTHER_OFF","qOtherCounted":{},"qOtherLimit":{},"qOtherLimi
+tMode":"OTHER_GT_LIMIT","qForceBadValueKeeping":true,"qApplyEvenWhenPossiblyWrongResult":true,"qOtherSortMode":"OTHER_SORT_D
+ESCENDING","qTotalMode":"TOTAL_OFF","qReferencedExpression":{}},"qMaxNumberPoints":-1,"qAttributeExpressions":[]}}],"qInterC
+olumnSortOrder":[0,1],"qSuppressMissing":true,"qInitialDataFetch":[],"qReductionMode":"N","qMode":"S","qPseudoDimPos":-1,"qN
+oOfLeftDims":-1,"qMaxStackedCells":5000,"qCalcCond":{},"qTitle":{},"qCalcCondition":{"qCond":{},"qMsg":{}},"qColumnOrder":[]
+,"qExpansionState":[],"qDynamicScript":[],"qLayoutExclude":{"qHyperCubeDef":{"qDimensions":[],"qMeasures":[],"qInterColumnSo
+rtOrder":[],"qInitialDataFetch":[],"qReductionMode":"N","qMode":"S","qPseudoDimPos":-1,"qNoOfLeftDims":-1,"qMaxStackedCells"
+:5000,"qCalcCond":{},"qTitle":{},"qCalcCondition":{"qCond":{},"qMsg":{}},"qColumnOrder":[],"qExpansionState":[],"qDynamicScr
+ipt":[]}}},"script":"","filter":null,"showTitles":true,"title":"","subtitle":"","footnote":"","disableNavMenu":false,"showDe
+tails":true,"showDetailsExpression":false,"visualization":"auto-chart","qUndoExclude":{"hashCode":-478795087,"generated":{"g
+aLayers":[{"type":"PointLayer","cId":"cao_geoPointLayer","locationOrLatitude":{"key":"=[das.raw__adventure_works__addresses.
+city_GeoInfo]","label":"das.raw__adventure_works__addresses.city_GeoInfo","type":"expression"},"locationDefault":"=[Customer
+s.City_GeoInfo]","locationNamesAuto":true,"locationType":"","locationCountry":{"key":"","label":"","type":""},"locationAdmin
+1":{"key":"","label":"","type":""},"locationAdmin2":{"key":"","label":"","type":""},"maxObjects":4000,"showLayer":true,"hide
+CalcCond":false,"exclFromAutozoom":false,"layerSelectionsDisabled":false,"color":{"outline":{"index":-1,"color":"#7b7a78"},"
+outlineOpacity":1,"opacity":1,"auto":false,"mode":"byMeasure","paletteColor":{"index":6,"color":"#4477aa"},"measureScheme":"
+sg","dimensionScheme":"12","colorExpression":"","expressionIsColor":true,"measureMin":0,"measureMax":10,"byMeasureDef":{"key
+":"=Count([address_id])","label":"Count address_id","type":"expression"},"altLabel":"Count address_id"},"displayLegend":"aut
+o","showSizeLegend":true,"showToolTip":true,"showInAllLevels":true,"zoomRange":[0,20],"showPopUp":true,"displayUnselected":f
+alse,"label":{"show":false,"expression":{"key":"city","label":"dimension.qDef.qFieldDefs[0]","type":"expression"},"position"
+:"TOP","showInAllLevels":true,"visibleRange":[0,20]},"drillDown":{"auto":true,"showLevel0":true,"showLevel1":true,"showLevel
+2":true,"showLevel3":true,"showLevel4":true,"showLevel5":true,"showLevel6":true,"showLevel7":true},"qHyperCubeDef":{"qDimens
+ions":[{"qDef":{"qGrouping":"N","qFieldDefs":["[city]"],"qFieldLabels":["city"],"qSortCriterias":[],"qNumberPresentations":[
+],"qActiveField":0,"cId":"dd0"},"qOtherTotalSpec":{"qOtherMode":"OTHER_OFF","qOtherCounted":{},"qOtherLimit":{},"qOtherLimit
+Mode":"OTHER_GT_LIMIT","qForceBadValueKeeping":true,"qApplyEvenWhenPossiblyWrongResult":true,"qOtherSortMode":"OTHER_SORT_DE
+SCENDING","qTotalMode":"TOTAL_OFF","qReferencedExpression":{}},"qOtherLabel":{},"qTotalLabel":{},"qCalcCond":{},"qAttributeE
+xpressions":[{"qExpression":"=Count([address_id])","id":"colorByAlternative","label":"Count address_id"}],"qAttributeDimensi
+ons":[],"qCalcCondition":{"qCond":{},"qMsg":{}}}],"qMeasures":[],"qInterColumnSortOrder":[],"qInitialDataFetch":[],"qReducti
+onMode":"N","qMode":"S","qPseudoDimPos":-1,"qNoOfLeftDims":-1,"qMaxStackedCells":5000,"qCalcCond":{},"qTitle":{},"qCalcCondi
+tion":{"qCond":{},"qMsg":{}},"qColumnOrder":[],"qExpansionState":[],"qDynamicScript":[]},"tooltip":{"auto":true,"data":{"qHy
+perCubeDef":{"qDimensions":[],"qMeasures":[],"qInterColumnSortOrder":[],"qInitialDataFetch":[{"qLeft":0,"qTop":0,"qWidth":1,
+"qHeight":0}],"qReductionMode":"N","qMode":"S","qPseudoDimPos":-1,"qNoOfLeftDims":-1,"qMaxStackedCells":5000,"qCalcCond":{},
+"qTitle":{},"qCalcCondition":{"qCond":{},"qMsg":{}},"qColumnOrder":[],"qExpansionState":[],"qDynamicScript":[]}}},"size":{"r
+adiusMin":4,"radiusMax":12,"radiusValueMin":0,"radiusValueMax":1,"autoRadiusValueRange":true,"expression":{"key":"","label":
+"","type":"","qNumFormat":{"qType":"U"}},"label":"","slider":[8,24],"sliderSingle":16,"shape":"points","formatting":{"qNumFo
+rmat":{"qType":"U"}}}}],"mapSettings":{"_layerType":"","baseMap":"default","projection":"default","mapLanguage":"auto","useI
+mperialUnits":false,"selectionType":"lasso","initialView":null,"showLegend":true,"sidebarAlignment":"auto","showFindLocation
+Button":false,"showScaleBar":true,"zoomLimitSwitch":false,"zoomLimit":{"range":[0,20]},"panLimitSwitch":false,"panLimits":nu
+ll,"showDebugInfo":false,"labelColoring":"auto","selection":{"color":{"index":-1,"color":"#ff41ff"}}},"autoZoomOnSelection":
+true,"showTitles":true,"title":"","subtitle":"","footnote":"","disableNavMenu":false,"showDetails":true,"showDetailsExpressi
+on":false,"qStateName":"","navigation":false,"qInfo":{"qType":"map"},"visualization":"map","gaVersion":2,"layers":[],"compon
+ents":[],"recommendation":{"chartType":"map","options":{"visualization":"map","gaVersion":2,"gaLayers":[{"type":"PointLayer"
+,"cId":"cao_geoPointLayer","locationOrLatitude":{"key":"=[das.raw__adventure_works__addresses.city_GeoInfo]","label":"das.ra
+w__adventure_works__addresses.city_GeoInfo","type":"expression"},"locationDefault":"=[Customers.City_GeoInfo]","locationName
+sAuto":true,"locationType":"","locationCountry":{"key":"","label":"","type":""},"locationAdmin1":{"key":"","label":"","type"
+:""},"locationAdmin2":{"key":"","label":"","type":""},"maxObjects":4000,"showLayer":true,"hideCalcCond":false,"exclFromAutoz
+oom":false,"layerSelectionsDisabled":false,"color":{"outline":{"index":-1,"color":"#7b7a78"},"outlineOpacity":1,"opacity":1,
+"auto":false,"mode":"byMeasure","paletteColor":{"index":6,"color":"#4477aa"},"measureScheme":"sg","dimensionScheme":"12","co
+lorExpression":"","expressionIsColor":true,"measureMin":0,"measureMax":10,"byMeasureDef":{"key":"=Count([address_id])","labe
+l":"Count address_id","type":"expression"},"altLabel":"Count address_id"},"displayLegend":"auto","showSizeLegend":true,"show
+ToolTip":true,"showInAllLevels":true,"zoomRange":[0,20],"showPopUp":true,"displayUnselected":false,"label":{"show":false,"ex
+pression":{"key":"city","label":"dimension.qDef.qFieldDefs[0]","type":"expression"},"position":"TOP","showInAllLevels":true,
+"visibleRange":[0,20]},"drillDown":{"auto":true,"showLevel0":true,"showLevel1":true,"showLevel2":true,"showLevel3":true,"sho
+wLevel4":true,"showLevel5":true,"showLevel6":true,"showLevel7":true},"qHyperCubeDef":{"qDimensions":[{"qDef":{"qGrouping":"N
+","qFieldDefs":["[city]"],"qFieldLabels":["city"],"qSortCriterias":[],"qNumberPresentations":[],"qActiveField":0,"cId":"dd0"
+},"qOtherTotalSpec":{"qOtherMode":"OTHER_OFF","qOtherCounted":{},"qOtherLimit":{},"qOtherLimitMode":"OTHER_GT_LIMIT","qForce
+BadValueKeeping":true,"qApplyEvenWhenPossiblyWrongResult":true,"qOtherSortMode":"OTHER_SORT_DESCENDING","qTotalMode":"TOTAL_
+OFF","qReferencedExpression":{}},"qOtherLabel":{},"qTotalLabel":{},"qCalcCond":{},"qAttributeExpressions":[{"qExpression":"=
+Count([address_id])","id":"colorByAlternative","label":"Count address_id"}],"qAttributeDimensions":[],"qCalcCondition":{"qCo
+nd":{},"qMsg":{}}}],"qMeasures":[],"qInterColumnSortOrder":[],"qInitialDataFetch":[],"qReductionMode":"N","qMode":"S","qPseu
+doDimPos":-1,"qNoOfLeftDims":-1,"qMaxStackedCells":5000,"qCalcCond":{},"qTitle":{},"qCalcCondition":{"qCond":{},"qMsg":{}},"
+qColumnOrder":[],"qExpansionState":[],"qDynamicScript":[]},"tooltip":{"auto":true,"data":{"qHyperCubeDef":{"qDimensions":[],
+"qMeasures":[],"qInterColumnSortOrder":[],"qInitialDataFetch":[{"qLeft":0,"qTop":0,"qWidth":1,"qHeight":0}],"qReductionMode"
+:"N","qMode":"S","qPseudoDimPos":-1,"qNoOfLeftDims":-1,"qMaxStackedCells":5000,"qCalcCond":{},"qTitle":{},"qCalcCondition":{
+"qCond":{},"qMsg":{}},"qColumnOrder":[],"qExpansionState":[],"qDynamicScript":[]}}},"size":{"radiusMin":4,"radiusMax":12,"ra
+diusValueMin":0,"radiusValueMax":1,"autoRadiusValueRange":true,"expression":{"key":"","label":"","type":"","qNumFormat":{"qT
+ype":"U"}},"label":"","slider":[8,24],"sliderSingle":16,"shape":"points","formatting":{"qNumFormat":{"qType":"U"}}}}],"title
+":"Distribution av Count address_id fÃ¶r city","mapSettings":{"_layerType":"","baseMap":"default","projection":"default","ma
+pLanguage":"auto","useImperialUnits":false,"selectionType":"lasso","initialView":null,"showLegend":true,"sidebarAlignment":"
+auto","showFindLocationButton":false,"showScaleBar":true,"zoomLimitSwitch":false,"zoomLimit":{"range":[0,20]},"panLimitSwitc
+h":false,"panLimits":null,"showDebugInfo":false},"components":[]},"analysis":{"analysis":"geoAnalysis","analysisGroup":"brea
+kdown","description":{"short":"Uppdelning (geospatial)","long":"Visa geografiska bidrag."},"title":"Distribution av Count ad
+dress_id fÃ¶r city","titleTemplate":[{"msgId":"cao.chart.map.2.title","msgParams":{"$$1":0,"$$2":1}},{"msgId":"cao.chart.map
+.title","msgParams":{"$$1":0,"$$3":1}},{"msgId":"cao.chart.map.title","msgParams":{"$$2":0,"$$3":1}},{"msgId":"cao.chart.map
+.title","msgParams":{"$$2":0,"$$4":1}}],"dims":[{"expr":"[city]","cType":"eField","field":"city","locationInfo":{"expr":"=[d
+as.raw__adventure_works__addresses.city_GeoInfo]","mapLayer":"PointLayer","field":"das.raw__adventure_works__addresses.city_
+GeoInfo"},"fieldStats":{"distinctCount":575,"dataType":"string"}}],"msrs":[{"expr":"=Count([address_id])","cType":"eField","
+field":"address_id","fieldStats":{"dataType":"integer","valueRange":{"min":1,"max":434},"classification":["measure"]}}]},"is
+ExtendedAnalysis":false,"matchRecord":{"analysisPrecedentId":"P-GeoMixed-SlotGroup","matches":[{"slot":"$$2","slotRole":"dim
+ension","field":"city"},{"slot":"$$3","slotRole":"measure","field":"address_id","aggr":"Count","overallAggr":"Count"}],"prec
+edentStats":{"matchedFields":0,"uniquePrecedents":0},"renderingId":"P-Map"},"relevance":1,"analysisIntentRelevance":0.225},"
+qUndoExclude":{"hashCode":1049670052,"gaLayers":[{"qHyperCubeDef":{"qDimensions":[{"qDef":{"qGrouping":"N","qFieldDefs":["[c
+ity]"],"qFieldLabels":["city"],"qSortCriterias":[],"qNumberPresentations":[],"qActiveField":0,"cId":"dd0"},"qOtherTotalSpec"
+:{"qOtherMode":"OTHER_OFF","qOtherCounted":{},"qOtherLimit":{},"qOtherLimitMode":"OTHER_GT_LIMIT","qForceBadValueKeeping":tr
+ue,"qApplyEvenWhenPossiblyWrongResult":true,"qOtherSortMode":"OTHER_SORT_DESCENDING","qTotalMode":"TOTAL_OFF","qReferencedEx
+pression":{}},"qOtherLabel":{},"qTotalLabel":{},"qCalcCond":{},"qAttributeExpressions":[{"qExpression":"=Count([address_id])
+","id":"colorByAlternative","label":"Count address_id"},{"qExpression":"=[das.raw__adventure_works__addresses.city_GeoInfo]"
+,"id":"locationOrLatitude"}],"qAttributeDimensions":[],"qCalcCondition":{"qCond":{},"qMsg":{}}}],"qMeasures":[],"qInterColum
+nSortOrder":[],"qInitialDataFetch":[{"qLeft":0,"qTop":0,"qWidth":1,"qHeight":1000}],"qReductionMode":"N","qMode":"S","qPseud
+oDimPos":-1,"qNoOfLeftDims":-1,"qMaxStackedCells":5000,"qCalcCond":{},"qTitle":{},"qCalcCondition":{"qCond":{},"qMsg":{}},"q
+ColumnOrder":[],"qExpansionState":[],"qDynamicScript":[]},"color":{"outline":{"index":-1,"color":"#7b7a78"},"outlineOpacity"
+:1,"opacity":1,"auto":false,"mode":"byMeasure","paletteColor":{"index":6,"color":"#4477aa"},"measureScheme":"sg","dimensionS
+cheme":"12","colorExpression":"","expressionIsColor":true,"measureMin":0,"measureMax":10,"byMeasureDef":{"key":"=Count([addr
+ess_id])","label":"Count address_id","type":"expression"},"altLabel":"Count address_id"}}]}}}},"qChildren":[]},{"qProperty":
+{"qInfo":{"qId":"SUXaLDP","qType":"barchart"},"qMetaDef":{},"qHyperCubeDef":{"qDimensions":[{"qLibraryId":"WWcHPP","qDef":{"
+qGrouping":"N","qFieldDefs":[],"qFieldLabels":[],"qSortCriterias":[{"qSortByNumeric":1,"qSortByAscii":1,"qSortByLoadOrder":1
+,"qExpression":{}},{"qSortByNumeric":1,"qSortByAscii":1,"qSortByLoadOrder":1,"qExpression":{}},{"qSortByNumeric":1,"qSortByA
+scii":1,"qSortByLoadOrder":1,"qExpression":{}},{"qSortByNumeric":1,"qSortByAscii":1,"qSortByLoadOrder":1,"qExpression":{}},{
+"qSortByNumeric":1,"qSortByAscii":1,"qSortByLoadOrder":1,"qExpression":{}},{"qSortByNumeric":1,"qSortByAscii":1,"qSortByLoad
+Order":1,"qExpression":{}}],"qNumberPresentations":[],"qActiveField":0,"autoSort":true,"cId":"XVmGFAq","othersLabel":"Ã–vrig
+a"},"qOtherTotalSpec":{"qOtherMode":"OTHER_OFF","qOtherCounted":{"qv":"10"},"qOtherLimit":{"qv":"0"},"qOtherLimitMode":"OTHE
+R_GE_LIMIT","qForceBadValueKeeping":true,"qApplyEvenWhenPossiblyWrongResult":true,"qOtherSortMode":"OTHER_SORT_DESCENDING","
+qTotalMode":"TOTAL_OFF","qReferencedExpression":{}},"qOtherLabel":{"qv":"Ã–vriga"},"qTotalLabel":{},"qCalcCond":{},"qAttribu
+teExpressions":[],"qAttributeDimensions":[],"qCalcCondition":{"qCond":{},"qMsg":{}},"title":"Address Hierarchy","othersLabel
+":"Others"}],"qMeasures":[{"qLibraryId":"wTZm","qDef":{"qTags":[],"qGrouping":"N","qAccumulate":0,"qActiveExpression":0,"qEx
+pressions":[],"autoSort":false,"cId":"aYzUuch","numFormatFromTemplate":true,"quarantine":{"qNumFormat":{},"isCustomFormatted
+":false}},"qSortBy":{"qSortByNumeric":-1,"qExpression":{}},"qAttributeExpressions":[],"qAttributeDimensions":[],"qCalcCond":
+{},"qCalcCondition":{"qCond":{},"qMsg":{}},"qTrendLines":[],"qMiniChartDef":{"qSortBy":{"qExpression":{}},"qOtherTotalSpec":
+{"qOtherMode":"OTHER_OFF","qOtherCounted":{},"qOtherLimit":{},"qOtherLimitMode":"OTHER_GT_LIMIT","qForceBadValueKeeping":tru
+e,"qApplyEvenWhenPossiblyWrongResult":true,"qOtherSortMode":"OTHER_SORT_DESCENDING","qTotalMode":"TOTAL_OFF","qReferencedExp
+ression":{}},"qMaxNumberPoints":-1,"qAttributeExpressions":[]},"title":"# Addresses"}],"qInterColumnSortOrder":[1,0],"qSuppr
+essMissing":true,"qInitialDataFetch":[{"qLeft":0,"qTop":0,"qWidth":17,"qHeight":500}],"qReductionMode":"N","qMode":"S","qPse
+udoDimPos":-1,"qNoOfLeftDims":-1,"qMaxStackedCells":5000,"qCalcCond":{},"qTitle":{},"qCalcCondition":{"qCond":{},"qMsg":{}},
+"qColumnOrder":[],"qExpansionState":[],"qDynamicScript":[],"columnOrder":[]},"script":"","filter":null,"showTitles":true,"ti
+tle":"","subtitle":"","footnote":"","disableNavMenu":false,"showDetails":true,"showDetailsExpression":false,"visualization":
+"barchart","refLine":{"refLines":[],"dimRefLines":[]},"showDisclaimer":true,"barGrouping":{"grouping":"grouped"},"orientatio
+n":"vertical","scrollbar":"miniChart","scrollStartPos":0,"gridLine":{"auto":true,"spacing":2},"dataPoint":{"showLabels":fals
+e,"showSegmentLabels":false,"showTotalLabels":true},"color":{"auto":true,"mode":"primary","formatting":{"numFormatFromTempla
+te":true},"useBaseColors":"off","paletteColor":{"index":6},"useDimColVal":true,"useMeasureGradient":true,"persistent":false,
+"expressionIsColor":true,"expressionLabel":"","measureScheme":"sg","reverseScheme":false,"dimensionScheme":"12","autoMinMax"
+:true,"measureMin":0,"measureMax":10},"legend":{"show":true,"dock":"auto","showTitle":true},"dimensionAxis":{"continuousAuto
+":true,"show":"all","label":"auto","dock":"near","axisDisplayMode":"auto","maxVisibleItems":10},"preferContinuousAxis":true,
+"measureAxis":{"show":"all","dock":"near","spacing":1,"autoMinMax":true,"minMax":"min","min":0,"max":10},"tooltip":{"auto":t
+rue,"hideBasic":false,"chart":{"style":{"size":"medium"}},"data":{},"title":"","description":""},"version":"1.38.4","compone
+nts":[{"key":"general"},{"key":"bar"}],"showMiniChartForContinuousAxis":true,"qLayoutExclude":{"disabled":{"qExtendsId":"","
+qUndoExclude":{"hashCode":680043777,"generated":{"qHyperCubeDef":{"qDimensions":[{"qLibraryId":"WWcHPP","qDef":{"qGrouping":
+"N","qFieldDefs":[],"qFieldLabels":[],"qSortCriterias":[{"qSortByNumeric":1,"qSortByAscii":1,"qSortByLoadOrder":1,"qExpressi
+on":{}},{"qSortByNumeric":1,"qSortByAscii":1,"qSortByLoadOrder":1,"qExpression":{}},{"qSortByNumeric":1,"qSortByAscii":1,"qS
+ortByLoadOrder":1,"qExpression":{}},{"qSortByNumeric":1,"qSortByAscii":1,"qSortByLoadOrder":1,"qExpression":{}},{"qSortByNum
+eric":1,"qSortByAscii":1,"qSortByLoadOrder":1,"qExpression":{}},{"qSortByNumeric":1,"qSortByAscii":1,"qSortByLoadOrder":1,"q
+Expression":{}}],"qNumberPresentations":[],"qActiveField":0,"autoSort":true,"cId":"jKyJFm","othersLabel":"Ã–vriga"},"qOtherT
+otalSpec":{"qOtherMode":"OTHER_OFF","qOtherCounted":{"qv":"10"},"qOtherLimit":{"qv":"0"},"qOtherLimitMode":"OTHER_GE_LIMIT",
+"qForceBadValueKeeping":true,"qApplyEvenWhenPossiblyWrongResult":true,"qOtherSortMode":"OTHER_SORT_DESCENDING","qTotalMode":
+"TOTAL_OFF","qReferencedExpression":{}},"qOtherLabel":{"qv":"Ã–vriga"},"qTotalLabel":{},"qCalcCond":{},"qAttributeExpression
+s":[],"qAttributeDimensions":[],"qCalcCondition":{"qCond":{},"qMsg":{}},"othersLabel":"Others"}],"qMeasures":[{"qLibraryId":
+"wTZm","qDef":{"qTags":[],"qGrouping":"N","qAccumulate":0,"qActiveExpression":0,"qExpressions":[],"autoSort":true,"cId":"pce
+s","numFormatFromTemplate":true,"quarantine":{"qNumFormat":{},"isCustomFormatted":false}},"qSortBy":{"qSortByNumeric":-1,"qS
+ortByLoadOrder":1,"qExpression":{}},"qAttributeExpressions":[],"qAttributeDimensions":[],"qCalcCond":{},"qCalcCondition":{"q
+Cond":{},"qMsg":{}},"qTrendLines":[],"qMiniChartDef":{"qSortBy":{"qExpression":{}},"qOtherTotalSpec":{"qOtherMode":"OTHER_OF
+F","qOtherCounted":{},"qOtherLimit":{},"qOtherLimitMode":"OTHER_GT_LIMIT","qForceBadValueKeeping":true,"qApplyEvenWhenPossib
+lyWrongResult":true,"qOtherSortMode":"OTHER_SORT_DESCENDING","qTotalMode":"TOTAL_OFF","qReferencedExpression":{}},"qMaxNumbe
+rPoints":-1,"qAttributeExpressions":[]}}],"qInterColumnSortOrder":[1,0],"qSuppressMissing":true,"qInitialDataFetch":[{"qLeft
+":0,"qTop":0,"qWidth":17,"qHeight":500}],"qReductionMode":"N","qMode":"S","qPseudoDimPos":-1,"qNoOfLeftDims":-1,"qMaxStacked
+Cells":5000,"qCalcCond":{},"qTitle":{},"qCalcCondition":{"qCond":{},"qMsg":{}},"qColumnOrder":[],"qExpansionState":[],"qDyna
+micScript":[],"columnOrder":[]},"script":"","filter":null,"refLine":{"refLines":[],"dimRefLines":[]},"showTitles":true,"titl
+e":"","subtitle":"","footnote":"","disableNavMenu":false,"showDetails":true,"showDetailsExpression":false,"showDisclaimer":t
+rue,"qStateName":"","barGrouping":{"grouping":"grouped"},"orientation":"vertical","scrollbar":"miniChart","scrollStartPos":0
+,"gridLine":{"auto":true,"spacing":2},"dataPoint":{"showLabels":false,"showSegmentLabels":false,"showTotalLabels":true},"col
+or":{"auto":true,"mode":"primary","formatting":{"numFormatFromTemplate":true},"useBaseColors":"off","paletteColor":{"index":
+6},"useDimColVal":true,"useMeasureGradient":true,"persistent":false,"expressionIsColor":true,"expressionLabel":"","measureSc
+heme":"sg","reverseScheme":false,"dimensionScheme":"12","autoMinMax":true,"measureMin":0,"measureMax":10},"legend":{"show":t
+rue,"dock":"auto","showTitle":true},"dimensionAxis":{"continuousAuto":true,"show":"all","label":"auto","dock":"near","axisDi
+splayMode":"auto","maxVisibleItems":10},"preferContinuousAxis":true,"measureAxis":{"show":"all","dock":"near","spacing":1,"a
+utoMinMax":true,"minMax":"min","min":0,"max":10},"tooltip":{"auto":true,"hideBasic":false,"chart":{"style":{"size":"medium"}
+},"data":{}},"qInfo":{"qType":"barchart"},"visualization":"barchart","version":"1.38.4","components":[],"showMiniChartForCon
+tinuousAxis":true,"isRecommended":true,"qLayoutExclude":{"quarantine":{"conditionalShowHide":{"measures":{},"dimensions":{}}
+},"disabled":{}},"recommendation":{"options":{},"analysis":{"analysis":"rank","analysisGroup":"rank","description":{"short":
+"Rangordning","long":"Visa dimensioner efter deras bidrag."},"title":"# Addresses efter Address Hierarchy","titleTemplate":[
+{"msgId":"cao.chart.rank.2.title","msgParams":{"$$1":1,"$$2":0}}],"dims":[{"expr":"WWcHPP","cType":"eLibItem","libId":"WWcHP
+P","label":"Address Hierarchy","fieldStats":{"distinctCount":74,"dataType":"integer"}}],"msrs":[{"expr":"wTZm","overridenMsr
+Format":{"qType":"U","qnDec":10,"qUseThou":0},"masterMsrFormat":{"qType":"U","qnDec":10,"qUseThou":0},"coloring":{},"cType":
+"eLibItem","libId":"wTZm","label":"# Addresses","fieldStats":{"dataType":"integer","valueRange":{"min":1,"max":4564},"classi
+fication":["measure"]}}],"colorByExpr":{"expr":"wTZm","byMeasure":true,"measureScheme":"sg","reverseScheme":true,"label":"# 
+Addresses","overridenMsrFormat":{"qType":"U","qnDec":10,"qUseThou":0},"masterMsrFormat":{"qType":"U","qnDec":10,"qUseThou":0
+},"coloring":{},"cType":"eLibItem","libId":"wTZm","basedOns":["$$2"]}},"isExtendedAnalysis":false,"matchRecord":{"analysisPr
+ecedentId":"P-Rank","matches":[{"slot":"$$1","slotRole":"dimension","libId":"WWcHPP","libIdLabel":"Address Hierarchy"},{"slo
+t":"$$2","slotRole":"measure","libId":"wTZm","libIdLabel":"# Addresses","overallAggr":"count"}],"parameters":[{"name":"favou
+rableTrend","type":"oneOfOptions","options":[{"value":"up","msgId":"cao.macroAnalysis.parameters.favourableTrend.up","locali
+zedMsg":"UppÃ¥t"},{"value":"down","msgId":"cao.macroAnalysis.parameters.favourableTrend.down","localizedMsg":"NedÃ¥t"}],"def
+ault":"up","msgId":"cao.macroAnalysis.parameters.favourableTrend","value":"up","localizedMsg":"Gynnsam trend"}],"precedentSt
+ats":{"matchedFields":0,"uniquePrecedents":0}},"relevance":1,"analysisIntentRelevance":0.09000000000000001}}}},"quarantine":
+{}}},"qChildren":[]}]}}}
+--> {"jsonrpc":"2.0","delta":false,"method":"CreateSessionObject","handle":1,"id":43,"params":[{"qInfo":{"qType":"qlik_cli_e
+ntity_list"},"qVariableListDef":{"qType":"variable","qData":{"id":"/qInfo/qId","title":"/qMetaDef/title","name":"/qMetaDef/n
+ame"}}}]}
+<-- {"jsonrpc":"2.0","id":43,"result":{"qReturn":{"qType":"GenericObject","qHandle":10,"qGenericType":"qlik_cli_entity_list"
+,"qGenericId":"27ce755d-9388-4cb3-85a0-a7dfb174f31d"}},"change":[10]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetLayout","handle":10,"id":44,"params":[]}
+<-- {"jsonrpc":"2.0","id":44,"result":{"qLayout":{"qInfo":{"qId":"27ce755d-9388-4cb3-85a0-a7dfb174f31d","qType":"qlik_cli_en
+tity_list"},"qMeta":{"privileges":["read","update","delete"]},"qSelectionInfo":{},"qVariableList":{"qItems":[{"qName":"name"
+,"qDefinition":"das.raw__adventure_works__addresses","qMeta":{"privileges":["read","update","delete"]},"qInfo":{"qId":"22697
+c46-f061-4932-a74e-c0beafe03739","qType":"variable"},"qData":{"id":"","title":"","name":""},"qIsScriptCreated":true},{"qName
+":"index","qDefinition":"0","qMeta":{"privileges":["read","update","delete"]},"qInfo":{"qId":"f129ccd7-198d-4e0d-822f-8ce830
+3820ae","qType":"variable"},"qData":{"id":"","title":"","name":""},"qIsScriptCreated":true},{"qName":"currentName","qDefinit
+ion":"das.raw__adventure_works__addresses","qMeta":{"privileges":["read","update","delete"]},"qInfo":{"qId":"409e2e87-5fd2-4
+f77-9649-b49f345d759e","qType":"variable"},"qData":{"id":"","title":"","name":""},"qIsScriptCreated":true},{"qName":"matches
+","qDefinition":"0","qMeta":{"privileges":["read","update","delete"]},"qInfo":{"qId":"5afaf86e-36b3-4f52-809c-d062139e5829",
+"qType":"variable"},"qData":{"id":"","title":"","name":""},"qIsScriptCreated":true}]}}}}
+--> {"jsonrpc":"2.0","delta":false,"method":"DestroySessionObject","handle":1,"id":45,"params":["27ce755d-9388-4cb3-85a0-a7d
+fb174f31d"]}
+<-- {"jsonrpc":"2.0","id":45,"result":{"qSuccess":true},"close":[10]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetVariableByName","handle":1,"id":46,"params":["matches"]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetVariableByName","handle":1,"id":47,"params":["name"]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetVariableByName","handle":1,"id":48,"params":["index"]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetVariableByName","handle":1,"id":49,"params":["currentName"]}
+<-- {"jsonrpc":"2.0","id":46,"result":{"qReturn":{"qType":"GenericVariable","qHandle":11,"qGenericType":"variable","qGeneric
+Id":"5afaf86e-36b3-4f52-809c-d062139e5829"}}}
+<-- {"jsonrpc":"2.0","id":47,"result":{"qReturn":{"qType":"GenericVariable","qHandle":12,"qGenericType":"variable","qGeneric
+Id":"22697c46-f061-4932-a74e-c0beafe03739"}}}
+<-- {"jsonrpc":"2.0","id":48,"result":{"qReturn":{"qType":"GenericVariable","qHandle":13,"qGenericType":"variable","qGeneric
+Id":"f129ccd7-198d-4e0d-822f-8ce8303820ae"}}}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetProperties","handle":13,"id":50,"params":[]}
+<-- {"jsonrpc":"2.0","id":49,"result":{"qReturn":{"qType":"GenericVariable","qHandle":14,"qGenericType":"variable","qGeneric
+Id":"409e2e87-5fd2-4f77-9649-b49f345d759e"}}}
+<-- {"jsonrpc":"2.0","id":50,"result":{"qProp":{"qInfo":{"qId":"f129ccd7-198d-4e0d-822f-8ce8303820ae","qType":"variable"},"q
+MetaDef":{},"qName":"index","qNumberPresentation":{"qType":"U","qnDec":10,"qUseThou":0},"qDefinition":"0"}}}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetProperties","handle":11,"id":51,"params":[]}
+<-- {"jsonrpc":"2.0","id":51,"result":{"qProp":{"qInfo":{"qId":"5afaf86e-36b3-4f52-809c-d062139e5829","qType":"variable"},"q
+MetaDef":{},"qName":"matches","qNumberPresentation":{"qType":"U","qnDec":10,"qUseThou":0},"qDefinition":"0"}}}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetProperties","handle":12,"id":52,"params":[]}
+<-- {"jsonrpc":"2.0","id":52,"result":{"qProp":{"qInfo":{"qId":"22697c46-f061-4932-a74e-c0beafe03739","qType":"variable"},"q
+MetaDef":{},"qName":"name","qNumberPresentation":{"qType":"U","qnDec":10,"qUseThou":0},"qDefinition":"das.raw__adventure_wor
+ks__addresses"}}}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetProperties","handle":14,"id":53,"params":[]}
+<-- {"jsonrpc":"2.0","id":53,"result":{"qProp":{"qInfo":{"qId":"409e2e87-5fd2-4f77-9649-b49f345d759e","qType":"variable"},"q
+MetaDef":{},"qName":"currentName","qNumberPresentation":{"qType":"U","qnDec":10,"qUseThou":0},"qDefinition":"das.raw__advent
+ure_works__addresses"}}}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetScript","handle":1,"id":54,"params":[]}
+<-- {"jsonrpc":"2.0","id":54,"result":{"qScript":"///$tab Main\r\nSET ThousandSep=',';\r\nSET DecimalSep='.';\r\nSET MoneyTh
+ousandSep=',';\r\nSET MoneyDecimalSep='.';\r\nSET MoneyFormat='Â£#,##0.00;-Â£#,##0.00';\r\nSET TimeFormat='hh:mm:ss';\r\nSET
+ DateFormat='DD/MM/YYYY';\r\nSET TimestampFormat='DD/MM/YYYY hh:mm:ss[.fff]';\r\nSET FirstWeekDay=0;\r\nSET BrokenWeeks=0;\r
+\nSET ReferenceDay=4;\r\nSET FirstMonthOfYear=1;\r\nSET CollationLocale='en-GB';\r\nSET CreateSearchIndexOnReload=1;\r\nSET 
+MonthNames='Jan;Feb;Mar;Apr;May;Jun;Jul;Aug;Sept;Oct;Nov;Dec';\r\nSET LongMonthNames='January;February;March;April;May;June;
+July;August;September;October;November;December';\r\nSET DayNames='Mon;Tue;Wed;Thu;Fri;Sat;Sun';\r\nSET LongDayNames='Monday
+;Tuesday;Wednesday;Thursday;Friday;Saturday;Sunday';\r\nSET NumericalAbbreviation='3:k;6:M;9:G;12:T;15:P;18:E;21:Z;24:Y;-3:m
+;-6:Î¼;-9:n;-12:p;-15:f;-18:a;-21:z;-24:y';\r\n\r\n///$tab Automatiskt genererat avsnitt\r\n///$autogenerated\r\nSet dataMan
+agerTables = '','das.raw__adventure_works__addresses';\r\n//This block renames script tables from non generated section whic
+h conflict with the names of managed tables\r\n\r\nFor each name in $(dataManagerTables) \r\n    Let index = 0;\r\n    Let c
+urrentName = name; \r\n    Let tableNumber = TableNumber(name); \r\n    Let matches = 0; \r\n    Do while not IsNull(tableNu
+mber) or (index > 0 and matches > 0)\r\n        index = index + 1; \r\n        currentName = name & '-' & index; \r\n       
+ tableNumber = TableNumber(currentName) \r\n        matches = Match('$(currentName)', $(dataManagerTables));\r\n    Loop \r\
+n    If index > 0 then \r\n            Rename Table '$(name)' to '$(currentName)'; \r\n    EndIf; \r\nNext; \r\nSet dataMana
+gerTables = ;\r\n\r\n\r\nUnqualify *;\r\n\r\n__cityAliasesBase:\r\nLOAD\r\n\tAlias AS [__City],\r\n\tgeoKey AS [__geoKey],\r
+\n\tCountryCode AS [__CityCountryCode]\r\nFROM [lib://feature-space:DataFiles/cityAliases.qvd]\r\n(qvd);\r\n\r\n__cityGeoBas
+e:\r\nLOAD\r\n\tgeoKey AS [__geoKey],\r\n\tgeoPoint AS [__GeoPoint]\r\nFROM [lib://feature-space:DataFiles/cityGeo.qvd]\r\n(
+qvd);\r\n\r\n__cityName2Key:\r\nMAPPING LOAD\r\n\t__City,\r\n\t__geoKey\r\nRESIDENT __cityAliasesBase;\r\n\r\n__cityKey2GeoP
+oint:\r\nMAPPING LOAD\r\n\t__geoKey,\r\n\t__GeoPoint\r\nRESIDENT __cityGeoBase;\r\n\r\n[das.raw__adventure_works__addresses]
+:\r\nLOAD\r\n\t[address_id],\r\n\t[address_line1],\r\n\t[city],\r\n\t[state_province_id],\r\n\t[postal_code],\r\n\t[rowguid]
+,\r\n\t[modified_date],\r\n\t[_dlt_load_id],\r\n\t[address_line2],\r\n\tAPPLYMAP( '__cityKey2GeoPoint', APPLYMAP( '__cityNam
+e2Key', LOWER([city])), '-') AS [das.raw__adventure_works__addresses.city_GeoInfo]\r\n FROM [lib://Analytical Data Storage S
+ystem:DataFiles/Adventure Works/das.raw__adventure_works__addresses.parquet]\r\n(parquet);\r\n\r\n\r\n\r\nTAG FIELD [city] W
+ITH '$geoname', '$relates_das.raw__adventure_works__addresses.city_GeoInfo';\r\nTAG FIELD [das.raw__adventure_works__address
+es.city_GeoInfo] WITH '$geopoint', '$hidden', '$relates_city';\r\n\r\nDROP TABLES __cityAliasesBase, __cityGeoBase;\r\n[auto
+Calendar]: \r\n  DECLARE FIELD DEFINITION Tagged ('$date')\r\nFIELDS\r\n  Dual(Year($1), YearStart($1)) AS [Year] Tagged ('$
+axis', '$year'),\r\n  Dual('Q'&Num(Ceil(Num(Month($1))/3)),Num(Ceil(NUM(Month($1))/3),00)) AS [Quarter] Tagged ('$quarter', 
+'$cyclic'),\r\n  Dual(Year($1)&'-Q'&Num(Ceil(Num(Month($1))/3)),QuarterStart($1)) AS [YearQuarter] Tagged ('$yearquarter', '
+$qualified'),\r\n  Dual('Q'&Num(Ceil(Num(Month($1))/3)),QuarterStart($1)) AS [_YearQuarter] Tagged ('$yearquarter', '$hidden
+', '$simplified'),\r\n  Month($1) AS [Month] Tagged ('$month', '$cyclic'),\r\n  Dual(Year($1)&'-'&Month($1), monthstart($1))
+ AS [YearMonth] Tagged ('$axis', '$yearmonth', '$qualified'),\r\n  Dual(Month($1), monthstart($1)) AS [_YearMonth] Tagged ('
+$axis', '$yearmonth', '$simplified', '$hidden'),\r\n  Dual('W'&Num(Week($1),00), Num(Week($1),00)) AS [Week] Tagged ('$weekn
+umber', '$cyclic'),\r\n  Date(Floor($1)) AS [Date] Tagged ('$axis', '$date', '$qualified'),\r\n  Date(Floor($1), 'D') AS [_D
+ate] Tagged ('$axis', '$date', '$hidden', '$simplified'),\r\n  If (DayNumberOfYear($1) <= DayNumberOfYear(Today()), 1, 0) AS
+ [InYTD] ,\r\n  Year(Today())-Year($1) AS [YearsAgo] ,\r\n  If (DayNumberOfQuarter($1) <= DayNumberOfQuarter(Today()),1,0) A
+S [InQTD] ,\r\n  4*Year(Today())+Ceil(Month(Today())/3)-4*Year($1)-Ceil(Month($1)/3) AS [QuartersAgo] ,\r\n  Ceil(Month(Toda
+y())/3)-Ceil(Month($1)/3) AS [QuarterRelNo] ,\r\n  If(Day($1)<=Day(Today()),1,0) AS [InMTD] ,\r\n  12*Year(Today())+Month(To
+day())-12*Year($1)-Month($1) AS [MonthsAgo] ,\r\n  Month(Today())-Month($1) AS [MonthRelNo] ,\r\n  If(WeekDay($1)<=WeekDay(T
+oday()),1,0) AS [InWTD] ,\r\n  (WeekStart(Today())-WeekStart($1))/7 AS [WeeksAgo] ,\r\n  Week(Today())-Week($1) AS [WeekRelN
+o] ;\r\n\r\nDERIVE FIELDS FROM FIELDS [modified_date] USING [autoCalendar] ;"}}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetAppProperties","handle":1,"id":55,"params":[]}
+<-- {"jsonrpc":"2.0","id":55,"result":{"qProp":{"qTitle":"test-app","qLastReloadTime":"2025-05-06T06:49:36.440Z","qSavedInPr
+oductVersion":"12.2429.0","qThumbnail":{},"qUsage":"ANALYTICS","encrypted":true,"id":"98c246c9-cce6-4fd9-afaf-691c81c9672f",
+"published":false,"owner":"auth0|c0d795e93c2853478859fa8df258ee58b2ce3b5449c73abdc835659a73f3f9aa","ownerId":"67d979c7b7881a
+b6e9dff493","createdDate":"2025-05-05T08:49:49.965Z","modifiedDate":"2025-05-06T06:54:04.051Z","spaceId":"68187b87541e02c791
+ee335a","hassectionaccess":false,"_resourcetype":"app","privileges":["read","update","delete","reload","export","duplicate",
+"change_owner","change_space","export_reduced","source","exportappdata"],"create":[{"resource":"sheet","canCreate":true},{"r
+esource":"bookmark","canCreate":true},{"resource":"snapshot","canCreate":true},{"resource":"story","canCreate":true},{"resou
+rce":"dimension","canCreate":true},{"resource":"measure","canCreate":true},{"resource":"masterobject","canCreate":true},{"re
+source":"sheetgroup","canCreate":true},{"resource":"variable","canCreate":true}]}}}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetConnections","handle":1,"id":56,"params":[]}
+<-- {"jsonrpc":"2.0","id":56,"result":{"qConnections":[]}}

@@ -1,0 +1,58 @@
+<-- {"jsonrpc":"2.0","method":"OnConnected","params":{"qSessionState":"SESSION_CREATED"}}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetActiveDoc","handle":-1,"id":1,"params":[]}
+<-- {"jsonrpc":"2.0","id":1,"error":{"code":1017,"parameter":"No active document","message":"Unknown error"}}
+--> {"jsonrpc":"2.0","delta":false,"method":"OpenDoc","handle":-1,"id":2,"params":["8c788c59-ced7-45d3-902b-e6634e2a66aa",""
+,"","",true]}
+<-- {"jsonrpc":"2.0","id":2,"result":{"qReturn":{"qType":"Doc","qHandle":1,"qGenericId":"8c788c59-ced7-45d3-902b-e6634e2a66a
+a"}},"change":[1]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetAppLayout","handle":1,"id":3,"params":[]}
+<-- {"jsonrpc":"2.0","id":3,"result":{"qLayout":{"qTitle":"test-script","qFileName":"8c788c59-ced7-45d3-902b-e6634e2a66aa","
+qStateNames":[],"qMeta":{},"qLocaleInfo":{"qDecimalSep":".","qThousandSep":",","qListSep":";","qMoneyDecimalSep":".","qMoney
+ThousandSep":",","qCurrentYear":2025,"qMoneyFmt":"Â£#,##0.00;-Â£#,##0.00","qTimeFmt":"hh:mm:ss","qDateFmt":"DD/MM/YYYY","qTi
+mestampFmt":"DD/MM/YYYY hh:mm:ss[.fff]","qCalendarStrings":{"qDayNames":["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],"qMonthN
+ames":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"],"qLongDayNames":["Monday","Tuesday","Wednes
+day","Thursday","Friday","Saturday","Sunday"],"qLongMonthNames":["January","February","March","April","May","June","July","A
+ugust","September","October","November","December"]},"qFirstWeekDay":0,"qReferenceDay":4,"qFirstMonthOfYear":1,"qCollation":
+"en-GB","qNumericalAbbreviation":"3:k;6:M;9:G;12:T;15:P;18:E;21:Z;24:Y;-3:m;-6:Î¼;-9:n;-12:p;-15:f;-18:a;-21:z;-24:y"},"qIsO
+penedWithoutData":true,"qThumbnail":{},"qUnsupportedFeatures":[],"qUsage":"DATA_PREPARATION","encrypted":true,"id":"8c788c59
+-ced7-45d3-902b-e6634e2a66aa","published":false,"owner":"auth0|c0d795e93c2853478859fa8df258ee58b2ce3b5449c73abdc835659a73f3f
+9aa","ownerId":"67d979c7b7881ab6e9dff493","createdDate":"2025-05-06T08:24:38.829Z","modifiedDate":"2025-05-06T08:24:39.341Z"
+,"spaceId":"68187b87541e02c791ee335a","hassectionaccess":false,"_resourcetype":"app","privileges":["read","update","delete",
+"reload","export","duplicate","change_owner","change_space","export_reduced","source","exportappdata"],"create":[{"resource"
+:"sheet","canCreate":true},{"resource":"bookmark","canCreate":true},{"resource":"snapshot","canCreate":true},{"resource":"st
+ory","canCreate":true},{"resource":"dimension","canCreate":true},{"resource":"measure","canCreate":true},{"resource":"master
+object","canCreate":true},{"resource":"sheetgroup","canCreate":true},{"resource":"variable","canCreate":true}]}}}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetAllInfos","handle":1,"id":4,"params":[]}
+<-- {"jsonrpc":"2.0","id":4,"result":{"qInfos":[]}}
+--> {"jsonrpc":"2.0","delta":false,"method":"CreateSessionObject","handle":1,"id":5,"params":[{"qInfo":{"qType":"qlik_cli_en
+tity_list"},"qVariableListDef":{"qType":"variable","qData":{"id":"/qInfo/qId","title":"/qMetaDef/title","name":"/qMetaDef/na
+me"}}}]}
+<-- {"jsonrpc":"2.0","id":5,"result":{"qReturn":{"qType":"GenericObject","qHandle":2,"qGenericType":"qlik_cli_entity_list","
+qGenericId":"d95055f5-30b3-4e69-aeb2-1ab4ec3f46ac"}},"change":[2]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetLayout","handle":2,"id":6,"params":[]}
+<-- {"jsonrpc":"2.0","id":6,"result":{"qLayout":{"qInfo":{"qId":"d95055f5-30b3-4e69-aeb2-1ab4ec3f46ac","qType":"qlik_cli_ent
+ity_list"},"qMeta":{"privileges":["read","update","delete"]},"qSelectionInfo":{},"qVariableList":{"qItems":[]}}}}
+--> {"jsonrpc":"2.0","delta":false,"method":"DestroySessionObject","handle":1,"id":7,"params":["d95055f5-30b3-4e69-aeb2-1ab4
+ec3f46ac"]}
+<-- {"jsonrpc":"2.0","id":7,"result":{"qSuccess":true},"close":[2]}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetScript","handle":1,"id":8,"params":[]}
+<-- {"jsonrpc":"2.0","id":8,"result":{"qScript":"///$tab Main\r\nSET ThousandSep=',';\r\nSET DecimalSep='.';\r\nSET MoneyTho
+usandSep=',';\r\nSET MoneyDecimalSep='.';\r\nSET MoneyFormat='Â£#,##0.00;-Â£#,##0.00';\r\nSET TimeFormat='hh:mm:ss';\r\nSET 
+DateFormat='DD/MM/YYYY';\r\nSET TimestampFormat='DD/MM/YYYY hh:mm:ss[.fff]';\r\nSET FirstWeekDay=0;\r\nSET BrokenWeeks=0;\r\
+nSET ReferenceDay=4;\r\nSET FirstMonthOfYear=1;\r\nSET CollationLocale='en-GB';\r\nSET MonthNames='Jan;Feb;Mar;Apr;May;Jun;J
+ul;Aug;Sept;Oct;Nov;Dec';\r\nSET LongMonthNames='January;February;March;April;May;June;July;August;September;October;Novembe
+r;December';\r\nSET DayNames='Mon;Tue;Wed;Thu;Fri;Sat;Sun';\r\nSET LongDayNames='Monday;Tuesday;Wednesday;Thursday;Friday;Sa
+turday;Sunday';\r\nSET NumericalAbbreviation='3:k;6:M;9:G;12:T;15:P;18:E;21:Z;24:Y;-3:m;-6:Î¼;-9:n;-12:p;-15:f;-18:a;-21:z;-
+24:y';\r\n"}}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetAppProperties","handle":1,"id":9,"params":[]}
+<-- {"jsonrpc":"2.0","id":9,"result":{"qProp":{"qTitle":"test-script","qSavedInProductVersion":"12.2429.0","qThumbnail":{},"
+qUsage":"DATA_PREPARATION","encrypted":true,"id":"8c788c59-ced7-45d3-902b-e6634e2a66aa","published":false,"owner":"auth0|c0d
+795e93c2853478859fa8df258ee58b2ce3b5449c73abdc835659a73f3f9aa","ownerId":"67d979c7b7881ab6e9dff493","createdDate":"2025-05-0
+6T08:24:38.829Z","modifiedDate":"2025-05-06T08:24:39.341Z","spaceId":"68187b87541e02c791ee335a","hassectionaccess":false,"_r
+esourcetype":"app","privileges":["read","update","delete","reload","export","duplicate","change_owner","change_space","expor
+t_reduced","source","exportappdata"],"create":[{"resource":"sheet","canCreate":true},{"resource":"bookmark","canCreate":true
+},{"resource":"snapshot","canCreate":true},{"resource":"story","canCreate":true},{"resource":"dimension","canCreate":true},{
+"resource":"measure","canCreate":true},{"resource":"masterobject","canCreate":true},{"resource":"sheetgroup","canCreate":tru
+e},{"resource":"variable","canCreate":true}]}}}
+--> {"jsonrpc":"2.0","delta":false,"method":"GetConnections","handle":1,"id":10,"params":[]}
+<-- {"jsonrpc":"2.0","id":10,"result":{"qConnections":[]}}
