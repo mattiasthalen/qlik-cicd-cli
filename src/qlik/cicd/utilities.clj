@@ -93,4 +93,15 @@
 
 #_{:clj-kondo/ignore [:unused-binding]}
 (defn unbuild-app [env app-id target-path]
+  ;; extract properties.json
+  ;; extract script.qvs
+
+  ;; if app is not script app:
+  ;;   - extract connections.yml
+  ;;   - extract variables.json
+  ;;   - extract objects/*.json
+  ;;   - extract dimensions.json
+  ;;   - extract measures.json
+  ;;   - extract variables.json
+
   (println "Unbuild-app function not implemented yet"))
