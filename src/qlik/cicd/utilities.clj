@@ -55,6 +55,14 @@
           id
           (throw (ex-info "Failed to create space" {:name name :response resp})))))))
 
+(defn is-script-app?
+  [env app-id]
+  (when (nil? app-id)
+    (throw (ex-info "app-id cannot be nil" {:function "is-script-app?"})))
+  (let [items (api/get-items env {:resource-id app-id :resource-type "app"})
+        app (first items)]
+    (= "script" (:resourceSubType app))))
+
 #_{:clj-kondo/ignore [:unused-binding]}
 (defn unbuild-app [env app-id target-path]
   (println "Unbuild-app function not implemented yet"))

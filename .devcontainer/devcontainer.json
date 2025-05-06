@@ -16,9 +16,9 @@
                 "oderwat.indent-rainbow",
                 "bierner.markdown-mermaid",
                 "betterthantomorrow.calva",
-                "betterthantomorrow.calva-mcp-server",
+                "betterthantomorrow.calva-backseat-driver",
                 "eamodio.gitlens",
-                "betterthantomorrow.calva-backseat-driver"
+                "ms-vscode.vscode-speech"
             ],
             "settings": {
                 "files.eol": "\n",

@@ -74,7 +74,7 @@
 (test/deftest get-items-no-params-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
-                  (test/is (= endpoint "/items"))
+                  (test/is (= endpoint "items"))
                   {:status 200 :body {:data [{:id "1"}]}})]
     (let [result (api/get-items env)]
       (test/is (= [{:id "1"}] result)))))
@@ -82,7 +82,7 @@
 (test/deftest get-items-name-only-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
-                  (test/is (= endpoint "/items?name=My%20App"))
+                  (test/is (= endpoint "items?name=My%20App"))
                   {:status 200 :body {:data [{:id "2" :name "My App"}]}})]
     (let [result (api/get-items env {:name "My App"})]
       (test/is (= [{:id "2" :name "My App"}] result)))))
@@ -90,7 +90,7 @@
 (test/deftest get-items-resource-type-only-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
-                  (test/is (= endpoint "/items?resourceType=app"))
+                  (test/is (= endpoint "items?resourceType=app"))
                   {:status 200 :body {:data [{:id "3" :resourceType "app"}]}})]
     (let [result (api/get-items env {:resource-type "app"})]
       (test/is (= [{:id "3" :resourceType "app"}] result)))))
@@ -98,8 +98,8 @@
 (test/deftest get-items-name-and-resource-type-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
-                  (test/is (or (= endpoint "/items?name=My%20App&resourceType=app")
-                               (= endpoint "/items?resourceType=app&name=My%20App")))
+                  (test/is (or (= endpoint "items?name=My%20App&resourceType=app")
+                               (= endpoint "items?resourceType=app&name=My%20App")))
                   {:status 200 :body {:data [{:id "4" :name "My App" :resourceType "app"}]}})]
     (let [result (api/get-items env {:name "My App" :resource-type "app"})]
       (test/is (= [{:id "4" :name "My App" :resourceType "app"}] result)))))
@@ -107,7 +107,7 @@
 (test/deftest get-items-space-id-only-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
-                  (test/is (= endpoint "/items?spaceId=space-123"))
+                  (test/is (= endpoint "items?spaceId=space-123"))
                   {:status 200 :body {:data [{:id "5" :spaceId "space-123"}]}})]
     (let [result (api/get-items env {:space-id "space-123"})]
       (test/is (= [{:id "5" :spaceId "space-123"}] result)))))
@@ -115,15 +115,48 @@
 (test/deftest get-items-name-resource-type-and-space-id-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
-                  (test/is (or (= endpoint "/items?name=My%20App&resourceType=app&spaceId=space-123")
-                               (= endpoint "/items?name=My%20App&spaceId=space-123&resourceType=app")
-                               (= endpoint "/items?resourceType=app&name=My%20App&spaceId=space-123")
-                               (= endpoint "/items?resourceType=app&spaceId=space-123&name=My%20App")
-                               (= endpoint "/items?spaceId=space-123&name=My%20App&resourceType=app")
-                               (= endpoint "/items?spaceId=space-123&resourceType=app&name=My%20App")))
+                  (test/is (or (= endpoint "items?name=My%20App&resourceType=app&spaceId=space-123")
+                               (= endpoint "items?name=My%20App&spaceId=space-123&resourceType=app")
+                               (= endpoint "items?resourceType=app&name=My%20App&spaceId=space-123")
+                               (= endpoint "items?resourceType=app&spaceId=space-123&name=My%20App")
+                               (= endpoint "items?spaceId=space-123&name=My%20App&resourceType=app")
+                               (= endpoint "items?spaceId=space-123&resourceType=app&name=My%20App")))
                   {:status 200 :body {:data [{:id "6" :name "My App" :resourceType "app" :spaceId "space-123"}]}})]
     (let [result (api/get-items env {:name "My App" :resource-type "app" :space-id "space-123"})]
       (test/is (= [{:id "6" :name "My App" :resourceType "app" :spaceId "space-123"}] result)))))
+
+(test/deftest get-items-resource-id-and-resource-type-test #_{:clj-kondo/ignore [:unused-binding]}
+  (with-redefs [api/call-api
+                (fn [env endpoint method payload]
+                  (test/is (or (= endpoint "items?resourceId=resource-abc123&resourceType=app")
+                               (= endpoint "items?resourceType=app&resourceId=resource-abc123")))
+                  {:status 200 :body {:data [{:id "8" :resourceId "resource-abc123" :resourceType "app"}]}})]
+    (let [result (api/get-items env {:resource-id "resource-abc123" :resource-type "app"})]
+      (test/is (= [{:id "8" :resourceId "resource-abc123" :resourceType "app"}] result)))))
+
+(test/deftest get-items-all-params-test #_{:clj-kondo/ignore [:unused-binding]}
+  (with-redefs [api/call-api
+                (fn [env endpoint method payload]
+                  ;; Check that endpoint contains all parameters, order doesn't matter
+                  (test/is (re-matches #"items\?(([^&]*&){3}[^&]*)" endpoint))
+                  (test/is (re-find #"resourceId=resource-abc123" endpoint))
+                  (test/is (re-find #"resourceType=app" endpoint))
+                  (test/is (re-find #"name=My%20App" endpoint))
+                  (test/is (re-find #"spaceId=space-123" endpoint))
+                  {:status 200 :body {:data [{:id "9" 
+                                              :name "My App" 
+                                              :resourceId "resource-abc123" 
+                                              :resourceType "app" 
+                                              :spaceId "space-123"}]}})]
+    (let [result (api/get-items env {:name "My App" 
+                                     :resource-id "resource-abc123" 
+                                     :resource-type "app" 
+                                     :space-id "space-123"})]
+      (test/is (= [{:id "9" 
+                    :name "My App" 
+                    :resourceId "resource-abc123" 
+                    :resourceType "app" 
+                    :spaceId "space-123"}] result)))))
 
 (test/deftest get-spaces-test #_{:clj-kondo/ignore [:unused-binding]}
   (with-redefs [api/call-api
@@ -279,3 +312,8 @@
   (test/testing "Special characters"
     (test/is (= "?q=a%3Db%26c%3Dd" (api/build-query-string {"q" "a=b&c=d"})))
     (test/is (= "?path=%2Fuser%2Fdocs" (api/build-query-string {"path" "/user/docs"})))))
+
+(test/deftest get-items-resource-id-without-resource-type-test
+  (test/is (thrown-with-msg? clojure.lang.ExceptionInfo
+                           #"resource-type is required when resource-id is provided"
+                           (api/get-items env {:resource-id "test-resource-id"}))))

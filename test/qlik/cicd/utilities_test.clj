@@ -120,3 +120,36 @@
     (test/is (thrown-with-msg? clojure.lang.ExceptionInfo
                                #"Failed to create space"
                                (utilities/use-space env "FailSpace")))))
+
+(test/deftest is-script-app?-test #_{:clj-kondo/ignore [:unused-binding]}
+  (with-redefs [api/get-items
+                (fn [env params]
+                  (test/is (= (:resource-id params) "script-app-id"))
+                  (test/is (= (:resource-type params) "app"))
+                  [{:resourceSubType "script"}])]
+    (test/is (true? (utilities/is-script-app? env "script-app-id"))))
+  
+  (with-redefs [api/get-items #_{:clj-kondo/ignore [:unused-binding]}
+                (fn [env params]
+                  (test/is (= (:resource-id params) "non-script-app-id"))
+                  (test/is (= (:resource-type params) "app"))
+                  [{:resourceSubType "other"}])]
+    (test/is (false? (utilities/is-script-app? env "non-script-app-id"))))
+  
+  (with-redefs [api/get-items #_{:clj-kondo/ignore [:unused-binding]}
+                (fn [env params]
+                  (test/is (= (:resource-id params) "no-subtype-app-id"))
+                  (test/is (= (:resource-type params) "app"))
+                  [{:name "Test App"}])]
+    (test/is (false? (utilities/is-script-app? env "no-subtype-app-id"))))
+
+  (with-redefs [api/get-items #_{:clj-kondo/ignore [:unused-binding]}
+                (fn [env params]
+                  (test/is (= (:resource-id params) "non-existent-app-id"))
+                  (test/is (= (:resource-type params) "app"))
+                  [])]
+    (test/is (false? (utilities/is-script-app? env "non-existent-app-id"))))
+  
+  (test/is (thrown-with-msg? clojure.lang.ExceptionInfo
+                           #"app-id cannot be nil"
+                           (utilities/is-script-app? env nil))))

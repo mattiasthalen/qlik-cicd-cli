@@ -27,26 +27,30 @@
   [params]
   (when (seq params)
     (str "?" (clojure.string/join "&"
-                (for [[k v] params]
-                  (let [encoded (-> (str v)
-                                    (java.net.URLEncoder/encode "UTF-8")
-                                    (string/replace "+" "%20"))]
-                    (str k "=" encoded)))))))
+                                  (for [[k v] params]
+                                    (let [encoded (-> (str v)
+                                                      (java.net.URLEncoder/encode "UTF-8")
+                                                      (string/replace "+" "%20"))]
+                                      (str k "=" encoded)))))))
 
 (defn get-items
   "Get items from the API with optional query parameters"
   ([env] (get-items env {}))
-  ([env {:keys [name resource-type space-id]}]
+  ([env {:keys [name resource-type resource-id space-id]}]
+   (when (and resource-id (not resource-type))
+     (throw (ex-info "resource-type is required when resource-id is provided" 
+                     {:resource-id resource-id})))
    (let [query-params (cond-> {}
                         name (assoc "name" name)
                         resource-type (assoc "resourceType" resource-type)
+                        resource-id (assoc "resourceId" resource-id)
                         space-id (assoc "spaceId" space-id))
          query-string (build-query-string query-params)
-         endpoint (str "/items" query-string)
+         endpoint (str "items" query-string)
          response (call-api env endpoint :get nil)]
      (:data (:body response)))))
 
-(defn get-spaces 
+(defn get-spaces
   "Get spaces with optional filters"
   ([env] (get-spaces env {}))
   ([env {:keys [name type]}]
