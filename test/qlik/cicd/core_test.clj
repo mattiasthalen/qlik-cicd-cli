@@ -11,14 +11,14 @@
                :token nil
                :project-path "/path/to/project"}
           required-vars [:server :token :project-path]]
-      (test/is (= [:token] (qlik.cicd.core/get-missing-vars env required-vars))))
+      (test/is (= [:token] (qlik.cicd.core/get-missing-vars env required-vars)))))
 
     (test/testing "No missing variables"
       (let [env {:server "http://example.com"
                  :token "dummy-token"
                  :project-path "/path/to/project"}
             required-vars [:server :token :project-path]]
-        (test/is (empty? (qlik.cicd.core/get-missing-vars env required-vars)))))))
+        (test/is (empty? (qlik.cicd.core/get-missing-vars env required-vars))))))
 
 (test/deftest test-prompt-for-missing-vars
   (test/testing "Prompts for missing variables and updates the environment map"
@@ -85,6 +85,76 @@
         (test/is (= ["my-app" "managed" "space-id-123" "Created by Qlik CI/CD CLI"]
                     (:create-app @called)))
         (test/is (= ["my-app" "feature-branch" "target-space"] (:pull @called)))))))
+
+(test/deftest test-get-target-path
+  (test/testing "Returns correct path for regular app"
+    (let [mock-env {:server "http://example.com"
+                    :token "dummy-token"
+                    :project-path "/test/path"}
+          app-id "app-123"
+          target-space "test-space"
+          app-name "test-app"
+          dir-created (atom false)]
+      
+      (with-redefs [qlik.cicd.utilities/get-app-name (fn [_ _] app-name)
+                    qlik.cicd.utilities/is-script-app? (fn [_ _] false)
+                    clojure.java.io/make-parents (fn [_] (reset! dir-created true) true)]
+        (let [result (qlik.cicd.utilities/get-target-path mock-env app-id target-space)]
+          (test/is (= "/test/path/spaces/test-space/apps/test-app/" result))
+          (test/is @dir-created "Directory should be created")))))
+  
+  (test/testing "Returns correct path for script app"
+    (let [mock-env {:server "http://example.com"
+                    :token "dummy-token"
+                    :project-path "/test/path"}
+          app-id "script-app-123"
+          target-space "test-space"
+          app-name "test-script"
+          dir-created (atom false)]
+      
+      (with-redefs [qlik.cicd.utilities/get-app-name (fn [_ _] app-name)
+                    qlik.cicd.utilities/is-script-app? (fn [_ _] true)
+                    clojure.java.io/make-parents (fn [_] (reset! dir-created true) true)]
+        (let [result (qlik.cicd.utilities/get-target-path mock-env app-id target-space)]
+          (test/is (= "/test/path/spaces/test-space/scripts/test-script/" result))
+          (test/is @dir-created "Directory should be created")))))
+  
+  (test/testing "Throws exception when project path is missing"
+    (let [mock-env {:server "http://example.com"
+                    :token "dummy-token"
+                    :project-path nil}
+          app-id "app-123"
+          target-space "test-space"]
+      
+      (test/is (thrown-with-msg?
+                clojure.lang.ExceptionInfo
+                #"Project path is required"
+                (qlik.cicd.utilities/get-target-path mock-env app-id target-space)))))
+  
+  (test/testing "Throws exception when app-id is nil"
+    (let [mock-env {:server "http://example.com"
+                    :token "dummy-token"
+                    :project-path "/test/path"}
+          app-id nil
+          target-space "test-space"]
+      
+      (test/is (thrown-with-msg?
+                clojure.lang.ExceptionInfo
+                #"app-id cannot be nil"
+                (qlik.cicd.utilities/get-target-path mock-env app-id target-space)))))
+  
+  (test/testing "Throws exception when app-name cannot be found"
+    (let [mock-env {:server "http://example.com"
+                    :token "dummy-token"
+                    :project-path "/test/path"}
+          app-id "unknown-app-id"
+          target-space "test-space"]
+      
+      (with-redefs [qlik.cicd.utilities/get-app-name (fn [_ _] nil)]
+        (test/is (thrown-with-msg?
+                  clojure.lang.ExceptionInfo
+                  #"App with id 'unknown-app-id' not found"
+                  (qlik.cicd.utilities/get-target-path mock-env app-id target-space)))))))
 
 (test/deftest test-parse-args
   (test/testing "Parses named and positional arguments"
@@ -195,15 +265,16 @@
           source-space "source-space"
           target-space "target-space"
           app-id "app-123"
-          dir-created (atom false)
+          target-path "/test/path/spaces/target-space/apps/test-app/"
           unbuild-called (atom false)]
       
       (with-redefs [qlik.cicd.utilities/app-exists? (fn [_ _ _] true)
                     qlik.cicd.utilities/get-app-id (fn [_ _ _] app-id)
-                    clojure.java.io/make-parents (fn [_] (reset! dir-created true) true)
-                    qlik.cicd.utilities/unbuild-app (fn [_ _ _] (reset! unbuild-called true))]
+                    qlik.cicd.utilities/get-target-path (fn [_ _ _] target-path)
+                    qlik.cicd.utilities/unbuild-app (fn [_ _ path] 
+                                                      (test/is (= target-path path))
+                                                      (reset! unbuild-called true))]
         (qlik.cicd.core/pull mock-env app-name source-space target-space)
-        (test/is @dir-created "Directory should be created")
         (test/is @unbuild-called "unbuild-app should be called")))))
 
 (test/deftest test-pull-app-not-exists

@@ -153,3 +153,24 @@
   (test/is (thrown-with-msg? clojure.lang.ExceptionInfo
                            #"app-id cannot be nil"
                            (utilities/is-script-app? env nil))))
+
+(test/deftest test-get-app-name
+  (test/testing "Returns app name for valid app-id"
+    (with-redefs [api/get-items (fn [_ params]
+                                  (test/is (= (:resource-id params) "app-123"))
+                                  (test/is (= (:resource-type params) "app"))
+                                  [{:id "app-123" :name "Test App"}])]
+      (test/is (= "Test App" (utilities/get-app-name env "app-123")))))
+  
+  (test/testing "Returns nil for non-existent app"
+    (with-redefs [api/get-items (fn [_ params]
+                                  (test/is (= (:resource-id params) "non-existent"))
+                                  (test/is (= (:resource-type params) "app"))
+                                  [])]
+      (test/is (nil? (utilities/get-app-name env "non-existent")))))
+  
+  (test/testing "Throws exception when app-id is nil"
+    (test/is (thrown-with-msg?
+              clojure.lang.ExceptionInfo
+              #"app-id cannot be nil"
+              (utilities/get-app-name env nil)))))
