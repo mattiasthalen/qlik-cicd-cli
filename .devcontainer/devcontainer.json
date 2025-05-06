@@ -17,7 +17,8 @@
                 "bierner.markdown-mermaid",
                 "betterthantomorrow.calva",
                 "betterthantomorrow.calva-mcp-server",
-                "eamodio.gitlens"
+                "eamodio.gitlens",
+                "betterthantomorrow.calva-backseat-driver"
             ],
             "settings": {
                 "files.eol": "\n"
