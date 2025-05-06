@@ -1,5 +1,6 @@
 (ns qlik.cicd.core-test
   (:require [clojure.test :as test]
+            [clojure.java.io :as io]
             [qlik.cicd.core]
             [qlik.cicd.utilities]
             [qlik.cicd.api]))
@@ -78,12 +79,12 @@
                     qlik.cicd.utilities/use-space (fn [_ _] "space-id-123")
                     qlik.cicd.api/create-app (fn [_ app-name usage-type space-id desc]
                                                (swap! called assoc :create-app [app-name usage-type space-id desc]))
-                    qlik.cicd.core/pull (fn [_ app-name space-name]
-                                          (swap! called assoc :pull [app-name space-name]))]
+                    qlik.cicd.core/pull (fn [_ app-name source-space target-space]
+                                          (swap! called assoc :pull [app-name source-space target-space]))]
         (qlik.cicd.core/init {} "my-app" "managed" "target-space")
         (test/is (= ["my-app" "managed" "space-id-123" "Created by Qlik CI/CD CLI"]
                     (:create-app @called)))
-        (test/is (= ["my-app" "feature-branch"] (:pull @called)))))))
+        (test/is (= ["my-app" "feature-branch" "target-space"] (:pull @called)))))))
 
 (test/deftest test-parse-args
   (test/testing "Parses named and positional arguments"
@@ -109,7 +110,7 @@
                                            (swap! called assoc :init [env name usage-type target-space]))]
         (qlik.cicd.core/handle-init {} parsed)
         (test/is (= [{} "my-app" "managed" "target-space"] (:init @called))))))
-  
+
   (test/testing "Throws exception when missing required arguments"
     (let [parsed {:name "my-app"}]
       (test/is (thrown-with-msg?
@@ -126,7 +127,7 @@
                                            (swap! called assoc :pull [env app-name space-name]))]
         (qlik.cicd.core/handle-pull {} parsed)
         (test/is (= [{} "my-app" "feature-branch"] (:pull @called))))))
-  
+
   (test/testing "Handles pull command with app name and space name arguments"
     (let [called (atom {})
           parsed {:positional ["pull" "my-app" "custom-space"]}]
@@ -134,7 +135,7 @@
                                            (swap! called assoc :pull [env app-name space-name]))]
         (qlik.cicd.core/handle-pull {} parsed)
         (test/is (= [{} "my-app" "custom-space"] (:pull @called))))))
-  
+
   (test/testing "Throws exception when missing app name argument"
     (let [parsed {:positional ["pull"]}]
       (test/is (thrown-with-msg?
@@ -150,7 +151,7 @@
                                                   (swap! called assoc :handle-init [env p]))]
         (qlik.cicd.core/handle-command {} parsed)
         (test/is (= [{} parsed] (:handle-init @called))))))
-  
+
   (test/testing "Handles pull command"
     (let [called (atom {})
           parsed {:positional ["pull" "my-app"]}]
@@ -158,7 +159,7 @@
                                                   (swap! called assoc :handle-pull [env p]))]
         (qlik.cicd.core/handle-command {} parsed)
         (test/is (= [{} parsed] (:handle-pull @called))))))
-  
+
   (test/testing "Handles simple commands"
     (let [called (atom {})
           parsed {:positional ["push"]}]
@@ -166,7 +167,7 @@
                                            (swap! called assoc :push [env]))]
         (qlik.cicd.core/handle-command {} parsed)
         (test/is (= [{}] (:push @called))))))
-  
+
   (test/testing "Throws exception for invalid command"
     (let [parsed {:positional ["invalid-command"]}]
       (test/is (thrown-with-msg?
@@ -184,3 +185,31 @@
                                                    nil)]
         (qlik.cicd.core/-main "test-cmd")
         (test/is @handle-called "handle-command should be called")))))
+
+(test/deftest test-pull
+  (test/testing "Pulls app from source space to target space"
+    (let [mock-env {:server "http://example.com"
+                    :token "dummy-token"
+                    :project-path "/test/path"}
+          app-name "test-app"
+          source-space "source-space"
+          target-space "target-space"
+          app-id "app-123"
+          dir-created (atom false)
+          unbuild-called (atom false)]
+      
+      (with-redefs [qlik.cicd.utilities/app-exists? (fn [_ _ _] true)
+                    qlik.cicd.utilities/get-app-id (fn [_ _ _] app-id)
+                    clojure.java.io/make-parents (fn [_] (reset! dir-created true) true)
+                    qlik.cicd.utilities/unbuild-app (fn [_ _ _] (reset! unbuild-called true))]
+        (qlik.cicd.core/pull mock-env app-name source-space target-space)
+        (test/is @dir-created "Directory should be created")
+        (test/is @unbuild-called "unbuild-app should be called")))))
+
+(test/deftest test-pull-app-not-exists
+  (test/testing "Throws exception when app does not exist in source space"
+    (with-redefs [qlik.cicd.utilities/app-exists? (fn [_ _ _] false)]
+      (test/is (thrown-with-msg?
+                clojure.lang.ExceptionInfo
+                #"does not exist in source space"
+                (qlik.cicd.core/pull {} "non-existent-app" "source-space" "target-space"))))))

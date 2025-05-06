@@ -2,14 +2,13 @@
     "image": "babashka/babashka",
     "features": {
         "ghcr.io/devcontainers/features/git:1": {},
-        "ghcr.io/devcontainers/features/java:1": {}
+        "ghcr.io/roul/devcontainer-features/mise-java:1": {}
     },
+    "runArgs": ["--env-file", "./.env"],
     "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/qlik-cicd-cli,type=bind",
     "workspaceFolder": "/workspaces/qlik-cicd-cli",
     "containerEnv": {
-        "QLIK__PROJECT_PATH": "/workspaces/qlik-cicd-cli/output",
-        "QLIK__SERVER": "${QLIK__SERVER}",
-        "QLIK__TOKEN": "${QLIK__TOKEN}"
+        "QLIK__PROJECT_PATH": "/workspaces/qlik-cicd-cli/output"
     },
     "customizations": {
         "vscode": {
@@ -18,8 +17,24 @@
                 "bierner.markdown-mermaid",
                 "betterthantomorrow.calva",
                 "betterthantomorrow.calva-mcp-server",
-                "eamodio.gitlens"
-            ]
+                "eamodio.gitlens",
+                "betterthantomorrow.calva-backseat-driver"
+            ],
+            "settings": {
+                "files.eol": "\n",
+                "calva-backseat-driver.enableReplEvaluation": true,
+                "calva.autoStartRepl": true,
+                "calva.replConnectSequences": [
+                    {
+                        "name": "Babashka REPL",
+                        "projectType": "babashka",
+                        "autoSelectForJackIn": true,
+                        "projectRootPath": ["."],
+                        "afterCLJReplJackInCode": "(println \"Babashka REPL connected and ready!\")",
+                        "menuSelections": {}
+                    }
+                ]
+            }
         }
     }
 }

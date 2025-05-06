@@ -54,3 +54,7 @@
         (if id
           id
           (throw (ex-info "Failed to create space" {:name name :response resp})))))))
+
+#_{:clj-kondo/ignore [:unused-binding]}
+(defn unbuild-app [env app-id target-path]
+  (println "Unbuild-app function not implemented yet"))

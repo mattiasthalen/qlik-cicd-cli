@@ -53,8 +53,8 @@
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   {:status 200
-                   :body [{:id "app1" :name "My App"}
-                          {:id "app2" :name "Other App"}]})]
+                   :body {:data [{:id "app1" :name "My App"}
+                                 {:id "app2" :name "Other App"}]}})]
     (let [env {:server "https://example.com" :token "dummy-token"}
           name "My App"
           resource-type "app"
@@ -75,7 +75,7 @@
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   (test/is (= endpoint "/items"))
-                  {:status 200 :body [{:id "1"}]})]
+                  {:status 200 :body {:data [{:id "1"}]}})]
     (let [result (api/get-items env)]
       (test/is (= [{:id "1"}] result)))))
 
@@ -83,7 +83,7 @@
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   (test/is (= endpoint "/items?name=My%20App"))
-                  {:status 200 :body [{:id "2" :name "My App"}]})]
+                  {:status 200 :body {:data [{:id "2" :name "My App"}]}})]
     (let [result (api/get-items env {:name "My App"})]
       (test/is (= [{:id "2" :name "My App"}] result)))))
 
@@ -91,7 +91,7 @@
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   (test/is (= endpoint "/items?resourceType=app"))
-                  {:status 200 :body [{:id "3" :resourceType "app"}]})]
+                  {:status 200 :body {:data [{:id "3" :resourceType "app"}]}})]
     (let [result (api/get-items env {:resource-type "app"})]
       (test/is (= [{:id "3" :resourceType "app"}] result)))))
 
@@ -100,7 +100,7 @@
                 (fn [env endpoint method payload]
                   (test/is (or (= endpoint "/items?name=My%20App&resourceType=app")
                                (= endpoint "/items?resourceType=app&name=My%20App")))
-                  {:status 200 :body [{:id "4" :name "My App" :resourceType "app"}]})]
+                  {:status 200 :body {:data [{:id "4" :name "My App" :resourceType "app"}]}})]
     (let [result (api/get-items env {:name "My App" :resource-type "app"})]
       (test/is (= [{:id "4" :name "My App" :resourceType "app"}] result)))))
 
@@ -108,7 +108,7 @@
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   (test/is (= endpoint "/items?spaceId=space-123"))
-                  {:status 200 :body [{:id "5" :spaceId "space-123"}]})]
+                  {:status 200 :body {:data [{:id "5" :spaceId "space-123"}]}})]
     (let [result (api/get-items env {:space-id "space-123"})]
       (test/is (= [{:id "5" :spaceId "space-123"}] result)))))
 
@@ -121,7 +121,7 @@
                                (= endpoint "/items?resourceType=app&spaceId=space-123&name=My%20App")
                                (= endpoint "/items?spaceId=space-123&name=My%20App&resourceType=app")
                                (= endpoint "/items?spaceId=space-123&resourceType=app&name=My%20App")))
-                  {:status 200 :body [{:id "6" :name "My App" :resourceType "app" :spaceId "space-123"}]})]
+                  {:status 200 :body {:data [{:id "6" :name "My App" :resourceType "app" :spaceId "space-123"}]}})]
     (let [result (api/get-items env {:name "My App" :resource-type "app" :space-id "space-123"})]
       (test/is (= [{:id "6" :name "My App" :resourceType "app" :spaceId "space-123"}] result)))))
 
@@ -129,8 +129,8 @@
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   {:status 200
-                   :body [{:id "space1" :name "Finance"}
-                          {:id "space2" :name "HR"}]})]
+                   :body {:data [{:id "space1" :name "Finance"}
+                                 {:id "space2" :name "HR"}]}})]
     (let [env {:server "https://example.com" :token "dummy-token"}
           result (api/get-spaces env)]
       (test/is (vector? result))
@@ -140,7 +140,7 @@
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   (test/is (= endpoint "spaces?name=Finance"))
-                  {:status 200 :body [{:id "space1" :name "Finance"}]})]
+                  {:status 200 :body {:data [{:id "space1" :name "Finance"}]}})]
     (let [result (api/get-spaces {:server "https://example.com" :token "dummy-token"}
                                   {:name "Finance"})]
       (test/is (= [{:id "space1" :name "Finance"}] result)))))
@@ -149,7 +149,7 @@
   (with-redefs [api/call-api
                 (fn [env endpoint method payload]
                   (test/is (= endpoint "spaces?type=shared"))
-                  {:status 200 :body [{:id "space2" :type "shared"}]})]
+                  {:status 200 :body {:data [{:id "space2" :type "shared"}]}})]
     (let [result (api/get-spaces {:server "https://example.com" :token "dummy-token"}
                                   {:type "shared"})]
       (test/is (= [{:id "space2" :type "shared"}] result)))))
@@ -159,7 +159,7 @@
                 (fn [env endpoint method payload]
                   (test/is (or (= endpoint "spaces?name=Finance&type=shared")
                                (= endpoint "spaces?type=shared&name=Finance")))
-                  {:status 200 :body [{:id "space3" :name "Finance" :type "shared"}]})]
+                  {:status 200 :body {:data [{:id "space3" :name "Finance" :type "shared"}]}})]
     (let [result (api/get-spaces {:server "https://example.com" :token "dummy-token"}
                                   {:name "Finance" :type "shared"})]
       (test/is (= [{:id "space3" :name "Finance" :type "shared"}] result)))))
