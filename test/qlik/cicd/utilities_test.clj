@@ -129,21 +129,21 @@
                   [{:resourceSubType "script"}])]
     (test/is (true? (utilities/is-script-app? env "script-app-id"))))
   
-  (with-redefs [api/get-items
+  (with-redefs [api/get-items #_{:clj-kondo/ignore [:unused-binding]}
                 (fn [env params]
                   (test/is (= (:resource-id params) "non-script-app-id"))
                   (test/is (= (:resource-type params) "app"))
                   [{:resourceSubType "other"}])]
     (test/is (false? (utilities/is-script-app? env "non-script-app-id"))))
   
-  (with-redefs [api/get-items
+  (with-redefs [api/get-items #_{:clj-kondo/ignore [:unused-binding]}
                 (fn [env params]
                   (test/is (= (:resource-id params) "no-subtype-app-id"))
                   (test/is (= (:resource-type params) "app"))
                   [{:name "Test App"}])]
     (test/is (false? (utilities/is-script-app? env "no-subtype-app-id"))))
 
-  (with-redefs [api/get-items
+  (with-redefs [api/get-items #_{:clj-kondo/ignore [:unused-binding]}
                 (fn [env params]
                   (test/is (= (:resource-id params) "non-existent-app-id"))
                   (test/is (= (:resource-type params) "app"))
