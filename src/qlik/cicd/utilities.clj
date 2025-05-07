@@ -2,7 +2,8 @@
   (:require [qlik.cicd.api :as api]
             [clojure.string :as string]
             [clojure.java.shell :as shell]
-            [clojure.java.io :as io]))
+            [clojure.java.io :as io]
+            [cheshire.core :as json]))
 
 (defn get-space-id [env space-name]
   (let [spaces (api/get-spaces env {:name space-name})
@@ -91,17 +92,104 @@
         (io/make-parents (str target-path "placeholder"))
         target-path))))
 
-#_{:clj-kondo/ignore [:unused-binding]}
-(defn unbuild-app [env app-id target-path]
-  ;; extract properties.json
-  ;; extract script.qvs
+(defn save-json-to-file
+  "Save data as formatted JSON to file"
+  [data file-path]
+  (io/make-parents file-path)
+  (spit file-path (json/generate-string data {:pretty true})))
 
-  ;; if app is not script app:
-  ;;   - extract connections.yml
-  ;;   - extract variables.json
-  ;;   - extract objects/*.json
-  ;;   - extract dimensions.json
-  ;;   - extract measures.json
-  ;;   - extract variables.json
+(defn extract-app-component
+  "Generic function to extract an app component and save it to file.
+   - component-type: The type of component to extract (e.g., 'properties', 'script')
+   - env: The environment configuration
+   - app-id: The ID of the app to extract from
+   - target-path: The path to save the extracted component to
+   - options: Map of additional options:
+     - :file-name - Name of the file to save (defaults to component-type + extension)
+     - :extension - File extension (defaults to '.json')
+     - :as-json - Whether to save as JSON (defaults to true)"
+  [component-type env app-id target-path & [options]]
+  (let [defaults {:file-name (str component-type)
+                  :extension ".json"
+                  :as-json true}
+        {:keys [file-name extension as-json]} (merge defaults options)
+        
+        ;; Map component-type to the corresponding getter function
+        getter-fn (case component-type
+                    "properties" api/get-app-properties
+                    "script" api/get-app-script
+                    "connections" api/get-app-connections
+                    "variables" api/get-app-variables
+                    "dimensions" api/get-app-dimensions
+                    "measures" api/get-app-measures
+                    "objects" api/get-app-objects
+                    (throw (ex-info (str "Unknown component type: " component-type) 
+                                    {:component-type component-type})))
+        
+        ;; Get the data using the selected getter function
+        data (getter-fn env app-id)
+        file-path (str target-path "/" file-name extension)]
+    
+    ;; Handle objects component differently since it has a more complex structure
+    (if (and (= component-type "objects") (seq data))
+      (let [objects-dir (str target-path "/objects")]
+        ;; Create objects directory if needed
+        (io/make-parents (str objects-dir "/placeholder"))
+        
+        ;; Save each object to its own file
+        (doseq [[object-type type-objects] data]
+          (doseq [[object-id properties] type-objects]
+            (let [object-file-path (str objects-dir "/" object-type "---" object-id ".json")]
+              (save-json-to-file properties object-file-path)))))
+      
+      ;; Handle other component types
+      (when data
+        (io/make-parents file-path)
+        (if as-json
+          (save-json-to-file data file-path)
+          (spit file-path data))))
+    
+    ;; Return result information
+    {:success true
+     :file-path file-path
+     :component-type component-type
+     :has-data (boolean data)
+     :count (if (= component-type "objects")
+              (reduce (fn [count [_ type-objects]] 
+                        (+ count (count type-objects))) 
+                      0 data)
+              (if (coll? data) (count data) (if data 1 0)))}))
 
-  (println "Unbuild-app function not implemented yet"))
+(defn unbuild-app 
+  "Extract app properties, script, and objects from a Qlik app and save to target path.
+   For script apps, only properties and script are extracted. For regular apps, all components are extracted."
+  [env app-id target-path]
+  (println (str "Extracting app " app-id " to " target-path))
+  
+  ;; Create target directory if it doesn't exist
+  (io/make-parents (str target-path "/placeholder"))
+  
+  ;; Determine if this is a script app
+  (let [is-script-app (is-script-app? env app-id)
+        ;; Define components to extract based on app type
+        components (if is-script-app
+                     ["properties" "script"]  ;; Only extract properties and script for script apps
+                     ["properties" "script" "connections" "variables" "dimensions" "measures" "objects"])
+        component-options {"properties" {:file-name "app-properties"}
+                           "script" {:file-name "script" :extension ".qvs" :as-json false}
+                           "connections" {:file-name "connections" :extension ".yml"}}
+        
+        ;; Extract each component
+        results (reduce (fn [acc component-type]
+                          (let [options (get component-options component-type {})
+                                result (extract-app-component component-type env app-id target-path options)]
+                            (assoc acc component-type result)))
+                        {} components)]
+    
+    (println (str "App successfully extracted to " target-path))
+    (println (str "App type: " (if is-script-app "Script App" "Regular App")))
+    {:success true
+     :path target-path
+     :app-id app-id
+     :app-type (if is-script-app "script" "app")
+     :results results}))
